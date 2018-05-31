@@ -23,7 +23,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.BIRTH_REG BR, LEDR_DATA.BIRTH_VAR BV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
 		  + "WHERE BR.REG_TYPE= 1 "
 		  + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
 		  + "AND BR.REG_TYPE= 1 "
@@ -42,7 +42,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.BIRTH_REG BR, LEDR_DATA.BIRTH_VAR BV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
 		  + "WHERE BR.REG_TYPE= 1 "
 		  + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
 		  + "AND BR.REG_TYPE= 1 "
@@ -63,7 +63,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.BIRTH_REG BR, LEDR_DATA.BIRTH_VAR BV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
 		  + "WHERE BR.REG_TYPE= 1 "
 		  + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
 		  + "AND BR.REG_TYPE= 1 "
@@ -85,7 +85,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.BIRTH_REG BR, LEDR_DATA.BIRTH_VAR BV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
 		  + "WHERE BR.REG_TYPE= 1 "
 		  + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
 		  + "AND BR.REG_TYPE= 1 "
@@ -104,7 +104,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.BIRTH_REG BR, LEDR_DATA.BIRTH_VAR BV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
 		  + "WHERE BR.REG_TYPE= 1 "
 		  + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
 		  + "AND BR.REG_TYPE= 1 "
@@ -123,7 +123,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.BIRTH_REG BR, LEDR_DATA.BIRTH_VAR BV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
 		  + "WHERE BR.REG_TYPE= 1 "
 		  + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
 		  + "AND BR.REG_TYPE= 1 "
@@ -144,7 +144,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.BIRTH_REG BR, LEDR_DATA.BIRTH_VAR BV,  "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR BIRTH_VAR BV,  "
 		  + "WHERE BR.REG_TYPE= 1 "
 		  + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
 		  + "AND BR.REG_TYPE= 1 "
@@ -164,7 +164,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.BIRTH_REG BR, LEDR_DATA.BIRTH_VAR BV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
 		  + "WHERE BR.REG_TYPE= 1 "
 		  + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
 		  + "AND BR.REG_TYPE= 1 "
@@ -188,7 +188,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.DEATH_REG DR, LEDR_DATA.DEATH_VAR DV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
 		  + "WHERE DR.REG_TYPE= 1 "
 		  + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
 		  + "AND DR.REG_TYPE= 1 "
@@ -207,7 +207,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.DEATH_REG DR, LEDR_DATA.DEATH_VAR DV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
 		  + "WHERE DR.REG_TYPE= 1 "
 		  + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
 		  + "AND DR.REG_TYPE= 1 "
@@ -228,7 +228,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.DEATH_REG DR, LEDR_DATA.DEATH_VAR DV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
 		  + "WHERE DR.REG_TYPE= 1 "
 		  + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
 		  + "AND DR.REG_TYPE= 1 "
@@ -250,7 +250,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.DEATH_REG DR, LEDR_DATA.DEATH_VAR DV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
 		  + "WHERE DR.REG_TYPE= 1 "
 		  + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
 		  + "AND DR.REG_TYPE= 1 "
@@ -269,7 +269,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.DEATH_REG DR, LEDR_DATA.DEATH_VAR DV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
 		  + "WHERE DR.REG_TYPE= 1 "
 		  + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
 		  + "AND DR.REG_TYPE= 1 "
@@ -288,7 +288,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.DEATH_REG DR, LEDR_DATA.DEATH_VAR DV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
 		  + "WHERE DR.REG_TYPE= 1 "
 		  + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
 		  + "AND DR.REG_TYPE= 1 "
@@ -309,7 +309,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.DEATH_REG DR, LEDR_DATA.DEATH_VAR DV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
 		  + "WHERE DR.REG_TYPE= 1 "
 		  + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
 		  + "AND DR.REG_TYPE= 1 "
@@ -329,7 +329,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM LEDR_DATA.DEATH_REG DR, LEDR_DATA.DEATH_VAR DV "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
 		  + "WHERE DR.REG_TYPE= 1 "
 		  + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
 		  + "AND DR.REG_TYPE= 1 "
