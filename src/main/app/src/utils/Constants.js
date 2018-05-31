@@ -16,3 +16,7 @@ export const WEEK_DATE_ENUM = {
 };
 
 export const WEEK_DATE_FORMAT = 'ddd DD/MM/YYYY';
+
+export const ERROR_MESSAGE = {
+  DATABASE_CONNECTION_ERROR: "Unable to connect to the Database.\nPlease refresh or try again later."
+};

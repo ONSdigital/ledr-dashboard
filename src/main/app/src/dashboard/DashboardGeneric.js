@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Grid, Header, Loader, Message, Segment} from "semantic-ui-react";
 import moment from "moment";
-import {TOPIC_OPTIONS_ENUM as TOPIC_OPTIONS, WEEK_DATE_ENUM, WEEK_DATE_FORMAT} from "../utils/Constants";
+import {ERROR_MESSAGE, TOPIC_OPTIONS_ENUM as TOPIC_OPTIONS, WEEK_DATE_ENUM, WEEK_DATE_FORMAT} from "../utils/Constants";
 import StatsList from "./StatsList";
 import {toTitleCase} from "../utils/Utils";
 
@@ -73,21 +73,21 @@ class DashboardGeneric extends Component {
             this.setState({
               statDataCurrentWeekLoading: false,
               statDataCurrentWeekError: true,
-              statDataCurrentWeekErrorMessage: error.toString()
+              statDataCurrentWeekErrorMessage: ERROR_MESSAGE.DATABASE_CONNECTION_ERROR
             });
             break;
           case WEEK_DATE_ENUM.LAST_WEEK:
             this.setState({
               statDataLastWeekLoading: false,
               statDataLastWeekError: true,
-              statDataLastWeekErrorMessage: error.toString()
+              statDataLastWeekErrorMessage: ERROR_MESSAGE.DATABASE_CONNECTION_ERROR
             });
             break;
           case WEEK_DATE_ENUM.WEEK_BEFORE:
             this.setState({
               statDataWeekBeforeLoading: false,
               statDataWeekBeforeError: true,
-              statDataWeekBeforeErrorMessage: error.toString()
+              statDataWeekBeforeErrorMessage: ERROR_MESSAGE.DATABASE_CONNECTION_ERROR
             });
             break;
           default:
