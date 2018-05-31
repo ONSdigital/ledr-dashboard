@@ -4,14 +4,6 @@ export const ROUTER_PATH = {
   LOGOUT: 'logout',
 };
 
-export const LEDR_MENU = {
-  HOME: {
-    key: 'home',
-    name: 'Home',
-    link: ROUTER_PATH.LEDR_BASE + ROUTER_PATH.HOME,
-  }
-};
-
 export const TOPIC_OPTIONS_ENUM = {
   BIRTHS: 'births',
   DEATHS: 'deaths'
