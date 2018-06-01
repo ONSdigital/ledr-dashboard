@@ -6,3 +6,14 @@
     margin-bottom: 0 !important;
     border-radius: 0 !important;
 }
+
+/*
+    Temporary fix for modal positioning bug
+    https://github.com/Semantic-Org/Semantic-UI/issues/6267
+*/
+.visible.transition {
+    margin-top: auto !important;
+    display: inline-block !important;
+    position: relative;
+    top: 20%;
+}

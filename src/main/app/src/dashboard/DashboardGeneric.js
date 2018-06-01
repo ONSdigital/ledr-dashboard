@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {Grid, Header, Loader, Message, Segment} from "semantic-ui-react";
 import moment from "moment";
 import {ERROR_MESSAGE, TOPIC_OPTIONS_ENUM as TOPIC_OPTIONS, WEEK_DATE_ENUM, WEEK_DATE_FORMAT} from "../utils/Constants";
-import StatsList from "./StatsList";
+import StatsListMain from "./StatsListMain";
 import {toTitleCase} from "../utils/Utils";
 
 class DashboardGeneric extends Component {
@@ -100,7 +100,7 @@ class DashboardGeneric extends Component {
 
   componentWillReceiveProps(nextProps) {
 
-    if (nextProps.topic !== this.props.topic) {
+    if (this.props.topic !== nextProps.topic) {
       let topic = nextProps.topic;
       this.setState({topic}, () => {
         this.setWeekDateStates();
@@ -199,7 +199,7 @@ class DashboardGeneric extends Component {
               </Header>
               <Segment attached>
                 {statDataCurrentWeekLoading && <Loader active/>}
-                {statDataCurrentWeek && <StatsList statData={statDataCurrentWeek}/>}
+                {statDataCurrentWeek && <StatsListMain statData={statDataCurrentWeek}/>}
                 {statDataCurrentWeekError && <Message error>{statDataCurrentWeekErrorMessage}</Message>}
               </Segment>
             </Grid.Column>
@@ -214,7 +214,7 @@ class DashboardGeneric extends Component {
               </Header>
               <Segment attached>
                 {statDataLastWeekLoading && <Loader active/>}
-                {statDataLastWeek && <StatsList statData={statDataLastWeek}/>}
+                {statDataLastWeek && <StatsListMain statData={statDataLastWeek}/>}
                 {statDataLastWeekError && <Message error>{statDataLastWeekErrorMessage}</Message>}
               </Segment>
             </Grid.Column>
@@ -229,7 +229,7 @@ class DashboardGeneric extends Component {
               </Header>
               <Segment attached>
                 {statDataWeekBeforeLoading && <Loader active/>}
-                {statDataWeekBefore && <StatsList statData={statDataWeekBefore}/>}
+                {statDataWeekBefore && <StatsListMain statData={statDataWeekBefore}/>}
                 {statDataWeekBeforeError && <Message error>{statDataWeekBeforeErrorMessage}</Message>}
               </Segment>
             </Grid.Column>
