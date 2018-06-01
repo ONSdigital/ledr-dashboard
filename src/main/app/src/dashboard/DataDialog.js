@@ -2,43 +2,6 @@ import React, {Component} from 'react';
 import {Modal} from "semantic-ui-react";
 import Button from "semantic-ui-react/dist/es/elements/Button/Button";
 
-/*const DataDialog = (props) => {
-
-  let data = props.data;
-  console.log('data', data);
-  let outstandingGeographyPOB;
-  let outstandingGeographyPOE;
-  let outstandingGeographyUR;
-
-  if (data) {
-    outstandingGeographyPOB = data.outstandingGeographyPOB;
-    outstandingGeographyPOE = data.outstandingGeographyPOE;
-    outstandingGeographyUR = data.outstandingGeographyUR;
-  }
-
-  return (
-    <Modal open={props.modalOpen} onClose={props.closeModal}>
-      <Modal.Header>
-        DATA
-      </Modal.Header>
-      <Modal.Content>
-        MORE DATA
-        <div>
-          <b>Usual residence:</b> {outstandingGeographyUR}<br/>
-          <b>Place of event:</b> {outstandingGeographyPOE}<br/>
-          <b>Place of birth:</b> {outstandingGeographyPOB}<br/>
-        </div>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button negative onClick={props.closeModal}>Close</Button>
-      </Modal.Actions>
-    </Modal>
-  )
-}
-
-export default DataDialog;*/
-
-
 class DataDialog extends Component {
 
   shouldComponentUpdate(nextProps) {

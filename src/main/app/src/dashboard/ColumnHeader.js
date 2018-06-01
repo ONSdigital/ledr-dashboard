@@ -13,6 +13,8 @@ class ColumnHeader extends Component {
         return moment().weekday(-8).valueOf();
       case TIME_PERIOD_TYPE.BEFORE:
         return moment().weekday(-15).valueOf();
+      default:
+        return 0;
     }
   };
 
@@ -24,6 +26,8 @@ class ColumnHeader extends Component {
         return moment().weekday(-2).valueOf();
       case TIME_PERIOD_TYPE.BEFORE:
         return moment().weekday(-9).valueOf();
+      default:
+        return 0;
     }
   };
 
@@ -43,6 +47,8 @@ class ColumnHeader extends Component {
           case TIME_PERIOD_TYPE.BEFORE:
             headerText = 'Week Before';
             break;
+          default:
+            break;
         }
         break;
       case TIME_PERIOD_SELECT_ENUM.MONTHLY:
@@ -55,6 +61,8 @@ class ColumnHeader extends Component {
             break;
           case TIME_PERIOD_TYPE.BEFORE:
             headerText = 'Month Before';
+            break;
+          default:
             break;
         }
         break;
@@ -69,6 +77,8 @@ class ColumnHeader extends Component {
           case TIME_PERIOD_TYPE.BEFORE:
             headerText = 'Quarter Before';
             break;
+          default:
+            break;
         }
         break;
       case TIME_PERIOD_SELECT_ENUM.ANNUAL:
@@ -82,7 +92,11 @@ class ColumnHeader extends Component {
           case TIME_PERIOD_TYPE.BEFORE:
             headerText = 'Year Before';
             break;
+          default:
+            break;
         }
+        break;
+      default:
         break;
     }
 
@@ -107,6 +121,8 @@ class ColumnHeader extends Component {
           case TIME_PERIOD_TYPE.BEFORE:
             headerText = 'Month Before Sub';
             break;
+          default:
+            break;
         }
         break;
       case TIME_PERIOD_SELECT_ENUM.QUARTERLY:
@@ -119,6 +135,8 @@ class ColumnHeader extends Component {
             break;
           case TIME_PERIOD_TYPE.BEFORE:
             headerText = 'Quarter Before';
+            break;
+          default:
             break;
         }
         break;
@@ -133,7 +151,11 @@ class ColumnHeader extends Component {
           case TIME_PERIOD_TYPE.BEFORE:
             headerText = 'Year Before';
             break;
+          default:
+            break;
         }
+        break;
+      default:
         break;
     }
 

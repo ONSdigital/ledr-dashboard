@@ -3,7 +3,8 @@ import {
   API_ENDPOINT,
   ERROR_MESSAGE,
   TIME_PERIOD_ENUM,
-  TIME_PERIOD_SELECT_ENUM, TIME_PERIOD_TYPE,
+  TIME_PERIOD_SELECT_ENUM,
+  TIME_PERIOD_TYPE,
   TOPIC_OPTIONS_ENUM as TOPIC_OPTIONS,
 } from "../utils/Constants";
 import DashboardHeader from "./DashboardHeader";
@@ -124,32 +125,11 @@ class DashboardNew extends Component {
         this.getData(TIME_PERIOD_ENUM.YEAR_LAST);
         this.getData(TIME_PERIOD_ENUM.YEAR_BEFORE);
         break;
+      default:
+        this.getData(TIME_PERIOD_ENUM.WEEK_CURRENT);
+        this.getData(TIME_PERIOD_ENUM.WEEK_LAST);
+        this.getData(TIME_PERIOD_ENUM.WEEK_BEFORE);
     }
-  };
-
-  componentWillReceiveProps(nextProps) {
-
-    console.log('nextProps', nextProps);
-
-    if (this.props.topic !== nextProps.topic) {
-      let topic = nextProps.topic;
-      this.setState({topic}, () => {
-        this.getDataNew();
-      });
-    }
-
-    if (this.props.timePeriod !== nextProps.timePeriod) {
-      let timePeriod = nextProps.timePeriod;
-      this.setState({timePeriod}, () => {
-        this.getDataNew();
-      });
-    }
-
-  }
-
-  componentDidMount() {
-    //this.setWeekDateStates();
-    this.getDataNew();
   };
 
   constructor() {
@@ -159,13 +139,6 @@ class DashboardNew extends Component {
 
       topic: TOPIC_OPTIONS.BIRTHS,
       timePeriod: TIME_PERIOD_SELECT_ENUM.WEEKLY,
-
-      /*      currentDateStart,
-            currentDateEnd,
-            lastDateStart,
-            lastDateEnd,
-            beforeDateStart,
-            beforeDateEnd,*/
 
       statDataCurrent: '',
       statDataCurrentLoading: true,
@@ -184,6 +157,28 @@ class DashboardNew extends Component {
     };
 
   }
+
+  componentWillReceiveProps(nextProps) {
+
+    if (this.props.topic !== nextProps.topic) {
+      let topic = nextProps.topic;
+      this.setState({topic}, () => {
+        this.getDataNew();
+      });
+    }
+
+    if (this.props.timePeriod !== nextProps.timePeriod) {
+      let timePeriod = nextProps.timePeriod;
+      this.setState({timePeriod}, () => {
+        this.getDataNew();
+      });
+    }
+
+  }
+
+  componentDidMount() {
+    this.getDataNew();
+  };
 
   render() {
 

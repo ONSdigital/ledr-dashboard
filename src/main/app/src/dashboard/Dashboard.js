@@ -43,9 +43,6 @@ class DashboardRedux extends Component {
 
     let {topic, timePeriod} = this.state;
 
-    console.log(topic);
-    console.log(timePeriod);
-
     return (
       <Fragment>
         <Form>

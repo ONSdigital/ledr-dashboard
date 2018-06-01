@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Label, List} from "semantic-ui-react";
+import {Label, List, Segment} from "semantic-ui-react";
 import {round} from "../utils/Utils";
 import {DATA_PROPERTY} from "../utils/Constants";
 
@@ -19,6 +19,7 @@ class StatsList extends Component {
     let outstandingCausePercent = round((outstandingCause / recordsReceived) * 100, 0);
 
     return (
+      <Segment attached>
         <List link selection>
           <List.Item>
             <List.Content>
@@ -69,6 +70,7 @@ class StatsList extends Component {
             </List.Content>
           </List.Item>
         </List>
+      </Segment>
     );
   }
 }

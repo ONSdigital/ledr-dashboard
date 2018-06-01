@@ -13,8 +13,6 @@ class StatsListMain extends Component {
 
     let dataDialogData;
 
-    console.log('dataType', dataType);
-
     if (dataType === DATATYPE.OUTSTANDING_GEOGRAPHY) {
       let {
         outstandingGeographyPOB, outstandingGeographyPOE,
