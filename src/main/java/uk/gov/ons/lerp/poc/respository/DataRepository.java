@@ -153,11 +153,11 @@ public class DataRepository {
 		  + "AND BV.LATEST= 1 "
 		  + "AND BR.LATEST= 1 "
 		  + "AND BV.QI_OCC = 'N' "
-		  + "AND BR.BTC_BIRTH_EVENT_ID = OC.TET_EVENT_ID "
+/*	  + "AND BR.BTC_BIRTH_EVENT_ID = OC.TET_EVENT_ID "
 		  + "AND OC.PSU_STATUS_ID = 1 "
 		  + "AND BR.BTC_BIRTH_EVENT_ID = VE.TET_EVENT_ID "
 		  + "AND VE.SAY_SA = 'BIRTHS' "
-		  + "AND VE.VCG_CIM_TYPE_ITEM_ID = 656 "
+		  + "AND VE.VCG_CIM_TYPE_ITEM_ID = 656 " */
 		  + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
 		  ,new Object[]{satSql,friSql},Integer.class);
 		return count;
