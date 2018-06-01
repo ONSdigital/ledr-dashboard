@@ -10,8 +10,10 @@ import store from './redux/store/index';
 import {ROUTER_PATH} from "./utils/Constants";
 
 //Dev Tool to detect needless component renders
+// noinspection JSUnresolvedVariable
 if (process.env.NODE_ENV !== 'production') {
-  const {whyDidYouUpdate} = require('why-did-you-update')
+  // noinspection JSUnresolvedFunction
+  const {whyDidYouUpdate} = require('why-did-you-update');
   whyDidYouUpdate(React)
 }
 
