@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Grid, Header, Loader, Message, Segment} from "semantic-ui-react";
 import moment from "moment";
-import {ERROR_MESSAGE, TOPIC_OPTIONS_ENUM as TOPIC_OPTIONS, WEEK_DATE_ENUM, WEEK_DATE_FORMAT} from "../utils/Constants";
+import {ERROR_MESSAGE, TOPIC_OPTIONS_ENUM as TOPIC_OPTIONS, TIME_PERIOD_ENUM, WEEK_DATE_FORMAT} from "../utils/Constants";
 import StatsListMain from "./StatsListMain";
 import {toTitleCase} from "../utils/Utils";
 
@@ -52,13 +52,13 @@ class DashboardGeneric extends Component {
         };
 
         switch (week) {
-          case WEEK_DATE_ENUM.CURRENT_WEEK:
+          case TIME_PERIOD_ENUM.WEEK_CURRENT:
             this.setState({statDataCurrentWeek: data, statDataCurrentWeekLoading: false});
             break;
-          case WEEK_DATE_ENUM.LAST_WEEK:
+          case TIME_PERIOD_ENUM.WEEK_LAST:
             this.setState({statDataLastWeek: data, statDataLastWeekLoading: false});
             break;
-          case WEEK_DATE_ENUM.WEEK_BEFORE:
+          case TIME_PERIOD_ENUM.WEEK_BEFORE:
             this.setState({statDataWeekBefore: data, statDataWeekBeforeLoading: false});
             break;
           default:
@@ -69,21 +69,21 @@ class DashboardGeneric extends Component {
         console.log('error', error);
 
         switch (week) {
-          case WEEK_DATE_ENUM.CURRENT_WEEK:
+          case TIME_PERIOD_ENUM.WEEK_CURRENT:
             this.setState({
               statDataCurrentWeekLoading: false,
               statDataCurrentWeekError: true,
               statDataCurrentWeekErrorMessage: ERROR_MESSAGE.DATABASE_CONNECTION_ERROR
             });
             break;
-          case WEEK_DATE_ENUM.LAST_WEEK:
+          case TIME_PERIOD_ENUM.WEEK_LAST:
             this.setState({
               statDataLastWeekLoading: false,
               statDataLastWeekError: true,
               statDataLastWeekErrorMessage: ERROR_MESSAGE.DATABASE_CONNECTION_ERROR
             });
             break;
-          case WEEK_DATE_ENUM.WEEK_BEFORE:
+          case TIME_PERIOD_ENUM.WEEK_BEFORE:
             this.setState({
               statDataWeekBeforeLoading: false,
               statDataWeekBeforeError: true,
@@ -104,9 +104,9 @@ class DashboardGeneric extends Component {
       let topic = nextProps.topic;
       this.setState({topic}, () => {
         this.setWeekDateStates();
-        this.getWeekData(WEEK_DATE_ENUM.CURRENT_WEEK);
-        this.getWeekData(WEEK_DATE_ENUM.LAST_WEEK);
-        this.getWeekData(WEEK_DATE_ENUM.WEEK_BEFORE);
+        this.getWeekData(TIME_PERIOD_ENUM.WEEK_CURRENT);
+        this.getWeekData(TIME_PERIOD_ENUM.WEEK_LAST);
+        this.getWeekData(TIME_PERIOD_ENUM.WEEK_BEFORE);
       });
 
     }
@@ -115,9 +115,9 @@ class DashboardGeneric extends Component {
 
   componentDidMount() {
     this.setWeekDateStates();
-    this.getWeekData(WEEK_DATE_ENUM.CURRENT_WEEK);
-    this.getWeekData(WEEK_DATE_ENUM.LAST_WEEK);
-    this.getWeekData(WEEK_DATE_ENUM.WEEK_BEFORE);
+    this.getWeekData(TIME_PERIOD_ENUM.WEEK_CURRENT);
+    this.getWeekData(TIME_PERIOD_ENUM.WEEK_LAST);
+    this.getWeekData(TIME_PERIOD_ENUM.WEEK_BEFORE);
   };
 
   constructor() {
