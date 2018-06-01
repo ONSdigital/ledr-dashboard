@@ -5,6 +5,10 @@ import {DATA_PROPERTY} from "../utils/Constants";
 
 class StatsList extends Component {
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.statData !== this.props.statData;
+  }
+
   render() {
 
     let {statData} = this.props;

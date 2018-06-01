@@ -31,6 +31,16 @@ class StatsListMain extends Component {
   };
   closeModal = () => this.setState({modalOpen: false});
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.modalOpen !== this.state.modalOpen) {
+      return true
+    }
+    if (nextProps.statData !== this.props.statData) {
+      return true
+    }
+    return false
+  }
+
   render() {
 
     let {statData} = this.props;

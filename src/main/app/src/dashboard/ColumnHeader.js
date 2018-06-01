@@ -31,7 +31,6 @@ class ColumnHeader extends Component {
     }
   };
 
-
   formHeaderText = (timePeriod, timePeriodType) => {
     let headerText;
 
@@ -162,6 +161,15 @@ class ColumnHeader extends Component {
     return headerText;
   };
 
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.timePeriod !== this.props.timePeriod) {
+      return true
+    }
+    if (nextProps.timePeriodType !== this.props.timePeriodType) {
+      return true
+    }
+    return false
+  }
 
   render() {
 
