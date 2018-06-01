@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
-import {Modal} from "semantic-ui-react";
-import Button from "semantic-ui-react/dist/es/elements/Button/Button";
+import {Button, Header, Modal} from "semantic-ui-react";
+import {connect} from "react-redux";
+import {toTitleCase} from "../utils/Utils";
 
-class DataDialog extends Component {
+const mapStateToProps = state => {
+  return {
+    topic: state.topic,
+    timePeriod: state.timePeriod
+  };
+};
+
+class DataDialogRedux extends Component {
 
   shouldComponentUpdate(nextProps) {
     return nextProps.modalOpen !== this.props.modalOpen
@@ -10,7 +18,7 @@ class DataDialog extends Component {
 
   render() {
 
-    let {modalOpen, closeModal, data} = this.props;
+    let {modalOpen, closeModal, data, topic, timePeriod} = this.props;
 
     let dataType;
     let outstandingGeographyPOB;
@@ -24,12 +32,20 @@ class DataDialog extends Component {
       outstandingGeographyUR = data.outstandingGeographyUR;
     }
 
+    topic = toTitleCase(topic);
+    timePeriod = toTitleCase(timePeriod);
+
     return (
       <Modal open={modalOpen} onClose={closeModal}>
-        <Modal.Header>
-          {dataType}
-        </Modal.Header>
         <Modal.Content>
+          <Header as='h2'>
+            <Header.Content>
+              {dataType}
+              <Header.Subheader>
+                {topic} / {timePeriod}
+              </Header.Subheader>
+            </Header.Content>
+          </Header>
           <div>
             <b>Usual residence:</b> {outstandingGeographyUR}<br/>
             <b>Place of event:</b> {outstandingGeographyPOE}<br/>
@@ -44,4 +60,6 @@ class DataDialog extends Component {
   }
 }
 
-export default DataDialog
+const DataDialog = connect(mapStateToProps, null)(DataDialogRedux);
+
+export default DataDialog;
