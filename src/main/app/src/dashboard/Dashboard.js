@@ -1,14 +1,15 @@
 import React, {Component, Fragment} from 'react';
 import {Divider, Form, Message} from "semantic-ui-react";
-import TopicSelectComponent from "./TopicSelectComponent";
-import {TOPIC_OPTIONS_ENUM} from "../utils/Constants";
-import {connect} from "react-redux";
-import DashboardData from "./DashboardGeneric";
 import TimePeriodSelectComponent from "./TimePeriodSelectComponent";
+import TopicSelectComponent from "./TopicSelectComponent";
+import {TIME_PERIOD_SELECT_ENUM, TOPIC_OPTIONS_ENUM} from "../utils/Constants";
+import {connect} from "react-redux";
+import DashboardData from "./DashboardNew";
 
 const mapStateToProps = state => {
   return {
-    topic: state.topic
+    topic: state.topic,
+    timePeriod: state.timePeriod
   };
 };
 
@@ -18,7 +19,8 @@ class DashboardRedux extends Component {
     super();
 
     this.state = {
-      topic: TOPIC_OPTIONS_ENUM.BIRTHS
+      topic: TOPIC_OPTIONS_ENUM.BIRTHS,
+      timePeriod: TIME_PERIOD_SELECT_ENUM.WEEKLY
     };
 
   }
@@ -30,11 +32,19 @@ class DashboardRedux extends Component {
       this.setState({topic})
     }
 
+    if (nextProps.timePeriod !== this.props.timePeriod) {
+      let timePeriod = nextProps.timePeriod;
+      this.setState({timePeriod})
+    }
+
   }
 
   render() {
 
-    let {topic} = this.state;
+    let {topic, timePeriod} = this.state;
+
+    console.log(topic);
+    console.log(timePeriod);
 
     return (
       <Fragment>
@@ -51,7 +61,7 @@ class DashboardRedux extends Component {
           </Form.Group>
         </Form>
         <Divider/>
-        <DashboardData topic={topic}/>
+        <DashboardData topic={topic} timePeriod={timePeriod}/>
         <Message>
           The information on this page is refreshed every hour.
         </Message>

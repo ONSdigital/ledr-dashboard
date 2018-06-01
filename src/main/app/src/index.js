@@ -11,11 +11,11 @@ import {ROUTER_PATH} from "./utils/Constants";
 
 //Dev Tool to detect needless component renders
 // noinspection JSUnresolvedVariable
-if (process.env.NODE_ENV !== 'production') {
+/*if (process.env.NODE_ENV !== 'production') {
   // noinspection JSUnresolvedFunction
   const {whyDidYouUpdate} = require('why-did-you-update');
   whyDidYouUpdate(React)
-}
+}*/
 
 ReactDOM.render(<Provider store={store}><BrowserRouter basename={ROUTER_PATH.BASE}>
   <App/>
