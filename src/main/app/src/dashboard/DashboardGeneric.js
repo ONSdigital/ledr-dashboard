@@ -235,9 +235,6 @@ class DashboardGeneric extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Message>
-          The information on this page is refreshed every hour.
-        </Message>
       </Fragment>
     );
   }

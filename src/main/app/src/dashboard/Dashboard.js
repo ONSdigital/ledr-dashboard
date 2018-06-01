@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Divider} from "semantic-ui-react";
+import {Divider, Message} from "semantic-ui-react";
 import TopicSelectComponent from "./TopicSelectComponent";
 import {TOPIC_OPTIONS_ENUM} from "../utils/Constants";
 import {connect} from "react-redux";
@@ -40,6 +40,9 @@ class DashboardRedux extends Component {
         <TopicSelectComponent/>
         <Divider/>
         <DashboardGeneric topic={topic}/>
+        <Message>
+          The information on this page is refreshed every hour.
+        </Message>
       </Fragment>
     );
   }
