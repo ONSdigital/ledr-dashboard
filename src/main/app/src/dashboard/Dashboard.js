@@ -4,7 +4,7 @@ import TimePeriodSelectComponent from "./TimePeriodSelectComponent";
 import TopicSelectComponent from "./TopicSelectComponent";
 import {TIME_PERIOD_SELECT_ENUM, TOPIC_OPTIONS_ENUM} from "../utils/Constants";
 import {connect} from "react-redux";
-import DashboardData from "./DashboardNew";
+import DashboardData from "./DashboardData";
 
 const mapStateToProps = state => {
   return {

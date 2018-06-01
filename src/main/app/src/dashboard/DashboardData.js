@@ -12,7 +12,7 @@ import {Grid, Loader, Message} from "semantic-ui-react";
 import StatsListMain from "./StatsListMain";
 import ColumnHeader from "./ColumnHeader";
 
-class DashboardNew extends Component {
+class DashboardData extends Component {
 
   /**
    * Gets data for specified by calling API endpoint
@@ -221,4 +221,4 @@ class DashboardNew extends Component {
 
 }
 
-export default DashboardNew
+export default DashboardData
