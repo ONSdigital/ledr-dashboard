@@ -40,31 +40,14 @@ export default DataDialog;*/
 
 
 class DataDialog extends Component {
-  /*
-    shouldComponentUpdate(nextProps, nextState) {
 
-      if (nextProps.modalOpen !== this.props.modalOpen) {
-        return false
-      }
-
-      if (nextProps.closeModal !== this.props.closeModal) {
-        return false
-      }
-
-      if (nextProps.data !== this.props.data) {
-        return false
-      }
-
-      return true;
-    }*/
+  shouldComponentUpdate(nextProps) {
+    return nextProps.modalOpen !== this.props.modalOpen
+  }
 
   render() {
 
     let {modalOpen, closeModal, data} = this.props;
-
-    console.log('modalOpen', modalOpen);
-    console.log('closeModal', closeModal);
-    console.log('data', data);
 
     let dataType;
     let outstandingGeographyPOB;
