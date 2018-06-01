@@ -144,7 +144,7 @@ public class DataRepository {
 		String friSql = df.format(fri);
 		
 		int count =
-		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR BIRTH_VAR BV,  "
+		jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV, PL_OCCUPATION_CODING OC,  VAILDATION_ERRORS VE"
 		  + "WHERE BR.REG_TYPE= 1 "
 		  + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
 		  + "AND BR.REG_TYPE= 1 "
@@ -153,6 +153,11 @@ public class DataRepository {
 		  + "AND BV.LATEST= 1 "
 		  + "AND BR.LATEST= 1 "
 		  + "AND BV.QI_OCC = 'N' "
+		  + "AND BR.BTC_BIRTH_EVENT_ID = OC.TET_EVENT_ID "
+		  + "AND OC.PSU_STATUS_ID = 1 "
+		  + "AND BR.BTC_BIRTH_EVENT_ID = VE.TET_EVENT_ID "
+		  + "AND VE.SAY_SA = 'BIRTHS' "
+		  + "AND VE.VCG_CIM_TYPE_ITEM_ID = 656 "
 		  + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
 		  ,new Object[]{satSql,friSql},Integer.class);
 		return count;

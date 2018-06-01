@@ -25,9 +25,9 @@ public class DashboardEndpoint {
   @Autowired
   private DashboardService dashBoardService;
   
-  @RequestMapping(value = "/ledr-dashboard-poc/topic/{topic}/{week}", method = RequestMethod.GET)
+  @RequestMapping(value = "/ledr-dashboard-poc/topic/{topic}/{period}", method = RequestMethod.GET)
   public ResponseEntity<DashboardData> queryDB(@PathVariable("topic") final String topic,
-                                               @PathVariable("week") final String week, HttpServletResponse response){
+                                               @PathVariable("period") final String period, HttpServletResponse response){
 
 	DashboardData dashboardData = new DashboardData();
 	
@@ -36,7 +36,7 @@ public class DashboardEndpoint {
 	switch (topic){
 	case "births":
 		try {
-			dashboardData = mapper.readValue(new File("D:\\BirthDashboardData"+week+".json"), DashboardData.class);
+			dashboardData = mapper.readValue(new File("D:\\BirthDashboardData"+period+".json"), DashboardData.class);
 		} catch (JsonParseException e1) {
 			e1.printStackTrace();
 		} catch (JsonMappingException e1) {
@@ -47,7 +47,7 @@ public class DashboardEndpoint {
       break;
 	case "deaths":
 		try {
-			dashboardData = mapper.readValue(new File("D:\\DeathDashboardData"+week+".json"), DashboardData.class);
+			dashboardData = mapper.readValue(new File("D:\\DeathDashboardData"+period+".json"), DashboardData.class);
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
