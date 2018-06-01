@@ -9,6 +9,12 @@ import {Provider} from "react-redux";
 import store from './redux/store/index';
 import {ROUTER_PATH} from "./utils/Constants";
 
+//Dev Tool to detect needless component renders
+if (process.env.NODE_ENV !== 'production') {
+  const {whyDidYouUpdate} = require('why-did-you-update')
+  whyDidYouUpdate(React)
+}
+
 ReactDOM.render(<Provider store={store}><BrowserRouter basename={ROUTER_PATH.BASE}>
   <App/>
 </BrowserRouter></Provider>, document.getElementById('root'));
