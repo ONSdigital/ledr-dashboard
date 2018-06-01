@@ -15,6 +15,10 @@ export const WEEK_DATE_ENUM = {
   WEEK_BEFORE: 'week_before'
 };
 
+export const DATA_PROPERTY = {
+  OUTSTANDING_GEOGRAPHY: 'Outstanding Geography'
+};
+
 export const WEEK_DATE_FORMAT = 'ddd DD/MM/YYYY';
 
 export const ERROR_MESSAGE = {
