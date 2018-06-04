@@ -198,19 +198,19 @@ class DashboardData extends Component {
             <Grid.Column>
               <ColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.CURRENT}/>
               {statDataCurrentLoading && <Loader active/>}
-              {statDataCurrent && <StatsListMain statData={statDataCurrent}/>}
+              {statDataCurrent && <StatsListMain statData={statDataCurrent} timePeriodType={TIME_PERIOD_TYPE.CURRENT}/>}
               {statDataCurrentError && <Message error>{statDataCurrentErrorMessage}</Message>}
             </Grid.Column>
             <Grid.Column>
               <ColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.LAST}/>
               {statDataLastLoading && <Loader active/>}
-              {statDataLast && <StatsListMain statData={statDataLast}/>}
+              {statDataLast && <StatsListMain statData={statDataLast} timePeriodType={TIME_PERIOD_TYPE.LAST}/>}
               {statDataLastError && <Message error>{statDataLastErrorMessage}</Message>}
             </Grid.Column>
             <Grid.Column>
               <ColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.BEFORE}/>
               {statDataBeforeLoading && <Loader active/>}
-              {statDataBefore && <StatsListMain statData={statDataBefore}/>}
+              {statDataBefore && <StatsListMain statData={statDataBefore} timePeriodType={TIME_PERIOD_TYPE.BEFORE}/>}
               {statDataBeforeError && <Message error>{statDataBeforeErrorMessage}</Message>}
             </Grid.Column>
           </Grid.Row>

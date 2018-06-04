@@ -43,14 +43,14 @@ class StatsListMain extends Component {
 
   render() {
 
-    let {statData} = this.props;
+    let {statData, timePeriodType} = this.props;
 
     let {modalOpen, dataDialogData} = this.state;
 
     return (
       <Fragment>
         <StatsList statData={statData} show={this.show}/>
-        <DataDialog modalOpen={modalOpen} closeModal={this.closeModal} data={dataDialogData}/>
+        <DataDialog modalOpen={modalOpen} closeModal={this.closeModal} data={dataDialogData} timePeriodType={timePeriodType}/>
       </Fragment>
     );
   }

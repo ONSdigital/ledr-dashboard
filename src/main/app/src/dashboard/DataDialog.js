@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Header, Modal} from "semantic-ui-react";
 import {connect} from "react-redux";
-import {toTitleCase} from "../utils/Utils";
+import {formDateText, formHeaderText, toTitleCase} from "../utils/Utils";
 
 const mapStateToProps = state => {
   return {
@@ -18,7 +18,7 @@ class DataDialogRedux extends Component {
 
   render() {
 
-    let {modalOpen, closeModal, data, topic, timePeriod} = this.props;
+    let {modalOpen, closeModal, data, topic, timePeriod, timePeriodType} = this.props;
 
     let dataType;
     let outstandingGeographyPOB;
@@ -32,8 +32,12 @@ class DataDialogRedux extends Component {
       outstandingGeographyUR = data.outstandingGeographyUR;
     }
 
-    topic = toTitleCase(topic);
-    timePeriod = toTitleCase(timePeriod);
+    let dateRangeDisplay = formDateText(timePeriod, timePeriodType);
+
+    let topicDisplay = toTitleCase(topic);
+    let timePeriodDisplay = toTitleCase(timePeriod);
+    let timePeriodTypeDisplay = formHeaderText(timePeriod, timePeriodType);
+
 
     return (
       <Modal open={modalOpen} onClose={closeModal}>
@@ -42,7 +46,7 @@ class DataDialogRedux extends Component {
             <Header.Content>
               {dataType}
               <Header.Subheader>
-                {topic} / {timePeriod}
+                {topicDisplay} | {timePeriodDisplay} | {timePeriodTypeDisplay} ({dateRangeDisplay})
               </Header.Subheader>
             </Header.Content>
           </Header>
