@@ -1,4 +1,4 @@
-import {TIME_PERIOD_SELECT_ENUM, TIME_PERIOD_TYPE, WEEK_DATE_FORMAT} from "./Constants";
+import {DATE_FORMAT, TIME_PERIOD_SELECT_ENUM, TIME_PERIOD_TYPE} from "./Constants";
 import moment from "moment/moment";
 
 /**
@@ -56,57 +56,99 @@ export const getWeekEndDate = (timePeriodType) => {
   }
 };
 
+export const getMonthStartDate = (timePeriodType) => {
+  switch (timePeriodType) {
+    case TIME_PERIOD_TYPE.CURRENT:
+      return moment().startOf('month');
+    case TIME_PERIOD_TYPE.LAST:
+      return moment().subtract(1, 'month').startOf('month');
+    case TIME_PERIOD_TYPE.BEFORE:
+      return moment().subtract(2, 'month').startOf('month');
+    default:
+      return 0;
+  }
+};
+
+export const getMonthEndDate = (timePeriodType) => {
+  switch (timePeriodType) {
+    case TIME_PERIOD_TYPE.CURRENT:
+      return moment().endOf('month');
+    case TIME_PERIOD_TYPE.LAST:
+      return moment().subtract(1, 'month').endOf('month');
+    case TIME_PERIOD_TYPE.BEFORE:
+      return moment().subtract(2, 'month').endOf('month');
+    default:
+      return 0;
+  }
+};
+
+export const getQuarterStartDate = (timePeriodType) => {
+  switch (timePeriodType) {
+    case TIME_PERIOD_TYPE.CURRENT:
+      return moment().startOf('quarter');
+    case TIME_PERIOD_TYPE.LAST:
+      return moment().subtract(1, 'quarter').startOf('quarter');
+    case TIME_PERIOD_TYPE.BEFORE:
+      return moment().subtract(2, 'quarter').startOf('quarter');
+    default:
+      return 0;
+  }
+};
+
+export const getQuarterEndDate = (timePeriodType) => {
+  switch (timePeriodType) {
+    case TIME_PERIOD_TYPE.CURRENT:
+      return moment().endOf('quarter');
+    case TIME_PERIOD_TYPE.LAST:
+      return moment().subtract(1, 'quarter').endOf('quarter');
+    case TIME_PERIOD_TYPE.BEFORE:
+      return moment().subtract(2, 'quarter').endOf('quarter');
+    default:
+      return 0;
+  }
+};
+
+export const getYearStartDate = (timePeriodType) => {
+  switch (timePeriodType) {
+    case TIME_PERIOD_TYPE.CURRENT:
+      return moment().startOf('year');
+    case TIME_PERIOD_TYPE.LAST:
+      return moment().subtract(1, 'year').startOf('year');
+    case TIME_PERIOD_TYPE.BEFORE:
+      return moment().subtract(2, 'year').startOf('year');
+    default:
+      return 0;
+  }
+};
+
+export const getYearEndDate = (timePeriodType) => {
+  switch (timePeriodType) {
+    case TIME_PERIOD_TYPE.CURRENT:
+      return moment().endOf('year');
+    case TIME_PERIOD_TYPE.LAST:
+      return moment().subtract(1, 'year').endOf('year');
+    case TIME_PERIOD_TYPE.BEFORE:
+      return moment().subtract(2, 'year').endOf('year');
+    default:
+      return 0;
+  }
+};
+
 export const formDateText = (timePeriod, timePeriodType) => {
   let headerText;
 
   switch (timePeriod) {
     case TIME_PERIOD_SELECT_ENUM.WEEKLY:
-      headerText = moment(getWeekStartDate(timePeriodType)).format(WEEK_DATE_FORMAT) + ' to ' + moment(getWeekEndDate(timePeriodType)).format(WEEK_DATE_FORMAT);
+      headerText = moment(getWeekStartDate(timePeriodType)).format(DATE_FORMAT.WEEK) + ' to ' + moment(getWeekEndDate(timePeriodType)).format(DATE_FORMAT.WEEK);
       break;
     case TIME_PERIOD_SELECT_ENUM.MONTHLY:
-      switch (timePeriodType) {
-        case TIME_PERIOD_TYPE.CURRENT:
-          headerText = 'Current Month Sub';
-          break;
-        case TIME_PERIOD_TYPE.LAST:
-          headerText = 'Last Month Sub';
-          break;
-        case TIME_PERIOD_TYPE.BEFORE:
-          headerText = 'Month Before Sub';
-          break;
-        default:
-          break;
-      }
+      headerText = moment(getMonthStartDate(timePeriodType)).format(DATE_FORMAT.WEEK) + ' to ' + moment(getMonthEndDate(timePeriodType)).format(DATE_FORMAT.WEEK);
       break;
     case TIME_PERIOD_SELECT_ENUM.QUARTERLY:
-      switch (timePeriodType) {
-        case TIME_PERIOD_TYPE.CURRENT:
-          headerText = 'Current Quarter';
-          break;
-        case TIME_PERIOD_TYPE.LAST:
-          headerText = 'Last Quarter';
-          break;
-        case TIME_PERIOD_TYPE.BEFORE:
-          headerText = 'Quarter Before';
-          break;
-        default:
-          break;
-      }
+      headerText = moment(getQuarterStartDate(timePeriodType)).format(DATE_FORMAT.WEEK) + ' to ' + moment(getQuarterEndDate(timePeriodType)).format(DATE_FORMAT.WEEK);
       break;
     case TIME_PERIOD_SELECT_ENUM.ANNUAL:
-      switch (timePeriodType) {
-        case TIME_PERIOD_TYPE.CURRENT:
-          headerText = 'Current Year';
-          break;
-        case TIME_PERIOD_TYPE.LAST:
-          headerText = 'Last Year';
-          break;
-        case TIME_PERIOD_TYPE.BEFORE:
-          headerText = 'Year Before';
-          break;
-        default:
-          break;
-      }
+      headerText = moment(getYearStartDate(timePeriodType)).format(DATE_FORMAT.YEAR);
       break;
     default:
       break;

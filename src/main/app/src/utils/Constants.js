@@ -64,7 +64,10 @@ export const DATA_PROPERTY = {
   OUTSTANDING_GEOGRAPHY: 'Outstanding Geography'
 };
 
-export const WEEK_DATE_FORMAT = 'ddd DD/MM/YYYY';
+export const DATE_FORMAT = {
+  WEEK: 'ddd DD/MM/YYYY',
+  YEAR: 'YYYY'
+};
 
 export const ERROR_MESSAGE = {
   DATABASE_CONNECTION_ERROR: "Unable to connect to the Database.\nPlease refresh or try again later."
