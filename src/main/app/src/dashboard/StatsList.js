@@ -46,7 +46,7 @@ class StatsList extends Component {
               </List.Description>
             </List.Content>
           </List.Item>
-          <List.Item onClick={() => this.props.show(DATA_PROPERTY.OUTSTANDING_GEOGRAPHY)}>
+          <List.Item onClick={() => this.props.show(DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PARENT)}>
             <List.Content>
               <List.Header>Outstanding geography:</List.Header>
               <List.Description>
