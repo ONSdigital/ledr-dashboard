@@ -14,8 +14,8 @@ class Login extends Component {
             </Header>
             <Form size='large'>
               <Segment>
-                <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address'/>
-                <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password'/>
+                <Form.Input fluid icon='user' iconPosition='left' name='username' placeholder='E-mail address'/>
+                <Form.Input fluid icon='lock' iconPosition='left' name='password' placeholder='Password' type='password'/>
                 <Button color='blue' fluid size='large'>
                   Login
                 </Button>
