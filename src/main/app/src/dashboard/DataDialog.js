@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Header, Modal} from "semantic-ui-react";
+import {Button, Grid, Header, Modal, Statistic} from "semantic-ui-react";
 import {connect} from "react-redux";
 import {formDateText, formHeaderText, toTitleCase} from "../utils/Utils";
 
@@ -50,11 +50,28 @@ class DataDialogRedux extends Component {
               </Header.Subheader>
             </Header.Content>
           </Header>
-          <div>
-            <b>Usual residence:</b> {outstandingGeographyUR}<br/>
-            <b>Place of event:</b> {outstandingGeographyPOE}<br/>
-            <b>Place of birth:</b> {outstandingGeographyPOB}<br/>
-          </div>
+          <Grid textAlign='center' columns={3}>
+            <Grid.Row>
+              <Grid.Column>
+                <Statistic>
+                  <Statistic.Value>{outstandingGeographyUR}</Statistic.Value>
+                  <Statistic.Label>Usual residence</Statistic.Label>
+                </Statistic>
+              </Grid.Column>
+              <Grid.Column>
+                <Statistic>
+                  <Statistic.Value>{outstandingGeographyPOE}</Statistic.Value>
+                  <Statistic.Label>Place of event</Statistic.Label>
+                </Statistic>
+              </Grid.Column>
+              <Grid.Column>
+                <Statistic>
+                  <Statistic.Value>{outstandingGeographyPOB}</Statistic.Value>
+                  <Statistic.Label>Place of birth</Statistic.Label>
+                </Statistic>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Modal.Content>
         <Modal.Actions>
           <Button negative onClick={closeModal}>Close</Button>
