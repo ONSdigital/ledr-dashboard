@@ -1,7 +1,8 @@
 export const ROUTER_PATH = {
   BASE: 'ledr-dashboard-poc-ui',
   DASHBOARD: '/',
-  LOGOUT: 'logout',
+  LOGIN: '/login',
+  LOGOUT: '/logout',
 };
 
 export const TOPIC_OPTIONS_ENUM = {

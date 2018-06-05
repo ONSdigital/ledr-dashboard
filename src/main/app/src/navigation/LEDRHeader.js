@@ -15,7 +15,14 @@ const NavBarDesktop = ({leftItems, rightItems, activeItem, onClickEvent}) => (
                  onClick={onClickEvent} link>LEDR Dashboard</Menu.Item>
     </Link>
 
-    <Menu.Menu position="right" key={ROUTER_PATH.LOGOUT}>
+    <Menu.Menu position="right" key={ROUTER_PATH.LOGIN}>
+      <Link to={ROUTER_PATH.LOGIN}>
+        <Menu.Item className='nav-bar-desktop-item'
+                   id={ROUTER_PATH.LOGIN} as="span"
+                   active={activeItem === ROUTER_PATH.LOGIN}
+                   onClick={onClickEvent}
+                   link>Login</Menu.Item>
+      </Link>
       <Link to={ROUTER_PATH.LOGOUT}>
         <Menu.Item className='nav-bar-desktop-item'
                    id={ROUTER_PATH.LOGOUT} as="span"
