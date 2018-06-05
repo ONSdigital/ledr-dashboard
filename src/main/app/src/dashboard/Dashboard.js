@@ -1,13 +1,15 @@
 import React, {Component, Fragment} from 'react';
-import {Divider} from "semantic-ui-react";
+import {Divider, Form, Message} from "semantic-ui-react";
+import TimePeriodSelectComponent from "./TimePeriodSelectComponent";
 import TopicSelectComponent from "./TopicSelectComponent";
-import {TOPIC_OPTIONS_ENUM} from "../utils/Constants";
+import {TIME_PERIOD_SELECT_ENUM, TOPIC_OPTIONS_ENUM} from "../utils/Constants";
 import {connect} from "react-redux";
-import DashboardGeneric from "./DashboardGeneric";
+import DashboardData from "./DashboardData";
 
 const mapStateToProps = state => {
   return {
-    topic: state.topic
+    topic: state.topic,
+    timePeriod: state.timePeriod
   };
 };
 
@@ -17,7 +19,8 @@ class DashboardRedux extends Component {
     super();
 
     this.state = {
-      topic: TOPIC_OPTIONS_ENUM.BIRTHS
+      topic: TOPIC_OPTIONS_ENUM.BIRTHS,
+      timePeriod: TIME_PERIOD_SELECT_ENUM.WEEKLY
     };
 
   }
@@ -29,17 +32,36 @@ class DashboardRedux extends Component {
       this.setState({topic})
     }
 
+    if (nextProps.timePeriod !== this.props.timePeriod) {
+      let timePeriod = nextProps.timePeriod;
+      this.setState({timePeriod})
+    }
+
   }
 
   render() {
 
-    let {topic} = this.state;
+    let {topic, timePeriod} = this.state;
 
     return (
       <Fragment>
-        <TopicSelectComponent/>
+        <Form>
+          <Form.Group>
+            <TopicSelectComponent/>
+            <TimePeriodSelectComponent/>
+            <Message visible info>
+              <Message.Header>PROOF OF CONCEPT</Message.Header>
+              <p>
+                This Dashboard is a <strong>proof of concept</strong> and as such is <em>not</em> the final product.
+              </p>
+            </Message>
+          </Form.Group>
+        </Form>
         <Divider/>
-        <DashboardGeneric topic={topic}/>
+        <DashboardData topic={topic} timePeriod={timePeriod}/>
+        <Message>
+          The information on this page is refreshed every hour.
+        </Message>
       </Fragment>
     );
   }

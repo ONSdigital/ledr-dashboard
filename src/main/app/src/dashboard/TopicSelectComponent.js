@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react';
-import {Form, Message} from "semantic-ui-react";
+import React, {Component} from 'react';
+import {Form} from "semantic-ui-react";
 import {TOPIC_OPTIONS} from "../utils/Arrays";
 import {connect} from "react-redux";
 import {setSelectTopic} from "../redux/actions/index";
@@ -38,20 +38,8 @@ class TopicSubTopicComponentRedux extends Component {
     let {topic} = this.state;
 
     return (
-      <Fragment>
-        <Form>
-          <Form.Group>
-            <Form.Select label='Topic' value={topic} options={TOPIC_OPTIONS} placeholder='Topic'
-                         onChange={this.handleTopicChangeSelect}/>
-            <Message visible info>
-              <Message.Header>PROOF OF CONCEPT</Message.Header>
-              <p>
-                This Dashboard is a <strong>proof of concept</strong> and as such is <em>not</em> the final product.
-              </p>
-            </Message>
-          </Form.Group>
-        </Form>
-      </Fragment>
+      <Form.Select label='Topic' value={topic} options={TOPIC_OPTIONS} placeholder='Topic'
+                   onChange={this.handleTopicChangeSelect}/>
     );
   }
 }

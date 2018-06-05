@@ -1,70 +1,24 @@
 import React, {Component} from 'react';
-import {Modal} from "semantic-ui-react";
-import Button from "semantic-ui-react/dist/es/elements/Button/Button";
+import {Button, Grid, Header, Modal, Statistic} from "semantic-ui-react";
+import {connect} from "react-redux";
+import {formDateText, formHeaderText, toTitleCase} from "../utils/Utils";
 
-/*const DataDialog = (props) => {
+const mapStateToProps = state => {
+  return {
+    topic: state.topic,
+    timePeriod: state.timePeriod
+  };
+};
 
-  let data = props.data;
-  console.log('data', data);
-  let outstandingGeographyPOB;
-  let outstandingGeographyPOE;
-  let outstandingGeographyUR;
+class DataDialogRedux extends Component {
 
-  if (data) {
-    outstandingGeographyPOB = data.outstandingGeographyPOB;
-    outstandingGeographyPOE = data.outstandingGeographyPOE;
-    outstandingGeographyUR = data.outstandingGeographyUR;
+  shouldComponentUpdate(nextProps) {
+    return nextProps.modalOpen !== this.props.modalOpen
   }
-
-  return (
-    <Modal open={props.modalOpen} onClose={props.closeModal}>
-      <Modal.Header>
-        DATA
-      </Modal.Header>
-      <Modal.Content>
-        MORE DATA
-        <div>
-          <b>Usual residence:</b> {outstandingGeographyUR}<br/>
-          <b>Place of event:</b> {outstandingGeographyPOE}<br/>
-          <b>Place of birth:</b> {outstandingGeographyPOB}<br/>
-        </div>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button negative onClick={props.closeModal}>Close</Button>
-      </Modal.Actions>
-    </Modal>
-  )
-}
-
-export default DataDialog;*/
-
-
-class DataDialog extends Component {
-  /*
-    shouldComponentUpdate(nextProps, nextState) {
-
-      if (nextProps.modalOpen !== this.props.modalOpen) {
-        return false
-      }
-
-      if (nextProps.closeModal !== this.props.closeModal) {
-        return false
-      }
-
-      if (nextProps.data !== this.props.data) {
-        return false
-      }
-
-      return true;
-    }*/
 
   render() {
 
-    let {modalOpen, closeModal, data} = this.props;
-
-    console.log('modalOpen', modalOpen);
-    console.log('closeModal', closeModal);
-    console.log('data', data);
+    let {modalOpen, closeModal, data, topic, timePeriod, timePeriodType} = this.props;
 
     let dataType;
     let outstandingGeographyPOB;
@@ -78,17 +32,46 @@ class DataDialog extends Component {
       outstandingGeographyUR = data.outstandingGeographyUR;
     }
 
+    let dateRangeDisplay = formDateText(timePeriod, timePeriodType);
+
+    let topicDisplay = toTitleCase(topic);
+    let timePeriodDisplay = toTitleCase(timePeriod);
+    let timePeriodTypeDisplay = formHeaderText(timePeriod, timePeriodType);
+
+
     return (
       <Modal open={modalOpen} onClose={closeModal}>
-        <Modal.Header>
-          {dataType}
-        </Modal.Header>
         <Modal.Content>
-          <div>
-            <b>Usual residence:</b> {outstandingGeographyUR}<br/>
-            <b>Place of event:</b> {outstandingGeographyPOE}<br/>
-            <b>Place of birth:</b> {outstandingGeographyPOB}<br/>
-          </div>
+          <Header as='h2'>
+            <Header.Content>
+              {dataType}
+              <Header.Subheader>
+                {topicDisplay} | {timePeriodDisplay} | {timePeriodTypeDisplay} ({dateRangeDisplay})
+              </Header.Subheader>
+            </Header.Content>
+          </Header>
+          <Grid textAlign='center' columns={3}>
+            <Grid.Row>
+              <Grid.Column>
+                <Statistic>
+                  <Statistic.Value>{outstandingGeographyUR}</Statistic.Value>
+                  <Statistic.Label>Usual residence</Statistic.Label>
+                </Statistic>
+              </Grid.Column>
+              <Grid.Column>
+                <Statistic>
+                  <Statistic.Value>{outstandingGeographyPOE}</Statistic.Value>
+                  <Statistic.Label>Place of event</Statistic.Label>
+                </Statistic>
+              </Grid.Column>
+              <Grid.Column>
+                <Statistic>
+                  <Statistic.Value>{outstandingGeographyPOB}</Statistic.Value>
+                  <Statistic.Label>Place of birth</Statistic.Label>
+                </Statistic>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Modal.Content>
         <Modal.Actions>
           <Button negative onClick={closeModal}>Close</Button>
@@ -98,4 +81,6 @@ class DataDialog extends Component {
   }
 }
 
-export default DataDialog
+const DataDialog = connect(mapStateToProps, null)(DataDialogRedux);
+
+export default DataDialog;

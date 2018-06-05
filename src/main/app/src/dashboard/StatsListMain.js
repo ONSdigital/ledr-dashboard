@@ -13,8 +13,6 @@ class StatsListMain extends Component {
 
     let dataDialogData;
 
-    console.log('dataType', dataType);
-
     if (dataType === DATATYPE.OUTSTANDING_GEOGRAPHY) {
       let {
         outstandingGeographyPOB, outstandingGeographyPOE,
@@ -33,16 +31,26 @@ class StatsListMain extends Component {
   };
   closeModal = () => this.setState({modalOpen: false});
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.modalOpen !== this.state.modalOpen) {
+      return true
+    }
+    if (nextProps.statData !== this.props.statData) {
+      return true
+    }
+    return false
+  }
+
   render() {
 
-    let {statData} = this.props;
+    let {statData, timePeriodType} = this.props;
 
     let {modalOpen, dataDialogData} = this.state;
 
     return (
       <Fragment>
         <StatsList statData={statData} show={this.show}/>
-        <DataDialog modalOpen={modalOpen} closeModal={this.closeModal} data={dataDialogData}/>
+        <DataDialog modalOpen={modalOpen} closeModal={this.closeModal} data={dataDialogData} timePeriodType={timePeriodType}/>
       </Fragment>
     );
   }
