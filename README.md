@@ -13,7 +13,7 @@ To run the UI only on Mac, go to the base directory of the Web App in terminal `
 
 Download the _Linux x86-64_ image for _Oracle Database 12c Release 2_ from <http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html>
 
-Put the _.zip_ folder in `docker-images/OracleDatabase/SingleInstance/dockerfiles`  _(Do not extract the .zip, this is done automatically later.)_
+Put the _.zip_ folder in `docker-images/OracleDatabase/SingleInstance/dockerfiles/12.2.0.1`  _(Do not extract the .zip, this is done automatically later.)_
 
 Run the _buildDockerImage.sh_ script as follows to build the Oracle Docker Image:
 
