@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Grid, Header, Modal, Statistic} from "semantic-ui-react";
+import {Button, Header, List, Modal} from "semantic-ui-react";
 import {connect} from "react-redux";
 import {formDateText, formHeaderText, toTitleCase} from "../utils/Utils";
 
@@ -21,19 +21,14 @@ class DataDialogRedux extends Component {
     let {modalOpen, closeModal, data, topic, timePeriod, timePeriodType} = this.props;
 
     let dataType;
-    let outstandingGeographyPOB;
-    let outstandingGeographyPOE;
-    let outstandingGeographyUR;
+    let statData;
 
     if (data) {
       dataType = data.dataType;
-      outstandingGeographyPOB = data.outstandingGeographyPOB;
-      outstandingGeographyPOE = data.outstandingGeographyPOE;
-      outstandingGeographyUR = data.outstandingGeographyUR;
+      statData = data.statData;
     }
 
     let dateRangeDisplay = formDateText(timePeriod, timePeriodType);
-
     let topicDisplay = toTitleCase(topic);
     let timePeriodDisplay = toTitleCase(timePeriod);
     let timePeriodTypeDisplay = formHeaderText(timePeriod, timePeriodType);
@@ -50,28 +45,20 @@ class DataDialogRedux extends Component {
               </Header.Subheader>
             </Header.Content>
           </Header>
-          <Grid textAlign='center' columns={3}>
-            <Grid.Row>
-              <Grid.Column>
-                <Statistic>
-                  <Statistic.Value>{outstandingGeographyUR}</Statistic.Value>
-                  <Statistic.Label>Usual residence</Statistic.Label>
-                </Statistic>
-              </Grid.Column>
-              <Grid.Column>
-                <Statistic>
-                  <Statistic.Value>{outstandingGeographyPOE}</Statistic.Value>
-                  <Statistic.Label>Place of event</Statistic.Label>
-                </Statistic>
-              </Grid.Column>
-              <Grid.Column>
-                <Statistic>
-                  <Statistic.Value>{outstandingGeographyPOB}</Statistic.Value>
-                  <Statistic.Label>Place of birth</Statistic.Label>
-                </Statistic>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+          <List link selection>
+            {statData &&
+            Object.keys(statData).map((key) => {
+              return (
+                <List.Item key={key}>
+                  <List.Content>
+                    <List.Header>{key}</List.Header>
+                    <List.Description>{statData[key]}</List.Description>
+                  </List.Content>
+                </List.Item>
+              )
+            })
+            }
+          </List>
         </Modal.Content>
         <Modal.Actions>
           <Button negative onClick={closeModal}>Close</Button>

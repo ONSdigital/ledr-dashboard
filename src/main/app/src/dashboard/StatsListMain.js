@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import DataDialog from "./DataDialog";
 import StatsList from "./StatsList";
-import {DATA_PROPERTY as DATATYPE} from "../utils/Constants";
+import {DATA_PROPERTY} from "../utils/Constants";
 
 class StatsListMain extends Component {
 
@@ -13,17 +13,24 @@ class StatsListMain extends Component {
 
     let dataDialogData;
 
-    if (dataType === DATATYPE.OUTSTANDING_GEOGRAPHY) {
+    if (dataType === DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PARENT) {
       let {
         outstandingGeographyPOB, outstandingGeographyPOE,
         outstandingGeographyUR
       } = this.props.statData;
 
-      dataDialogData = {
+      let statData = {};
+      statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.USUAL_RESIDENCE] = outstandingGeographyUR;
+      statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PLACE_OF_EVENT] = outstandingGeographyPOE;
+      statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PLACE_OF_BIRTH] = outstandingGeographyPOB;
+
+      dataDialogData = {dataType, statData};
+
+/*      dataDialogData = {
         dataType,
         outstandingGeographyPOB, outstandingGeographyPOE,
         outstandingGeographyUR
-      }
+      }*/
 
     }
 

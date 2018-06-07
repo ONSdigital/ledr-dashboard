@@ -44,7 +44,12 @@ export const TIME_PERIOD_ENUM = {
 export const API_ENDPOINT = 'http://localhost:7051/ledr-dashboard-poc/topic';
 
 export const DATA_PROPERTY = {
-  OUTSTANDING_GEOGRAPHY: 'Outstanding Geography'
+  OUTSTANDING_GEOGRAPHY: {
+    PARENT: 'Outstanding Geography',
+    USUAL_RESIDENCE: 'Usual Residence',
+    PLACE_OF_EVENT: 'Place of Event',
+    PLACE_OF_BIRTH: 'Place of Birth'
+  }
 };
 
 export const DATE_FORMAT = {
