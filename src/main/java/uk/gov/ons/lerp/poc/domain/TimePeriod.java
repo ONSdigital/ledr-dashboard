@@ -1,4 +1,4 @@
-package uk.gov.ons.lerp.poc.representation;
+package uk.gov.ons.lerp.poc.domain;
 
 public enum TimePeriod {
 	
