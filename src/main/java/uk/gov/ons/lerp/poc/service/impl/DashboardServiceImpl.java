@@ -59,9 +59,14 @@ public class DashboardServiceImpl implements DashboardService {
     
   }
   
+  public RecordSummary retrieveDeathOccupationData(final String period) throws CannotRetrieveDashboardData{
+    return null;
+      //TODO: all logic for this endpoint.
+  }
+  
   
   //@Scheduled(cron="0 0 6-20 * * *")
- //@Scheduled(fixedRate=5000)
+ @Scheduled(fixedRate=5000)
   private void callWeeklySqlStatments(){  
   	try{
   	  findBirthsDashboardData(TimePeriod.WEEK_CURRENT);
