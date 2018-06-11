@@ -7,5 +7,6 @@ public interface DashboardService {
 
   RecordSummary retrieveBirthDashboardData(final String period) throws CannotRetrieveDashboardData;
   RecordSummary retrieveDeathDashboardData(final String period) throws CannotRetrieveDashboardData;
+  RecordSummary retrieveDeathOccupationData(final String period) throws CannotRetrieveDashboardData;
 	 
 }

@@ -34,4 +34,12 @@ public class DashboardEndpoint {
     response.setHeader("Access-Control-Allow-Origin","*");
     return ResponseEntity.ok(service.retrieveDeathDashboardData(period));
   }
+  
+  @RequestMapping(value = "/ledr-dashboard-poc/topic/death/{period}/occupation", method = RequestMethod.GET)
+  public ResponseEntity<RecordSummary> getDeathOccupationData(@PathVariable("topic") final String topic,
+                                               @PathVariable("period") final String period, HttpServletResponse response) throws CannotRetrieveDashboardData{
+
+    response.setHeader("Access-Control-Allow-Origin","*");
+    return ResponseEntity.ok(service.retrieveDeathOccupationData(period));
+  }
 }
