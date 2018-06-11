@@ -16,14 +16,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-      .authorizeRequests().antMatchers("/css/**", "/signup", "/saveuser").permitAll() // Enable css when logged out
+      .authorizeRequests()
+      .antMatchers("/static/**", "/css/**").permitAll() // Enable css when logged out
+      .antMatchers("/ledr-dashboard-poc/**").permitAll()
       .and()
       .authorizeRequests()
       .anyRequest().authenticated()
       .and()
       .formLogin()
       .loginPage("/login")
-      .defaultSuccessUrl("/students")
+      .defaultSuccessUrl("/", true)
       .permitAll()
       .and()
       .logout()
