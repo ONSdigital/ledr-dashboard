@@ -20,50 +20,45 @@ class DashboardData extends Component {
   getData = (timePeriod) => {
 
     //TODO: Time Period should come from TIME_PERIOD_ENUM
-
-    let url = `${API_ENDPOINT}/${this.props.topic}/${timePeriod}`;
+    let url = `${API_ENDPOINT.DASHBOARD}/${this.props.topic}/${timePeriod}`;
 
     return fetch(url)
-      .then((response) => response.json())
-      .then((json) => {
+      .then((response) => {
 
-        let data = {
-          recordsReceived: json.recordsReceived,
-          fullyCoded: json.fullyCoded,
-          outstandingGeographyFull: json.outstandingGeographyFull,
-          outstandingGeographyPOE: json.outstandingGeographyPOE,
-          outstandingGeographyPOB: json.outstandingGeographyPOB,
-          outstandingGeographyUR: json.outstandingGeographyUR,
-          outstandingOccupation: json.outstandingOccupation,
-          outstandingCause: json.outstandingCause
-        };
+        console.log(response);
+
+        if (response.status === 500) {
+          throw Error(response.statusText);
+        }
+
+        return response.json()
+      })
+      .then((json) => {
 
         switch (timePeriod) {
           case TIME_PERIOD_ENUM.WEEK_CURRENT:
           case TIME_PERIOD_ENUM.MONTH_CURRENT:
           case TIME_PERIOD_ENUM.QUARTER_CURRENT:
           case TIME_PERIOD_ENUM.YEAR_CURRENT:
-            this.setState({statDataCurrent: data, statDataCurrentLoading: false});
+            this.setState({statDataCurrent: json, statDataCurrentLoading: false});
             break;
           case TIME_PERIOD_ENUM.WEEK_LAST:
           case TIME_PERIOD_ENUM.MONTH_LAST:
           case TIME_PERIOD_ENUM.QUARTER_LAST:
           case TIME_PERIOD_ENUM.YEAR_LAST:
-            this.setState({statDataLast: data, statDataLastLoading: false});
+            this.setState({statDataLast: json, statDataLastLoading: false});
             break;
           case TIME_PERIOD_ENUM.WEEK_BEFORE:
           case TIME_PERIOD_ENUM.MONTH_BEFORE:
           case TIME_PERIOD_ENUM.QUARTER_BEFORE:
           case TIME_PERIOD_ENUM.YEAR_BEFORE:
-            this.setState({statDataBefore: data, statDataBeforeLoading: false});
+            this.setState({statDataBefore: json, statDataBeforeLoading: false});
             break;
           default:
             return null;
         }
 
-      }).catch((error) => {
-        console.log('error', error);
-
+      }).catch(() => {
         switch (timePeriod) {
           case TIME_PERIOD_ENUM.WEEK_CURRENT:
           case TIME_PERIOD_ENUM.MONTH_CURRENT:
@@ -137,7 +132,7 @@ class DashboardData extends Component {
 
     this.state = {
 
-      topic: TOPIC_OPTIONS.BIRTHS,
+      topic: TOPIC_OPTIONS.BIRTH,
       timePeriod: TIME_PERIOD_SELECT_ENUM.WEEKLY,
 
       statDataCurrent: '',
