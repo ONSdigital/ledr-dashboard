@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Form, Message} from "semantic-ui-react";
-import TimePeriodSelect from "./menu/TimePeriodSelect";
-import TopicSelect from "./menu/TopicSelect";
+import TimePeriodSelect from "./TimePeriodSelect";
+import TopicSelect from "./TopicSelect";
 
 class DashboardMenu extends Component {
 
