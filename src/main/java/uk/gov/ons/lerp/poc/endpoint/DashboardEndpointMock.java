@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import uk.gov.ons.lerp.poc.domain.RecordSummary;
+import uk.gov.ons.lerp.poc.domain.TimePeriod;
 import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
 import uk.gov.ons.lerp.poc.service.DashboardService;
 
@@ -21,15 +22,38 @@ public class DashboardEndpointMock {
   @RequestMapping(value = "/ledr-dashboard-poc/test/topic/birth/{period}", method = RequestMethod.GET)
   public ResponseEntity<RecordSummary> getBirthDashboardData(@PathVariable("period") final String period,
                                                              HttpServletResponse response) throws CannotRetrieveDashboardData {
+
     RecordSummary mockRecordSummary = new RecordSummary();
-    mockRecordSummary.setRecordsReceived(100);
-    mockRecordSummary.setFullyCoded(75);
-    mockRecordSummary.setOutstandingGeographyFull(20);
-    mockRecordSummary.setOutstandingGeographyPOB(6);
-    mockRecordSummary.setOutstandingGeographyPOE(4);
-    mockRecordSummary.setOutstandingGeographyUR(10);
-    mockRecordSummary.setOutstandingOccupation(13);
-    mockRecordSummary.setOutstandingCause(22);
+
+    if (period.equals(TimePeriod.WEEK_CURRENT.toString())) {
+      mockRecordSummary.setRecordsReceived(100);
+      mockRecordSummary.setFullyCoded(75);
+      mockRecordSummary.setOutstandingGeographyFull(20);
+      mockRecordSummary.setOutstandingGeographyPOB(6);
+      mockRecordSummary.setOutstandingGeographyPOE(4);
+      mockRecordSummary.setOutstandingGeographyUR(10);
+      mockRecordSummary.setOutstandingOccupation(13);
+      mockRecordSummary.setOutstandingCause(22);
+    } else if (period.equals(TimePeriod.WEEK_LAST.toString())) {
+      mockRecordSummary.setRecordsReceived(80);
+      mockRecordSummary.setFullyCoded(55);
+      mockRecordSummary.setOutstandingGeographyFull(12);
+      mockRecordSummary.setOutstandingGeographyPOB(8);
+      mockRecordSummary.setOutstandingGeographyPOE(5);
+      mockRecordSummary.setOutstandingGeographyUR(3);
+      mockRecordSummary.setOutstandingOccupation(11);
+      mockRecordSummary.setOutstandingCause(27);
+    } else if (period.equals(TimePeriod.WEEK_BEFORE.toString())) {
+      mockRecordSummary.setRecordsReceived(90);
+      mockRecordSummary.setFullyCoded(40);
+      mockRecordSummary.setOutstandingGeographyFull(9);
+      mockRecordSummary.setOutstandingGeographyPOB(7);
+      mockRecordSummary.setOutstandingGeographyPOE(4);
+      mockRecordSummary.setOutstandingGeographyUR(6);
+      mockRecordSummary.setOutstandingOccupation(12);
+      mockRecordSummary.setOutstandingCause(8);
+    }
+
     response.setHeader("Access-Control-Allow-Origin", "*");
     return ResponseEntity.ok(mockRecordSummary);
   }
