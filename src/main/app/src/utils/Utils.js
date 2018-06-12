@@ -114,7 +114,7 @@ export const getQuarterEndDate = (timePeriodType) => {
   }
 };
 
-export const getYearStartDate = (timePeriodType) => {
+export const getYearDate = (timePeriodType) => {
   switch (timePeriodType) {
     case TIME_PERIOD_TYPE.CURRENT:
       return moment().startOf('year');
@@ -122,19 +122,6 @@ export const getYearStartDate = (timePeriodType) => {
       return moment().subtract(1, 'year').startOf('year');
     case TIME_PERIOD_TYPE.BEFORE:
       return moment().subtract(2, 'year').startOf('year');
-    default:
-      return 0;
-  }
-};
-
-export const getYearEndDate = (timePeriodType) => {
-  switch (timePeriodType) {
-    case TIME_PERIOD_TYPE.CURRENT:
-      return moment().endOf('year');
-    case TIME_PERIOD_TYPE.LAST:
-      return moment().subtract(1, 'year').endOf('year');
-    case TIME_PERIOD_TYPE.BEFORE:
-      return moment().subtract(2, 'year').endOf('year');
     default:
       return 0;
   }
@@ -154,7 +141,7 @@ export const formDateText = (timePeriod, timePeriodType) => {
       headerText = moment(getQuarterStartDate(timePeriodType)).format(DATE_FORMAT.WEEK) + ' to ' + moment(getQuarterEndDate(timePeriodType)).format(DATE_FORMAT.WEEK);
       break;
     case TIME_PERIOD_SELECT_ENUM.ANNUAL:
-      headerText = moment(getYearStartDate(timePeriodType)).format(DATE_FORMAT.YEAR);
+      headerText = moment(getYearDate(timePeriodType)).format(DATE_FORMAT.YEAR);
       break;
     default:
       break;
