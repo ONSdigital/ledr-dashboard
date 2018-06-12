@@ -28,7 +28,7 @@ class TopicSubTopicComponentRedux extends Component {
     super();
 
     this.state = {
-      topic: TOPIC_OPTIONS_ENUM.BIRTHS,
+      topic: TOPIC_OPTIONS_ENUM.BIRTH,
     };
 
   }
