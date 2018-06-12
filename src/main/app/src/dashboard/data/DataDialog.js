@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Header, List, Modal} from "semantic-ui-react";
 import {connect} from "react-redux";
-import {formDateText, formHeaderText, formTopicDisplay, toTitleCase} from "../../utils/Utils";
+import {formDateText, formHeaderText, formTopicDisplay, nullChecker, toTitleCase} from "../../utils/Utils";
 
 const mapStateToProps = state => {
   return {
@@ -51,7 +51,7 @@ class DataDialogRedux extends Component {
                 <List.Item key={key}>
                   <List.Content>
                     <List.Header>{key}</List.Header>
-                    <List.Description>{statData[key]}</List.Description>
+                    <List.Description>{nullChecker(statData[key])}</List.Description>
                   </List.Content>
                 </List.Item>
               )
