@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import uk.gov.ons.lerp.poc.domain.OccupationExtra;
 import uk.gov.ons.lerp.poc.domain.RecordSummary;
 import uk.gov.ons.lerp.poc.domain.TimePeriod;
 import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
@@ -77,6 +78,21 @@ public class DashboardEndpointMock {
   @RequestMapping(value = "/ledr-dashboard-poc/test/topic/death/{period}/occupation", method = RequestMethod.GET)
   public ResponseEntity<RecordSummary> getDeathOccupationData(@PathVariable("period") final String period,
                                                               HttpServletResponse response) throws CannotRetrieveDashboardData {
+
+    OccupationExtra mockOccupationExtra = new OccupationExtra();
+
+    mockOccupationExtra.setNoninquestRecieved(1);
+    mockOccupationExtra.setOutStandingNonNeonates(1);
+    mockOccupationExtra.setOutStandingNeonates(1);
+    mockOccupationExtra.setErrorsAndWarningsNonNeonates(1);
+    mockOccupationExtra.setErrorsAndWarningsNeonates(1);
+    mockOccupationExtra.setInquest(1);
+    mockOccupationExtra.setInquestOutstandingNonNeonates(1);
+    mockOccupationExtra.setInquestOutstandingNeonates(1);
+    mockOccupationExtra.setInquestErrorsAndWarningsNonNeonates(1);
+    mockOccupationExtra.setInquestErrorsAndWarningsNeonates(1);
+    mockOccupationExtra.setOutstandingYellow(1);
+    mockOccupationExtra.setOutstandingBlue(1);
 
     response.setHeader("Access-Control-Allow-Origin", "*");
     return ResponseEntity.ok(service.retrieveDeathOccupationData(period));
