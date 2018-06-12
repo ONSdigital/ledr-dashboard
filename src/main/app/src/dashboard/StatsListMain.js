@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import DataDialog from "./DataDialog";
 import StatsList from "./StatsList";
-import {DATA_PROPERTY} from "../utils/Constants";
+import {DATA_PROPERTY_DASHBOARD, DATA_PROPERTY_POPUP} from "../utils/Constants";
 
 class StatsListMain extends Component {
 
@@ -9,30 +9,28 @@ class StatsListMain extends Component {
     modalOpen: false
   };
 
-  show = (dataType) => {
 
-    let dataDialogData;
+  formDialogData = (dataType) => {
 
-    if (dataType === DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PARENT) {
+    let statData = {};
+
+    if (dataType === DATA_PROPERTY_DASHBOARD.OUTSTANDING_GEOGRAPHY) {
       let {
         outstandingGeographyPOB, outstandingGeographyPOE,
         outstandingGeographyUR
       } = this.props.statData;
 
-      let statData = {};
-      statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.USUAL_RESIDENCE] = outstandingGeographyUR;
-      statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PLACE_OF_EVENT] = outstandingGeographyPOE;
-      statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PLACE_OF_BIRTH] = outstandingGeographyPOB;
-
-      dataDialogData = {dataType, statData};
-
-/*      dataDialogData = {
-        dataType,
-        outstandingGeographyPOB, outstandingGeographyPOE,
-        outstandingGeographyUR
-      }*/
-
+      statData[DATA_PROPERTY_POPUP.OUTSTANDING_GEOGRAPHY.USUAL_RESIDENCE] = outstandingGeographyUR;
+      statData[DATA_PROPERTY_POPUP.OUTSTANDING_GEOGRAPHY.PLACE_OF_EVENT] = outstandingGeographyPOE;
+      statData[DATA_PROPERTY_POPUP.OUTSTANDING_GEOGRAPHY.PLACE_OF_BIRTH] = outstandingGeographyPOB;
     }
+
+    return {dataType, statData}
+  };
+
+  show = (dataType) => {
+
+    let dataDialogData = this.formDialogData(dataType);
 
     this.setState({modalOpen: true, dataDialogData});
   };
