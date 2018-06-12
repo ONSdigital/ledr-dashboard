@@ -1,13 +1,16 @@
 export const ROUTER_PATH = {
-  BASE: 'ledr-dashboard-poc-ui',
   DASHBOARD: '/',
-  LOGIN: '/login',
   LOGOUT: '/logout',
 };
 
 export const TOPIC_OPTIONS_ENUM = {
-  BIRTHS: 'births',
-  DEATHS: 'deaths'
+  BIRTH: 'birth',
+  DEATH: 'death'
+};
+
+export const TOPIC_DISPLAY_ENUM = {
+  BIRTHS: 'Births',
+  DEATHS: 'Deaths'
 };
 
 export const TIME_PERIOD_SELECT_ENUM = {
@@ -41,15 +44,37 @@ export const TIME_PERIOD_ENUM = {
   YEAR_BEFORE: 'YEAR_BEFORE'
 };
 
-export const API_ENDPOINT = 'http://localhost:7051/ledr-dashboard-poc/topic';
+export const API_ENDPOINT = {
+  DASHBOARD: 'http://localhost:7051/ledr-dashboard-poc/topic',
+  POPUP: 'http://localhost:7051/ledr-dashboard-poc',
+};
 
-export const DATA_PROPERTY = {
+export const DATA_PROPERTY_DASHBOARD = {
+  RECORDS_RECEIVED: 'Records Received',
+  FULLY_CODED: 'Fully Coded',
+  OUTSTANDING_GEOGRAPHY: 'Outstanding Geography',
+  OUTSTANDING_OCCUPATION: 'Outstanding Occupation',
+  OUTSTANDING_CAUSE: 'Outstanding Cause'
+};
+
+export const DATA_PROPERTY_POPUP = {
   OUTSTANDING_GEOGRAPHY: {
-    PARENT: 'Outstanding Geography',
     USUAL_RESIDENCE: 'Usual Residence',
     PLACE_OF_EVENT: 'Place of Event',
     PLACE_OF_BIRTH: 'Place of Birth'
+  },
+  CAUSE_CODING: {
+    NON_INQUEST_RECEIVED: 'Non-inquest Received',
+    INQUEST_PART_V: 'Inquest (Part V)',
+    INQUEST_ADJOURNED: 'Inquest Adjourned',
+    OUTSTANDING_NON_NEONATES: 'Outstanding Non-Neonates',
+    OUTSTANDING_NEONATES: 'Outstanding Neonates',
+    ERRORS_AND_WARNINGS_NON_NEONATES: 'Errors and Warnings Non-Neonates',
+    ERRORS_AND_WARNINGS_NEONATES: 'Errors and Warnings Neonates',
+    OUTSTANDING_YELLOWS_120B: 'Outstanding Yellows (120B)',
+    OUTSTANDING_BLUES_121: 'Outstanding Blue (121)'
   }
+
 };
 
 export const DATE_FORMAT = {
