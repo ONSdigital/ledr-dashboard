@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Label, List, Segment} from "semantic-ui-react";
-import {round} from "../utils/Utils";
-import {DATA_PROPERTY_DASHBOARD} from "../utils/Constants";
+import {round} from "../../utils/Utils";
+import {DATA_PROPERTY_DASHBOARD} from "../../utils/Constants";
 
-class StatsList extends Component {
+class DataList extends Component {
 
   shouldComponentUpdate(nextProps) {
     return nextProps.statData !== this.props.statData;
@@ -85,4 +85,4 @@ class StatsList extends Component {
   }
 }
 
-export default StatsList;
+export default DataList;

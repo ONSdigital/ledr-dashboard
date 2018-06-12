@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react';
 import DataDialog from "./DataDialog";
-import StatsList from "./StatsList";
-import {DATA_PROPERTY_DASHBOARD, DATA_PROPERTY_POPUP} from "../utils/Constants";
+import DataList from "./DataList";
+import {DATA_PROPERTY_DASHBOARD, DATA_PROPERTY_POPUP} from "../../utils/Constants";
 
-class StatsListMain extends Component {
+class DataColumn extends Component {
 
   state = {
     modalOpen: false
@@ -54,11 +54,11 @@ class StatsListMain extends Component {
 
     return (
       <Fragment>
-        <StatsList statData={statData} show={this.show}/>
+        <DataList statData={statData} show={this.show}/>
         <DataDialog modalOpen={modalOpen} closeModal={this.closeModal} data={dataDialogData} timePeriodType={timePeriodType}/>
       </Fragment>
     );
   }
 }
 
-export default StatsListMain;
+export default DataColumn;

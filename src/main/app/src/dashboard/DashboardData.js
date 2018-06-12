@@ -9,8 +9,8 @@ import {
 } from "../utils/Constants";
 import DashboardHeader from "./DashboardHeader";
 import {Grid, Loader, Message} from "semantic-ui-react";
-import StatsListMain from "./StatsListMain";
-import ColumnHeader from "./ColumnHeader";
+import DataColumn from "./data/DataColumn";
+import DataColumnHeader from "./data/DataColumnHeader";
 import {connect} from "react-redux";
 
 const mapStateToProps = state => {
@@ -198,21 +198,21 @@ class DashboardRedux extends Component {
         <Grid columns={3}>
           <Grid.Row>
             <Grid.Column>
-              <ColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.CURRENT}/>
+              <DataColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.CURRENT}/>
               {statDataCurrentLoading && <Loader active/>}
-              {statDataCurrent && <StatsListMain statData={statDataCurrent} timePeriodType={TIME_PERIOD_TYPE.CURRENT}/>}
+              {statDataCurrent && <DataColumn statData={statDataCurrent} timePeriodType={TIME_PERIOD_TYPE.CURRENT}/>}
               {statDataCurrentError && <Message error>{statDataCurrentErrorMessage}</Message>}
             </Grid.Column>
             <Grid.Column>
-              <ColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.LAST}/>
+              <DataColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.LAST}/>
               {statDataLastLoading && <Loader active/>}
-              {statDataLast && <StatsListMain statData={statDataLast} timePeriodType={TIME_PERIOD_TYPE.LAST}/>}
+              {statDataLast && <DataColumn statData={statDataLast} timePeriodType={TIME_PERIOD_TYPE.LAST}/>}
               {statDataLastError && <Message error>{statDataLastErrorMessage}</Message>}
             </Grid.Column>
             <Grid.Column>
-              <ColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.BEFORE}/>
+              <DataColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.BEFORE}/>
               {statDataBeforeLoading && <Loader active/>}
-              {statDataBefore && <StatsListMain statData={statDataBefore} timePeriodType={TIME_PERIOD_TYPE.BEFORE}/>}
+              {statDataBefore && <DataColumn statData={statDataBefore} timePeriodType={TIME_PERIOD_TYPE.BEFORE}/>}
               {statDataBeforeError && <Message error>{statDataBeforeErrorMessage}</Message>}
             </Grid.Column>
           </Grid.Row>

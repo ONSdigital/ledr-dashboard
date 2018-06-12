@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Header} from "semantic-ui-react";
-import {formDateText, formHeaderText} from "../utils/Utils";
+import {formDateText, formHeaderText} from "../../utils/Utils";
 
-class ColumnHeader extends Component {
+class DataColumnHeader extends Component {
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.timePeriod !== this.props.timePeriod) {
@@ -34,4 +34,4 @@ class ColumnHeader extends Component {
   }
 }
 
-export default ColumnHeader;
+export default DataColumnHeader;

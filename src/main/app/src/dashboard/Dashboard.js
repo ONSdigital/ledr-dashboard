@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Divider, Message} from "semantic-ui-react";
 import DashboardData from "./DashboardData";
-import DashboardMenu from "./menu/DashboardMenu";
+import DashboardMenu from "./DashboardMenu";
 
 class Dashboard extends Component {
 

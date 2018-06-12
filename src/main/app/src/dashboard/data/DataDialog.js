@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Header, List, Modal} from "semantic-ui-react";
 import {connect} from "react-redux";
-import {formDateText, formHeaderText, formTopicDisplay, toTitleCase} from "../utils/Utils";
+import {formDateText, formHeaderText, formTopicDisplay, toTitleCase} from "../../utils/Utils";
 
 const mapStateToProps = state => {
   return {
