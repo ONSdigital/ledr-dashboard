@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Header} from "semantic-ui-react";
-import {toTitleCase} from "../utils/Utils";
+import {formTopicDisplay, toTitleCase} from "../utils/Utils";
 
 class DashboardHeader extends Component {
 
@@ -12,13 +12,13 @@ class DashboardHeader extends Component {
 
     let {topic, timePeriod} = this.props;
 
-    topic = toTitleCase(topic);
-    timePeriod = toTitleCase(timePeriod);
+    let topicDisplay = formTopicDisplay(topic);
+    let timePeriodDisplay = toTitleCase(timePeriod);
 
     return (
       <Header as='h1'>
         <Header.Content>
-          {timePeriod} Stats: {topic}
+          {timePeriodDisplay} Stats: {topicDisplay}
           <Header.Subheader>
             Initial Regs
           </Header.Subheader>
