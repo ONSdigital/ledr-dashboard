@@ -7,7 +7,7 @@ To run the app on Mac, go to the base directory of the project in terminal and r
 ## Running on Mac (UI only)
 To run the UI only on Mac, go to the base directory of the Web App in terminal `/src/main/app` and run the command `npm start` This will launch the UI on port `3000`.
 
-##Using Mock Endpoints
+## Using Mock Endpoints
 To utilising the Mock Endpoints change `API_ENDPOINT.DASHBOARD` to `API_ENDPOINT.DASHBOARD_MOCK` in `DashboardData.js`
 
 ## Setting up OracleDB on Mac
