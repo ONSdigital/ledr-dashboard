@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Header, List, Modal} from "semantic-ui-react";
 import {connect} from "react-redux";
-import {formDateText, formHeaderText, toTitleCase} from "../utils/Utils";
+import {formDateText, formHeaderText, formTopicDisplay, toTitleCase} from "../utils/Utils";
 
 const mapStateToProps = state => {
   return {
@@ -28,11 +28,10 @@ class DataDialogRedux extends Component {
       statData = data.statData;
     }
 
-    let dateRangeDisplay = formDateText(timePeriod, timePeriodType);
-    let topicDisplay = toTitleCase(topic);
+    let topicDisplay = formTopicDisplay(topic);
     let timePeriodDisplay = toTitleCase(timePeriod);
     let timePeriodTypeDisplay = formHeaderText(timePeriod, timePeriodType);
-
+    let dateRangeDisplay = formDateText(timePeriod, timePeriodType);
 
     return (
       <Modal open={modalOpen} onClose={closeModal}>
