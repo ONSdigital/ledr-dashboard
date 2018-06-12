@@ -7,7 +7,7 @@ import {
   TIME_PERIOD_TYPE,
   TOPIC_OPTIONS_ENUM as TOPIC_OPTIONS,
 } from "../utils/Constants";
-import DashboardHeader from "./DashboardHeader";
+import DashboardHeader from "./menu/DashboardHeader";
 import {Grid, Loader, Message} from "semantic-ui-react";
 import StatsListMain from "./StatsListMain";
 import ColumnHeader from "./ColumnHeader";

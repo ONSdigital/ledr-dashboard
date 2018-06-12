@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Form} from "semantic-ui-react";
-import {TOPIC_OPTIONS} from "../utils/Arrays";
+import {TOPIC_OPTIONS} from "../../utils/Arrays";
 import {connect} from "react-redux";
-import {setSelectTopic} from "../redux/actions/index";
-import {TOPIC_OPTIONS_ENUM} from "../utils/Constants";
+import {setSelectTopic} from "../../redux/actions/index";
+import {TOPIC_OPTIONS_ENUM} from "../../utils/Constants";
 
 const mapStateToProps = state => {
   return {topic: state.topic};
@@ -44,6 +44,6 @@ class TopicSubTopicComponentRedux extends Component {
   }
 }
 
-const TopicSelectComponent = connect(mapStateToProps, mapDispatchToProps)(TopicSubTopicComponentRedux);
+const TopicSelect = connect(mapStateToProps, mapDispatchToProps)(TopicSubTopicComponentRedux);
 
-export default TopicSelectComponent;
+export default TopicSelect;

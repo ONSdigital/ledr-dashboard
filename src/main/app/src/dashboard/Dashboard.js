@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Divider, Form, Message} from "semantic-ui-react";
-import TimePeriodSelectComponent from "./TimePeriodSelectComponent";
-import TopicSelectComponent from "./TopicSelectComponent";
+import TimePeriodSelect from "./menu/TimePeriodSelect";
+import TopicSelect from "./menu/TopicSelect";
 import {TIME_PERIOD_SELECT_ENUM, TOPIC_OPTIONS_ENUM} from "../utils/Constants";
 import {connect} from "react-redux";
 import DashboardData from "./DashboardData";
@@ -47,8 +47,8 @@ class DashboardRedux extends Component {
       <Fragment>
         <Form>
           <Form.Group>
-            <TopicSelectComponent/>
-            <TimePeriodSelectComponent/>
+            <TopicSelect/>
+            <TimePeriodSelect/>
             <Message visible info>
               <Message.Header>PROOF OF CONCEPT</Message.Header>
               <p>

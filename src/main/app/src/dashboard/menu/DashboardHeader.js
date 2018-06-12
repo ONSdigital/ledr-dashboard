@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Header} from "semantic-ui-react";
-import {formTopicDisplay, toTitleCase} from "../utils/Utils";
+import {formTopicDisplay, toTitleCase} from "../../utils/Utils";
 
 class DashboardHeader extends Component {
 
