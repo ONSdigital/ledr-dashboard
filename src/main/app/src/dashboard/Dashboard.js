@@ -19,7 +19,7 @@ class DashboardRedux extends Component {
     super();
 
     this.state = {
-      topic: TOPIC_OPTIONS_ENUM.BIRTHS,
+      topic: TOPIC_OPTIONS_ENUM.BIRTH,
       timePeriod: TIME_PERIOD_SELECT_ENUM.WEEKLY
     };
 
