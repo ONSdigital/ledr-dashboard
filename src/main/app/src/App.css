@@ -1,8 +1,13 @@
-#content-main {
-    margin-top: 0 !important;
-}
 
+/*
+    Removes margin from main content container to make design more visually consistent
+    Removes border radius so menu actually covers entire width of screen
+*/
 #main-menu {
     margin-bottom: 0 !important;
     border-radius: 0 !important;
+}
+/* Removes margin from main content container to make design more visually consistent*/
+#content-main {
+    margin-top: 0 !important;
 }
