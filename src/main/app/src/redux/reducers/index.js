@@ -2,7 +2,7 @@ import {SET_SELECT_TIME_PERIOD, SET_SELECT_TOPIC,} from "../constants/action-typ
 import {TIME_PERIOD_SELECT_ENUM, TOPIC_OPTIONS_ENUM} from "../../utils/Constants";
 
 const initialState = {
-  topic: TOPIC_OPTIONS_ENUM.BIRTHS,
+  topic: TOPIC_OPTIONS_ENUM.BIRTH,
   timePeriod: TIME_PERIOD_SELECT_ENUM.WEEKLY
 };
 
