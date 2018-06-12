@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Label, List, Segment} from "semantic-ui-react";
-import {round} from "../../utils/Utils";
+import {nullChecker, round} from "../../utils/Utils";
 import {DATA_PROPERTY_DASHBOARD} from "../../utils/Constants";
 
 class DataList extends Component {
@@ -17,11 +17,11 @@ class DataList extends Component {
       recordsReceived, fullyCoded, outstandingGeographyFull, outstandingOccupation, outstandingCause
     } = statData;
 
-    let recordsReceivedDisplay = (recordsReceived === undefined) ? 0 : recordsReceived;
-    let fullyCodedDisplay = (fullyCoded === undefined) ? 0 : fullyCoded;
-    let outstandingGeographyFullDisplay = (outstandingGeographyFull === undefined) ? 0 : outstandingGeographyFull;
-    let outstandingOccupationDisplay = (outstandingOccupation === undefined) ? 0 : outstandingOccupation;
-    let outstandingCauseDisplay = (outstandingCause === undefined) ? 0 : outstandingCause;
+    let recordsReceivedDisplay = nullChecker(recordsReceived);
+    let fullyCodedDisplay = nullChecker(fullyCoded);
+    let outstandingGeographyFullDisplay = nullChecker(outstandingGeographyFull);
+    let outstandingOccupationDisplay = nullChecker(outstandingOccupation);
+    let outstandingCauseDisplay = nullChecker(outstandingCause);
 
     let fullyCodedPercent = round((fullyCoded / recordsReceived) * 100, 0);
     let outstandingGeographyPercent = round((outstandingGeographyFull / recordsReceived) * 100, 0);

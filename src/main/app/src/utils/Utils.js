@@ -29,6 +29,10 @@ export const round = (number, precision) => {
   return finalValue;
 };
 
+//Used in Data List - If value is null/undefined then value should default to 0
+export const nullChecker = (variable) => {
+  return (variable == null) ? 0 : variable;
+};
 
 export const toTitleCase = (str) => {
   return str.replace(/\w\S*/g, function (txt) {
