@@ -11,8 +11,16 @@ import DashboardHeader from "./menu/DashboardHeader";
 import {Grid, Loader, Message} from "semantic-ui-react";
 import StatsListMain from "./StatsListMain";
 import ColumnHeader from "./ColumnHeader";
+import {connect} from "react-redux";
 
-class DashboardData extends Component {
+const mapStateToProps = state => {
+  return {
+    topic: state.topic,
+    timePeriod: state.timePeriod
+  };
+};
+
+class DashboardRedux extends Component {
 
   /**
    * Gets data for specified by calling API endpoint
@@ -178,12 +186,11 @@ class DashboardData extends Component {
   render() {
 
     let {
+      topic, timePeriod,
       statDataCurrent, statDataCurrentLoading, statDataCurrentError, statDataCurrentErrorMessage,
       statDataLast, statDataLastLoading, statDataLastError, statDataLastErrorMessage,
       statDataBefore, statDataBeforeLoading, statDataBeforeError, statDataBeforeErrorMessage
     } = this.state;
-
-    let {topic, timePeriod} = this.props;
 
     return (
       <Fragment>
@@ -215,5 +222,7 @@ class DashboardData extends Component {
   }
 
 }
+
+const DashboardData = connect(mapStateToProps, null)(DashboardRedux);
 
 export default DashboardData
