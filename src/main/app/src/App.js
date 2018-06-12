@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import './App.css';
 import {Segment} from "semantic-ui-react";
 import Main from "./Main";
-import LEDRHeader from "./navigation/LEDRHeader";
+import NavigationBar from "./navigation/NavigationBar";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <LEDRHeader/>
+        <NavigationBar/>
         <Segment id='content-main' basic>
           <Main/>
         </Segment>
