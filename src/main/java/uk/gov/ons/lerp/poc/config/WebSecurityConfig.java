@@ -17,7 +17,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
       .authorizeRequests()
-      .antMatchers("/static/**", "/css/**").permitAll() // Enable css when logged out
+      .antMatchers("/resources/**").permitAll() // Enable static when logged out
+      .antMatchers("/static/**").permitAll() // Enable static when logged out
+      .antMatchers("/js/**").permitAll() // Enable static when logged out
+      .antMatchers("/css/**").permitAll() // Enable static when logged out
       .antMatchers("/ledr-dashboard-poc/**").permitAll()
       .and()
       .authorizeRequests()
