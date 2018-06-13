@@ -66,7 +66,7 @@ public class DashboardServiceImpl implements DashboardService {
   
   
   //@Scheduled(cron="0 0 6-20 * * *")
- @Scheduled(fixedRate=5000)
+ //@Scheduled(fixedRate=5000)
   private void callWeeklySqlStatments(){  
   	try{
   	  findBirthsDashboardData(TimePeriod.WEEK_CURRENT);

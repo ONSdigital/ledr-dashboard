@@ -61,7 +61,7 @@ class DataList extends Component {
               </List.Description>
             </List.Content>
           </List.Item>
-          <List.Item>
+          <List.Item onClick={() => this.props.show(DATA_PROPERTY_DASHBOARD.OUTSTANDING_OCCUPATION)}>
             <List.Content>
               <List.Header>Outstanding occupation: </List.Header>
               <List.Description>
