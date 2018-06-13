@@ -76,7 +76,7 @@ public class DashboardEndpointMock {
   }
 
   @RequestMapping(value = "/ledr-dashboard-poc/test/topic/death/{period}/occupation", method = RequestMethod.GET)
-  public ResponseEntity<RecordSummary> getDeathOccupationData(@PathVariable("period") final String period,
+  public ResponseEntity<OccupationExtra> getDeathOccupationData(@PathVariable("period") final String period,
                                                               HttpServletResponse response) throws CannotRetrieveDashboardData {
 
     OccupationExtra mockOccupationExtra = new OccupationExtra();
@@ -95,6 +95,6 @@ public class DashboardEndpointMock {
     mockOccupationExtra.setOutstandingBlue(1);
 
     response.setHeader("Access-Control-Allow-Origin", "*");
-    return ResponseEntity.ok(service.retrieveDeathOccupationData(period));
+    return ResponseEntity.ok(mockOccupationExtra);
   }
 }
