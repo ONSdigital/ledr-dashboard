@@ -9,31 +9,21 @@ class DialogDataArea extends Component {
 
     let {topic, timePeriod, modalDataProperty, modalTimePeriodType} = this.props;
 
-    console.log(topic, timePeriod, modalDataProperty, modalTimePeriodType);
-
     let timePeriodMapped = timePeriodMapper(timePeriod, modalTimePeriodType);
 
     let url = `${API_ENDPOINT.DASHBOARD_MOCK}/${topic}/${timePeriodMapped}`;
-
     if (modalDataProperty === DATA_PROPERTY_DASHBOARD.OUTSTANDING_OCCUPATION) {
       url = url + '/occupation';
     }
 
-    console.log('url: ', url);
-
     return fetch(url)
       .then((response) => {
-
-        console.log(response);
-
         if (response.status === 500) {
           throw Error(response.statusText);
         }
-
         return response.json()
       })
       .then((json) => {
-        console.log('json', json);
         this.setState({statData: json, statDataLoading: false});
       }).catch(() => {
         this.setState({

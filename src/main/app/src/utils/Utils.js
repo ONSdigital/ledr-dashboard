@@ -241,8 +241,6 @@ export const formTopicDisplay = (topic) => {
 
 export const timePeriodMapper = (timePeriod, modalTimePeriodType) => {
 
-  console.log('UTILS USED', timePeriod, modalTimePeriodType);
-
   switch (timePeriod) {
     case TIME_PERIOD_SELECT_ENUM.WEEKLY:
       switch (modalTimePeriodType) {
