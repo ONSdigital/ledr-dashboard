@@ -12,6 +12,7 @@ import {Grid, Loader, Message} from "semantic-ui-react";
 import DataColumn from "./data/DataColumn";
 import DataColumnHeader from "./data/DataColumnHeader";
 import {connect} from "react-redux";
+import DataDialog from "./data/DataDialog";
 
 const mapStateToProps = state => {
   return {
@@ -28,12 +29,12 @@ class DashboardRedux extends Component {
   getData = (timePeriod) => {
 
     //TODO: Time Period should come from TIME_PERIOD_ENUM
-    let url = `${API_ENDPOINT.DASHBOARD}/${this.props.topic}/${timePeriod}`;
+    let url = `${API_ENDPOINT.DASHBOARD_MOCK}/${this.props.topic}/${timePeriod}`;
 
     return fetch(url)
       .then((response) => {
 
-        console.log(response);
+        //console.log(response);
 
         if (response.status === 500) {
           throw Error(response.statusText);
@@ -217,6 +218,7 @@ class DashboardRedux extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        <DataDialog />
       </Fragment>
     );
   }

@@ -1,5 +1,6 @@
 import {
   DATE_FORMAT,
+  TIME_PERIOD_ENUM,
   TIME_PERIOD_SELECT_ENUM,
   TIME_PERIOD_TYPE,
   TOPIC_DISPLAY_ENUM,
@@ -234,6 +235,61 @@ export const formTopicDisplay = (topic) => {
       return TOPIC_DISPLAY_ENUM.DEATHS;
     default:
       return ''
+  }
+
+};
+
+export const timePeriodMapper = (timePeriod, modalTimePeriodType) => {
+
+  console.log('UTILS USED', timePeriod, modalTimePeriodType);
+
+  switch (timePeriod) {
+    case TIME_PERIOD_SELECT_ENUM.WEEKLY:
+      switch (modalTimePeriodType) {
+        case TIME_PERIOD_TYPE.CURRENT:
+          return TIME_PERIOD_ENUM.WEEK_CURRENT;
+        case TIME_PERIOD_TYPE.LAST:
+          return TIME_PERIOD_ENUM.WEEK_LAST;
+        case TIME_PERIOD_TYPE.BEFORE:
+          return TIME_PERIOD_ENUM.WEEK_BEFORE;
+        default:
+          return '';
+      }
+    case TIME_PERIOD_SELECT_ENUM.MONTHLY:
+      switch (modalTimePeriodType) {
+        case TIME_PERIOD_TYPE.CURRENT:
+          return TIME_PERIOD_ENUM.MONTH_CURRENT;
+        case TIME_PERIOD_TYPE.LAST:
+          return TIME_PERIOD_ENUM.MONTH_LAST;
+        case TIME_PERIOD_TYPE.BEFORE:
+          return TIME_PERIOD_ENUM.MONTH_BEFORE;
+        default:
+          return '';
+      }
+    case TIME_PERIOD_SELECT_ENUM.QUARTERLY:
+      switch (modalTimePeriodType) {
+        case TIME_PERIOD_TYPE.CURRENT:
+          return TIME_PERIOD_ENUM.QUARTER_CURRENT;
+        case TIME_PERIOD_TYPE.LAST:
+          return TIME_PERIOD_ENUM.QUARTER_LAST;
+        case TIME_PERIOD_TYPE.BEFORE:
+          return TIME_PERIOD_ENUM.QUARTER_BEFORE;
+        default:
+          return '';
+      }
+    case TIME_PERIOD_SELECT_ENUM.ANNUAL:
+      switch (modalTimePeriodType) {
+        case TIME_PERIOD_TYPE.CURRENT:
+          return TIME_PERIOD_ENUM.YEAR_CURRENT;
+        case TIME_PERIOD_TYPE.LAST:
+          return TIME_PERIOD_ENUM.YEAR_LAST;
+        case TIME_PERIOD_TYPE.BEFORE:
+          return TIME_PERIOD_ENUM.YEAR_BEFORE;
+        default:
+          return '';
+      }
+    default:
+      return '';
   }
 
 };

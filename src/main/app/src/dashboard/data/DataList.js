@@ -1,9 +1,25 @@
 import React, {Component} from 'react';
 import {Label, List, Segment} from "semantic-ui-react";
 import {nullChecker, round} from "../../utils/Utils";
-import {DATA_PROPERTY_DASHBOARD} from "../../utils/Constants";
+import {setModalDataProperty, setModalOpen, setModalTimePeriodType} from "../../redux/actions";
+import {connect} from "react-redux";
+import {DATA_PROPERTY_DASHBOARD, TOPIC_OPTIONS_ENUM} from "../../utils/Constants";
 
-class DataList extends Component {
+const mapStateToProps = state => {
+  return {
+    topic: state.topic,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setModalOpen: modalOpen => dispatch(setModalOpen(modalOpen)),
+    setModalDataProperty: modalDataProperty => dispatch(setModalDataProperty(modalDataProperty)),
+    setModalTimePeriodType: modalTimePeriodType => dispatch(setModalTimePeriodType(modalTimePeriodType))
+  };
+};
+
+class DataListRedux extends Component {
 
   shouldComponentUpdate(nextProps) {
     return nextProps.statData !== this.props.statData;
@@ -11,7 +27,7 @@ class DataList extends Component {
 
   render() {
 
-    let {statData} = this.props;
+    let {statData, timePeriodType, topic} = this.props;
 
     let {
       recordsReceived, fullyCoded, outstandingGeographyFull, outstandingOccupation, outstandingCause
@@ -52,7 +68,11 @@ class DataList extends Component {
               </List.Description>
             </List.Content>
           </List.Item>
-          <List.Item onClick={() => this.props.show(DATA_PROPERTY_DASHBOARD.OUTSTANDING_GEOGRAPHY)}>
+          <List.Item onClick={() => {
+            this.props.setModalTimePeriodType(timePeriodType);
+            this.props.setModalDataProperty(DATA_PROPERTY_DASHBOARD.OUTSTANDING_GEOGRAPHY);
+            this.props.setModalOpen(true);
+          }}>
             <List.Content>
               <List.Header>Outstanding geography:</List.Header>
               <List.Description>
@@ -61,14 +81,19 @@ class DataList extends Component {
               </List.Description>
             </List.Content>
           </List.Item>
-          <List.Item onClick={() => this.props.show(DATA_PROPERTY_DASHBOARD.OUTSTANDING_OCCUPATION)}>
-            <List.Content>
-              <List.Header>Outstanding occupation: </List.Header>
-              <List.Description>
-                {outstandingOccupationDisplay + ' '}
-                <Label color='grey' circular>{outstandingOccupationPercent}%</Label>
-              </List.Description>
-            </List.Content>
+          <List.Item onClick={() => {
+            if (topic === TOPIC_OPTIONS_ENUM.DEATH) {
+              this.props.setModalTimePeriodType(timePeriodType);
+              this.props.setModalDataProperty(DATA_PROPERTY_DASHBOARD.OUTSTANDING_OCCUPATION);
+              this.props.setModalOpen(true);
+            }
+          }}> <List.Content>
+            <List.Header>Outstanding occupation: </List.Header>
+            <List.Description>
+              {outstandingOccupationDisplay + ' '}
+              <Label color='grey' circular>{outstandingOccupationPercent}%</Label>
+            </List.Description>
+          </List.Content>
           </List.Item>
           <List.Item>
             <List.Content>
@@ -84,5 +109,7 @@ class DataList extends Component {
     );
   }
 }
+
+const DataList = connect(mapStateToProps, mapDispatchToProps)(DataListRedux);
 
 export default DataList;
