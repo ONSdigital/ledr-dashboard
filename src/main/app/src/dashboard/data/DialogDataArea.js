@@ -97,29 +97,29 @@ const OutstandingOccupation = ({statData}) => {
 
   let nonInquestReceivedDisplay = nullChecker(statData.nonInquestReceived);
   let nonInquestReceivedOutstandingNonNeonatesDisplay = nullChecker(statData.nonInquestReceivedOutstandingNonNeonates) + ' ';
-  let nonInquestReceivedOutstandingNonNeonatesPercent = round((statData.nonInquestReceived / statData.nonInquestReceivedOutstandingNonNeonates) * 100, 0);
+  let nonInquestReceivedOutstandingNonNeonatesPercent = round((statData.nonInquestReceivedOutstandingNonNeonates / statData.nonInquestReceived) * 100, 0);
   let nonInquestReceivedOutstandingNeonatesDisplay = nullChecker(statData.nonInquestReceivedOutstandingNeonates) + ' ';
-  let nonInquestReceivedOutstandingNeonatesPercent = round((statData.nonInquestReceived / statData.nonInquestReceivedOutstandingNeonates) * 100, 0);
+  let nonInquestReceivedOutstandingNeonatesPercent = round((statData.nonInquestReceivedOutstandingNeonates / statData.nonInquestReceived) * 100, 0);
   let nonInquestReceivedErrorsAndWarningsNonNeonatesDisplay = nullChecker(statData.nonInquestReceivedErrorsAndWarningsNonNeonates) + ' ';
-  let nonInquestReceivedErrorsAndWarningsNonNeonatesPercent = round((statData.nonInquestReceived / statData.nonInquestReceivedErrorsAndWarningsNonNeonates) * 100, 0);
+  let nonInquestReceivedErrorsAndWarningsNonNeonatesPercent = round((statData.nonInquestReceivedErrorsAndWarningsNonNeonates / statData.nonInquestReceived) * 100, 0);
   let nonInquestReceivedErrorsAndWarningsNeonatesDisplay = nullChecker(statData.nonInquestReceivedErrorsAndWarningsNeonates) + ' ';
-  let nonInquestReceivedErrorsAndWarningsNeonatesPercent = round((statData.nonInquestReceived / statData.nonInquestReceivedErrorsAndWarningsNeonates) * 100, 0);
+  let nonInquestReceivedErrorsAndWarningsNeonatesPercent = round((statData.nonInquestReceivedErrorsAndWarningsNeonates / statData.nonInquestReceived) * 100, 0);
 
   let inquestPartVDisplay = nullChecker(statData.inquestPartV);
   let inquestPartVOutstandingNonNeonatesDisplay = nullChecker(statData.inquestPartVOutstandingNonNeonates) + ' ';
-  let inquestPartVOutstandingNonNeonatesPercent = round((statData.inquestPartV / statData.inquestPartVOutstandingNonNeonates) * 100, 0);
+  let inquestPartVOutstandingNonNeonatesPercent = round((statData.inquestPartVOutstandingNonNeonates / statData.inquestPartV) * 100, 0);
   let inquestPartVOutstandingNeonatesDisplay = nullChecker(statData.inquestPartVOutstandingNeonates) + ' ';
-  let inquestPartVOutstandingNeonatesPercent = round((statData.inquestPartV / statData.inquestPartVOutstandingNeonates) * 100, 0);
+  let inquestPartVOutstandingNeonatesPercent = round((statData.inquestPartVOutstandingNeonates / statData.inquestPartV) * 100, 0);
   let inquestPartVErrorsAndWarningsNonNeonatesDisplay = nullChecker(statData.inquestPartVErrorsAndWarningsNonNeonates) + ' ';
-  let inquestPartVErrorsAndWarningsNonNeonatesPercent = round((statData.inquestPartV / statData.inquestPartVErrorsAndWarningsNonNeonates) * 100, 0);
+  let inquestPartVErrorsAndWarningsNonNeonatesPercent = round((statData.inquestPartVErrorsAndWarningsNonNeonates / statData.inquestPartV) * 100, 0);
   let inquestPartVErrorsAndWarningsNeonatesDisplay = nullChecker(statData.inquestPartVErrorsAndWarningsNeonates) + ' ';
-  let inquestPartVErrorsAndWarningsNeonatesPercent = round((statData.inquestPartV / statData.inquestPartVErrorsAndWarningsNeonates) * 100, 0);
+  let inquestPartVErrorsAndWarningsNeonatesPercent = round((statData.inquestPartVErrorsAndWarningsNeonates / statData.inquestPartV) * 100, 0);
 
   let inquestAdjournedDisplay = nullChecker(statData.inquestAdjourned);
   let inquestAdjournedOutstandingBlueDisplay = nullChecker(statData.inquestAdjournedOutstandingBlue) + ' ';
-  let inquestAdjournedOutstandingBluePercent = round((statData.inquestAdjourned / statData.inquestAdjournedOutstandingBlue) * 100, 0);
+  let inquestAdjournedOutstandingBluePercent = round((statData.inquestAdjournedOutstandingBlue / statData.inquestAdjourned) * 100, 0);
   let inquestAdjournedOutstandingYellowDisplay = nullChecker(statData.inquestAdjournedOutstandingYellow) + ' ';
-  let inquestAdjournedOutstandingYellowPercent = round((statData.inquestAdjourned / statData.inquestAdjournedOutstandingYellow) * 100, 0);
+  let inquestAdjournedOutstandingYellowPercent = round((statData.inquestAdjournedOutstandingYellow / statData.inquestAdjourned) * 100, 0);
 
   return (
     <Fragment>
