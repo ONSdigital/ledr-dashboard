@@ -81,21 +81,21 @@ public class DashboardEndpointMock {
 
     OccupationExtra mockOccupationExtra = new OccupationExtra();
 
-    mockOccupationExtra.setNonInquestReceived(1);
-    mockOccupationExtra.setNonInquestReceivedOutstandingNonNeonates(1);
-    mockOccupationExtra.setNonInquestReceivedOutstandingNeonates(1);
-    mockOccupationExtra.setNonInquestReceivedErrorsAndWarningsNonNeonates(1);
-    mockOccupationExtra.setNonInquestReceivedErrorsAndWarningsNeonates(1);
+    mockOccupationExtra.setNonInquestReceived(20);
+    mockOccupationExtra.setNonInquestReceivedOutstandingNonNeonates(7);
+    mockOccupationExtra.setNonInquestReceivedOutstandingNeonates(3);
+    mockOccupationExtra.setNonInquestReceivedErrorsAndWarningsNonNeonates(11);
+    mockOccupationExtra.setNonInquestReceivedErrorsAndWarningsNeonates(8);
 
-    mockOccupationExtra.setInquestPartV(1);
-    mockOccupationExtra.setInquestPartVOutstandingNonNeonates(1);
-    mockOccupationExtra.setInquestPartVOutstandingNeonates(1);
-    mockOccupationExtra.setInquestPartVErrorsAndWarningsNonNeonates(1);
-    mockOccupationExtra.setInquestPartVErrorsAndWarningsNeonates(1);
+    mockOccupationExtra.setInquestPartV(30);
+    mockOccupationExtra.setInquestPartVOutstandingNonNeonates(7);
+    mockOccupationExtra.setInquestPartVOutstandingNeonates(9);
+    mockOccupationExtra.setInquestPartVErrorsAndWarningsNonNeonates(14);
+    mockOccupationExtra.setInquestPartVErrorsAndWarningsNeonates(16);
 
-    mockOccupationExtra.setInquestAdjourned(1);
-    mockOccupationExtra.setInquestAdjournedOutstandingYellow(1);
-    mockOccupationExtra.setInquestAdjournedOutstandingBlue(1);
+    mockOccupationExtra.setInquestAdjourned(10);
+    mockOccupationExtra.setInquestAdjournedOutstandingYellow(2);
+    mockOccupationExtra.setInquestAdjournedOutstandingBlue(4);
 
     response.setHeader("Access-Control-Allow-Origin", "*");
     return ResponseEntity.ok(mockOccupationExtra);
