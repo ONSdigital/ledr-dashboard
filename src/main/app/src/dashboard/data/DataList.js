@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Icon, Label, List, Segment} from "semantic-ui-react";
+import {Label, List, Segment} from "semantic-ui-react";
 import {nullChecker, round} from "../../utils/Utils";
 import {setModalDataProperty, setModalOpen, setModalTimePeriodType} from "../../redux/actions";
 import {connect} from "react-redux";
@@ -88,9 +88,6 @@ class DataListRedux extends Component {
               this.props.setModalOpen(true);
             }
           }}>
-            <List.Content floated='right'>
-              <Icon name='expand arrows alternate'/>
-            </List.Content>
             <List.Content>
               <List.Header>Outstanding occupation: </List.Header>
               <List.Description>
