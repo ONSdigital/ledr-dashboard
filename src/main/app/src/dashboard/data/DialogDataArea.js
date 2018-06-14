@@ -48,7 +48,7 @@ class DialogDataArea extends Component {
     super(props);
 
     this.state = {
-      statData: {}
+      statData: ''
     };
 
     this.getData();
@@ -60,8 +60,6 @@ class DialogDataArea extends Component {
     let modalDataProperty = this.props.modalDataProperty;
 
     let statData = this.state.statData;
-
-    console.log('statData', statData);
 
     if (statData) {
       if (modalDataProperty === DATA_PROPERTY_DASHBOARD.OUTSTANDING_OCCUPATION) {
@@ -236,7 +234,7 @@ const OutstandingOccupation = ({statData}) => {
             <List.Description>
               {inquestAdjournedOutstandingBlueDisplay}
               <Label color='grey' circular>{inquestAdjournedOutstandingBluePercent}%</Label>
-              </List.Description>
+            </List.Description>
           </List.Content>
         </List.Item>
         <List.Item>
@@ -245,7 +243,7 @@ const OutstandingOccupation = ({statData}) => {
             <List.Description>
               {inquestAdjournedOutstandingYellowDisplay}
               <Label color='grey' circular>{inquestAdjournedOutstandingYellowPercent}%</Label>
-              </List.Description>
+            </List.Description>
           </List.Content>
         </List.Item>
       </List>
