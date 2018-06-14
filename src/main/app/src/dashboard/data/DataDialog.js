@@ -43,10 +43,8 @@ class DataDialogRedux extends Component {
               </Header.Subheader>
             </Header.Content>
           </Header>
-          {/*{statData && <Loader active/>}*/}
           <DialogDataArea topic={topic} timePeriod={timePeriod} modalDataProperty={modalDataProperty}
                           modalTimePeriodType={modalTimePeriodType}/>
-          {/*{statDataError && <Message error>{statDataErrorMessage}</Message>}*/}
         </Modal.Content>
         <Modal.Actions>
           <Button negative onClick={() => this.props.setModalOpen(false)}>Close</Button>
