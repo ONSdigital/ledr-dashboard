@@ -8,28 +8,30 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class OccupationExtra {
 
-  private Integer NoninquestRecieved;
+  private Integer NonInquestReceived;
   
-  private Integer OutStandingNonNeonates;
+  private Integer NonInquestReceivedOutstandingNonNeonates;
   
-  private Integer OutStandingNeonates;
+  private Integer NonInquestReceivedOutstandingNeonates;
   
-  private Integer ErrorsAndWarningsNonNeonates;
+  private Integer NonInquestReceivedErrorsAndWarningsNonNeonates;
   
-  private Integer ErrorsAndWarningsNeonates;
+  private Integer NonInquestReceivedErrorsAndWarningsNeonates;
   
-  private Integer Inquest;
+  private Integer InquestPartV;
   
-  private Integer InquestOutstandingNonNeonates;
+  private Integer InquestPartVOutstandingNonNeonates;
   
-  private Integer InquestOutstandingNeonates;
+  private Integer InquestPartVOutstandingNeonates;
   
-  private Integer InquestErrorsAndWarningsNonNeonates;
+  private Integer InquestPartVErrorsAndWarningsNonNeonates;
   
-  private Integer InquestErrorsAndWarningsNeonates;
+  private Integer InquestPartVErrorsAndWarningsNeonates;
+
+  private Integer InquestAdjourned;
+
+  private Integer InquestAdjournedOutstandingYellow;
   
-  private Integer OutstandingYellow;
-  
-  private Integer OutstandingBlue;
+  private Integer InquestAdjournedOutstandingBlue;
 
 }
