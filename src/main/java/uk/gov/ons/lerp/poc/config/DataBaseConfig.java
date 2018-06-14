@@ -10,6 +10,6 @@ public class DataBaseConfig {
   
   @Bean
   public FileLocation fileLocation(){
-    return FileLocation.builder().fileLoactionBirth("${file.directory.birth}").fileLoactionDeath("${file.directory.death}").build();
+    return FileLocation.builder().fileLocationBirth("${file.directory.birth}").fileLocationDeath("${file.directory.death}").build();
   } 
 }

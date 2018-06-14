@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class FileLocation {
 
-  private String fileLoactionBirth;
+  private String fileLocationBirth;
  
-  private String fileLoactionDeath;
+  private String fileLocationDeath;
   
 }

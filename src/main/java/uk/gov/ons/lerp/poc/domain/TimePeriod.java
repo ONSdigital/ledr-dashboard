@@ -16,6 +16,6 @@ public enum TimePeriod {
 	 
 	 YEAR_CURRENT,
 	 YEAR_LAST,
-	 YEAR_BEFORE;
+	 YEAR_BEFORE
 
 }
