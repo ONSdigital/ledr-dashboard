@@ -63,19 +63,7 @@ export const DATA_PROPERTY_POPUP = {
     USUAL_RESIDENCE: 'Usual Residence',
     PLACE_OF_EVENT: 'Place of Event',
     PLACE_OF_BIRTH: 'Place of Birth'
-  },
-  CAUSE_CODING: {
-    NON_INQUEST_RECEIVED: 'Non-inquest Received',
-    INQUEST_PART_V: 'Inquest (Part V)',
-    INQUEST_ADJOURNED: 'Inquest Adjourned',
-    OUTSTANDING_NON_NEONATES: 'Outstanding Non-Neonates',
-    OUTSTANDING_NEONATES: 'Outstanding Neonates',
-    ERRORS_AND_WARNINGS_NON_NEONATES: 'Errors and Warnings Non-Neonates',
-    ERRORS_AND_WARNINGS_NEONATES: 'Errors and Warnings Neonates',
-    OUTSTANDING_YELLOWS_120B: 'Outstanding Yellows (120B)',
-    OUTSTANDING_BLUES_121: 'Outstanding Blue (121)'
   }
-
 };
 
 export const DATE_FORMAT = {
