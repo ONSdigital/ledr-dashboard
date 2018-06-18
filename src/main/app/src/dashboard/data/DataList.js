@@ -5,12 +5,6 @@ import {setModalDataProperty, setModalOpen, setModalTimePeriodType} from "../../
 import {connect} from "react-redux";
 import {DATA_PROPERTY_DASHBOARD} from "../../utils/Constants";
 
-const mapStateToProps = state => {
-  return {
-    topic: state.topic,
-  };
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     setModalOpen: modalOpen => dispatch(setModalOpen(modalOpen)),
@@ -27,7 +21,7 @@ class DataListRedux extends Component {
 
   render() {
 
-    let {statData, timePeriodType, topic} = this.props;
+    let {statData, timePeriodType} = this.props;
 
     let {
       recordsReceived, fullyCoded, outstandingGeographyFull, outstandingOccupation, outstandingCause
@@ -109,6 +103,6 @@ class DataListRedux extends Component {
   }
 }
 
-const DataList = connect(mapStateToProps, mapDispatchToProps)(DataListRedux);
+const DataList = connect(null, mapDispatchToProps)(DataListRedux);
 
 export default DataList;
