@@ -308,7 +308,7 @@ export const dialogDataMapper = (dataProperty, json) => {
       statData[DATA_PROPERTY_POPUP.OUTSTANDING_GEOGRAPHY.PLACE_OF_EVENT] = outstandingGeographyPOE;
       statData[DATA_PROPERTY_POPUP.OUTSTANDING_GEOGRAPHY.PLACE_OF_BIRTH] = outstandingGeographyPOB;
       return statData;
-    case DATA_PROPERTY_DASHBOARD.OUTSTANDING_OCCUPATION:
+    case DATA_PROPERTY_DASHBOARD.OUTSTANDING_CAUSE:
       return json;
     default:
       return json;

@@ -3,7 +3,7 @@ import {Label, List, Segment} from "semantic-ui-react";
 import {nullChecker, round} from "../../utils/Utils";
 import {setModalDataProperty, setModalOpen, setModalTimePeriodType} from "../../redux/actions";
 import {connect} from "react-redux";
-import {DATA_PROPERTY_DASHBOARD, TOPIC_OPTIONS_ENUM} from "../../utils/Constants";
+import {DATA_PROPERTY_DASHBOARD} from "../../utils/Constants";
 
 const mapStateToProps = state => {
   return {
@@ -81,13 +81,7 @@ class DataListRedux extends Component {
               </List.Description>
             </List.Content>
           </List.Item>
-          <List.Item onClick={() => {
-            if (topic === TOPIC_OPTIONS_ENUM.DEATH) {
-              this.props.setModalTimePeriodType(timePeriodType);
-              this.props.setModalDataProperty(DATA_PROPERTY_DASHBOARD.OUTSTANDING_OCCUPATION);
-              this.props.setModalOpen(true);
-            }
-          }}>
+          <List.Item>
             <List.Content>
               <List.Header>Outstanding occupation: </List.Header>
               <List.Description>
@@ -96,7 +90,11 @@ class DataListRedux extends Component {
               </List.Description>
             </List.Content>
           </List.Item>
-          <List.Item>
+          <List.Item onClick={() => {
+            this.props.setModalTimePeriodType(timePeriodType);
+            this.props.setModalDataProperty(DATA_PROPERTY_DASHBOARD.OUTSTANDING_CAUSE);
+            this.props.setModalOpen(true);
+          }}>
             <List.Content>
               <List.Header>Outstanding cause: </List.Header>
               <List.Description>

@@ -54,8 +54,7 @@ export const DATA_PROPERTY_DASHBOARD = {
   RECORDS_RECEIVED: 'Records Received',
   FULLY_CODED: 'Fully Coded',
   OUTSTANDING_GEOGRAPHY: 'Outstanding Geography',
-  OUTSTANDING_OCCUPATION: 'Outstanding Occupation',
-  OUTSTANDING_CAUSE: 'Outstanding Cause'
+  OUTSTANDING_CAUSE: 'Outstanding Cause',
 };
 
 export const DATA_PROPERTY_POPUP = {
