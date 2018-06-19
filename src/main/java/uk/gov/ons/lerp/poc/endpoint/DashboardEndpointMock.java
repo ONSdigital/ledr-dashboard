@@ -75,9 +75,35 @@ public class DashboardEndpointMock {
     return ResponseEntity.ok(testRecordSummary);
   }
 
-  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/death/{period}/occupation", method = RequestMethod.GET)
-  public ResponseEntity<OccupationExtra> getDeathOccupationData(@PathVariable("period") final String period,
+  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/death/{period}/causecoding", method = RequestMethod.GET)
+  public ResponseEntity<OccupationExtra> getDeathCauseCodingData(@PathVariable("period") final String period,
                                                               HttpServletResponse response) throws CannotRetrieveDashboardData {
+
+    OccupationExtra mockOccupationExtra = new OccupationExtra();
+
+    mockOccupationExtra.setNonInquestReceived(20);
+    mockOccupationExtra.setNonInquestReceivedOutstandingNonNeonates(7);
+    mockOccupationExtra.setNonInquestReceivedOutstandingNeonates(3);
+    mockOccupationExtra.setNonInquestReceivedErrorsAndWarningsNonNeonates(11);
+    mockOccupationExtra.setNonInquestReceivedErrorsAndWarningsNeonates(8);
+
+    mockOccupationExtra.setInquestPartV(30);
+    mockOccupationExtra.setInquestPartVOutstandingNonNeonates(7);
+    mockOccupationExtra.setInquestPartVOutstandingNeonates(9);
+    mockOccupationExtra.setInquestPartVErrorsAndWarningsNonNeonates(14);
+    mockOccupationExtra.setInquestPartVErrorsAndWarningsNeonates(16);
+
+    mockOccupationExtra.setInquestAdjourned(10);
+    mockOccupationExtra.setInquestAdjournedOutstandingYellow(2);
+    mockOccupationExtra.setInquestAdjournedOutstandingBlue(4);
+
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    return ResponseEntity.ok(mockOccupationExtra);
+  }
+
+  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/birth/{period}/causecoding", method = RequestMethod.GET)
+  public ResponseEntity<OccupationExtra> getBirthCauseCodingData(@PathVariable("period") final String period,
+                                                                 HttpServletResponse response) throws CannotRetrieveDashboardData {
 
     OccupationExtra mockOccupationExtra = new OccupationExtra();
 

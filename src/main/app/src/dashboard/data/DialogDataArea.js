@@ -12,8 +12,8 @@ class DialogDataArea extends Component {
     let timePeriodMapped = timePeriodMapper(timePeriod, modalTimePeriodType);
 
     let url = `${API_ENDPOINT.DASHBOARD_MOCK}/${topic}/${timePeriodMapped}`;
-    if (modalDataProperty === DATA_PROPERTY_DASHBOARD.OUTSTANDING_OCCUPATION) {
-      url = url + '/occupation';
+    if (modalDataProperty === DATA_PROPERTY_DASHBOARD.OUTSTANDING_CAUSE) {
+      url = url + '/causecoding';
     }
 
     return fetch(url)
@@ -62,7 +62,7 @@ class DialogDataArea extends Component {
     let statData = this.state.statData;
 
     if (statData) {
-      if (modalDataProperty === DATA_PROPERTY_DASHBOARD.OUTSTANDING_OCCUPATION) {
+      if (modalDataProperty === DATA_PROPERTY_DASHBOARD.OUTSTANDING_CAUSE) {
         return (<OutstandingOccupation statData={statData}/>)
       }
 

@@ -26,15 +26,13 @@ class DashboardRedux extends Component {
   /**
    * Gets data for specified by calling API endpoint
    */
-  getData = (timePeriod) => {
+  getDataForTimePeriod = (timePeriod) => {
 
     //TODO: Time Period should come from TIME_PERIOD_ENUM
     let url = `${API_ENDPOINT.DASHBOARD_MOCK}/${this.props.topic}/${timePeriod}`;
 
     return fetch(url)
       .then((response) => {
-
-        //console.log(response);
 
         if (response.status === 500) {
           throw Error(response.statusText);
@@ -107,32 +105,32 @@ class DashboardRedux extends Component {
 
   };
 
-  getDataNew = () => {
+  getData = () => {
     switch (this.state.timePeriod) {
       case TIME_PERIOD_SELECT_ENUM.WEEKLY:
-        this.getData(TIME_PERIOD_ENUM.WEEK_CURRENT);
-        this.getData(TIME_PERIOD_ENUM.WEEK_LAST);
-        this.getData(TIME_PERIOD_ENUM.WEEK_BEFORE);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.WEEK_CURRENT);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.WEEK_LAST);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.WEEK_BEFORE);
         break;
       case TIME_PERIOD_SELECT_ENUM.MONTHLY:
-        this.getData(TIME_PERIOD_ENUM.MONTH_CURRENT);
-        this.getData(TIME_PERIOD_ENUM.MONTH_LAST);
-        this.getData(TIME_PERIOD_ENUM.MONTH_BEFORE);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.MONTH_CURRENT);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.MONTH_LAST);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.MONTH_BEFORE);
         break;
       case TIME_PERIOD_SELECT_ENUM.QUARTERLY:
-        this.getData(TIME_PERIOD_ENUM.QUARTER_CURRENT);
-        this.getData(TIME_PERIOD_ENUM.QUARTER_LAST);
-        this.getData(TIME_PERIOD_ENUM.QUARTER_BEFORE);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.QUARTER_CURRENT);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.QUARTER_LAST);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.QUARTER_BEFORE);
         break;
       case TIME_PERIOD_SELECT_ENUM.ANNUAL:
-        this.getData(TIME_PERIOD_ENUM.YEAR_CURRENT);
-        this.getData(TIME_PERIOD_ENUM.YEAR_LAST);
-        this.getData(TIME_PERIOD_ENUM.YEAR_BEFORE);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.YEAR_CURRENT);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.YEAR_LAST);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.YEAR_BEFORE);
         break;
       default:
-        this.getData(TIME_PERIOD_ENUM.WEEK_CURRENT);
-        this.getData(TIME_PERIOD_ENUM.WEEK_LAST);
-        this.getData(TIME_PERIOD_ENUM.WEEK_BEFORE);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.WEEK_CURRENT);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.WEEK_LAST);
+        this.getDataForTimePeriod(TIME_PERIOD_ENUM.WEEK_BEFORE);
     }
   };
 
@@ -167,21 +165,21 @@ class DashboardRedux extends Component {
     if (this.props.topic !== nextProps.topic) {
       let topic = nextProps.topic;
       this.setState({topic}, () => {
-        this.getDataNew();
+        this.getData();
       });
     }
 
     if (this.props.timePeriod !== nextProps.timePeriod) {
       let timePeriod = nextProps.timePeriod;
       this.setState({timePeriod}, () => {
-        this.getDataNew();
+        this.getData();
       });
     }
 
   }
 
   componentDidMount() {
-    this.getDataNew();
+    this.getData();
   };
 
   render() {
