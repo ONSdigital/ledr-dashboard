@@ -16,20 +16,16 @@ class NavBar extends Component {
     return (
       <Menu inverted borderless color='blue' id='main-menu'>
 
-        <Link key={ROUTER_PATH.DASHBOARD}
-              to={ROUTER_PATH.DASHBOARD}>
-          <Menu.Item className='nav-bar-desktop-item'
-                     id={ROUTER_PATH.DASHBOARD} as="span"
-                     active={activeItem === ROUTER_PATH.DASHBOARD}
-                     onClick={this.handleItemClick} link>LEDR Dashboard</Menu.Item>
+        <Link to={ROUTER_PATH.DASHBOARD}>
+          <Menu.Item className='nav-bar-desktop-item' id={ROUTER_PATH.DASHBOARD} as="span"
+                     active={activeItem === ROUTER_PATH.DASHBOARD} onClick={this.handleItemClick}
+                     link>LEDR Dashboard</Menu.Item>
         </Link>
 
-        <Menu.Menu position="right" key={ROUTER_PATH.LOGOUT}>
+        <Menu.Menu position="right">
           <Link to={ROUTER_PATH.LOGOUT}>
-            <Menu.Item className='nav-bar-desktop-item'
-                       id={ROUTER_PATH.LOGOUT} as="span"
-                       active={activeItem === ROUTER_PATH.LOGOUT}
-                       onClick={this.handleItemClick}
+            <Menu.Item className='nav-bar-desktop-item' id={ROUTER_PATH.LOGOUT} as="span"
+                       active={activeItem === ROUTER_PATH.LOGOUT} onClick={this.handleItemClick}
                        link>Log Out</Menu.Item>
           </Link>
         </Menu.Menu>
