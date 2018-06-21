@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class TopicSubTopicComponentRedux extends Component {
+class TopicSelectRedux extends Component {
 
   handleTopicChangeSelect = (e, {value}) => {
     let topic = value;
@@ -44,6 +44,6 @@ class TopicSubTopicComponentRedux extends Component {
   }
 }
 
-const TopicSelect = connect(mapStateToProps, mapDispatchToProps)(TopicSubTopicComponentRedux);
+const TopicSelect = connect(mapStateToProps, mapDispatchToProps)(TopicSelectRedux);
 
 export default TopicSelect;

@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class DataColumnRedux extends Component {
+class DataColumnListRedux extends Component {
 
   shouldComponentUpdate(nextProps) {
     return nextProps.statData !== this.props.statData;
@@ -104,6 +104,6 @@ class DataColumnRedux extends Component {
   }
 }
 
-const DataColumnList = connect(null, mapDispatchToProps)(DataColumnRedux);
+const DataColumnList = connect(null, mapDispatchToProps)(DataColumnListRedux);
 
 export default DataColumnList;

@@ -12,7 +12,7 @@ const mapStateToProps = state => {
   };
 };
 
-class DataModalRedux extends Component {
+class DataModalHeaderRedux extends Component {
 
   render() {
 
@@ -36,6 +36,6 @@ class DataModalRedux extends Component {
   }
 }
 
-const DataModal = connect(mapStateToProps, null)(DataModalRedux);
+const DataModalHeader = connect(mapStateToProps, null)(DataModalHeaderRedux);
 
-export default DataModal;
+export default DataModalHeader;
