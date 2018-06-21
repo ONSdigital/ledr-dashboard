@@ -9,7 +9,7 @@ import {
 } from "../../utils/Constants";
 import DashboardHeader from "../DashboardHeader";
 import {Grid, Loader, Message} from "semantic-ui-react";
-import DataColumn from "./column/DataColumn";
+import DataColumnList from "./column/DataColumnList";
 import DataColumnHeader from "./column/DataColumnHeader";
 import {connect} from "react-redux";
 import DataModal from "./modal/DataModal";
@@ -199,19 +199,19 @@ class DashboardRedux extends Component {
             <Grid.Column>
               <DataColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.CURRENT}/>
               {statDataCurrentLoading && <Loader active/>}
-              {statDataCurrent && <DataColumn statData={statDataCurrent} timePeriodType={TIME_PERIOD_TYPE.CURRENT}/>}
+              {statDataCurrent && <DataColumnList statData={statDataCurrent} timePeriodType={TIME_PERIOD_TYPE.CURRENT}/>}
               {statDataCurrentError && <Message error>{statDataCurrentErrorMessage}</Message>}
             </Grid.Column>
             <Grid.Column>
               <DataColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.LAST}/>
               {statDataLastLoading && <Loader active/>}
-              {statDataLast && <DataColumn statData={statDataLast} timePeriodType={TIME_PERIOD_TYPE.LAST}/>}
+              {statDataLast && <DataColumnList statData={statDataLast} timePeriodType={TIME_PERIOD_TYPE.LAST}/>}
               {statDataLastError && <Message error>{statDataLastErrorMessage}</Message>}
             </Grid.Column>
             <Grid.Column>
               <DataColumnHeader timePeriod={timePeriod} timePeriodType={TIME_PERIOD_TYPE.BEFORE}/>
               {statDataBeforeLoading && <Loader active/>}
-              {statDataBefore && <DataColumn statData={statDataBefore} timePeriodType={TIME_PERIOD_TYPE.BEFORE}/>}
+              {statDataBefore && <DataColumnList statData={statDataBefore} timePeriodType={TIME_PERIOD_TYPE.BEFORE}/>}
               {statDataBeforeError && <Message error>{statDataBeforeErrorMessage}</Message>}
             </Grid.Column>
           </Grid.Row>
