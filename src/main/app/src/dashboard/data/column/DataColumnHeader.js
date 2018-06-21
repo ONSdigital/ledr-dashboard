@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Header} from "semantic-ui-react";
-import {formDateText, formHeaderText} from "../../utils/Utils";
+import {formDateText, formHeaderText} from "../../../utils/Utils";
 
 class DataColumnHeader extends Component {
 

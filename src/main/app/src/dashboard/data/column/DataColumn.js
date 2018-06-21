@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {setModalDataProperty, setModalOpen, setModalTimePeriodType} from "../../redux/actions";
+import {setModalDataProperty, setModalOpen, setModalTimePeriodType} from "../../../redux/actions/index";
 import {connect} from "react-redux";
 import {Label, List, Segment} from "semantic-ui-react";
-import {DATA_PROPERTY_DASHBOARD} from "../../utils/Constants";
-import {nullChecker, round} from "../../utils/Utils";
+import {DATA_PROPERTY_DASHBOARD} from "../../../utils/Constants";
+import {nullChecker, round} from "../../../utils/Utils";
 
 const mapDispatchToProps = dispatch => {
   return {
