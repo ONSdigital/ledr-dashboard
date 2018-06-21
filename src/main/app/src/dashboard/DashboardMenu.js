@@ -3,6 +3,9 @@ import {Form, Message} from "semantic-ui-react";
 import TimePeriodSelect from "./menu/TimePeriodSelect";
 import TopicSelect from "./menu/TopicSelect";
 
+/**
+ * Menu for selecting active Dashboard topic and time period
+ */
 class DashboardMenu extends Component {
 
   render() {
