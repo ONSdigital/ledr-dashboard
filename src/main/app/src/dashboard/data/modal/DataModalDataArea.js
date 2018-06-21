@@ -3,7 +3,7 @@ import {Loader} from "semantic-ui-react";
 import {timePeriodMapper} from "../../../utils/Utils";
 import {API_ENDPOINT, DATA_PROPERTY, ERROR_MESSAGE} from "../../../utils/Constants";
 import {connect} from "react-redux";
-import OutstandingCauseDataLayout from "./datalayout/OutstandingOccupationDataLayout";
+import OutstandingCauseDataLayout from "./datalayout/OutstandingCauseDataLayout";
 import OutstandingGeographyDataLayout from "./datalayout/OutstandingGeographyDataLayout";
 
 const mapStateToProps = state => {
