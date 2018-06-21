@@ -1,3 +1,7 @@
+/**
+ * This class contains all global constants for ease of use/access
+ */
+
 export const ROUTER_PATH = {
   DASHBOARD: '/',
   LOGOUT: '/logout',

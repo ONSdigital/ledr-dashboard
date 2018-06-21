@@ -2,6 +2,10 @@ import {DATE_FORMAT, TIME_PERIOD_ENUM, TIME_PERIOD_SELECT_ENUM, TIME_PERIOD_TYPE
 import moment from "moment/moment";
 
 /**
+ * This class stores all useful utility methods that can be used in multiple places
+ */
+
+/**
  * Used instead of Math.round() as that can have rounding errors due to floating-number arithmetic.
  * Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
  * @param number
