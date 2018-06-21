@@ -25,7 +25,7 @@ const mapStateToProps = state => {
 class DataDashboardDataAreaRedux extends Component {
 
   /**
-   * Gets data for specified by calling API endpoint
+   * Gets data for specified time period by calling API endpoint
    */
   getDataForTimePeriod = (timePeriod) => {
 
