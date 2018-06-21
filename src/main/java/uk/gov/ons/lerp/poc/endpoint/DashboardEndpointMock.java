@@ -20,7 +20,7 @@ public class DashboardEndpointMock {
   @Autowired
   private DashboardService service;
 
-  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/birth/{period}", method = RequestMethod.GET)
+  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/births/{period}", method = RequestMethod.GET)
   public ResponseEntity<RecordSummary> getBirthDashboardData(@PathVariable("period") final String period,
                                                              HttpServletResponse response) throws CannotRetrieveDashboardData {
 
@@ -59,7 +59,7 @@ public class DashboardEndpointMock {
     return ResponseEntity.ok(mockRecordSummary);
   }
 
-  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/death/{period}", method = RequestMethod.GET)
+  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/deaths/{period}", method = RequestMethod.GET)
   public ResponseEntity<RecordSummary> getDeathDashboardData(@PathVariable("period") final String period,
                                                              HttpServletResponse response) throws CannotRetrieveDashboardData {
     RecordSummary testRecordSummary = new RecordSummary();
@@ -75,7 +75,7 @@ public class DashboardEndpointMock {
     return ResponseEntity.ok(testRecordSummary);
   }
 
-  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/death/{period}/causecoding", method = RequestMethod.GET)
+  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/deaths/{period}/causecoding", method = RequestMethod.GET)
   public ResponseEntity<OccupationExtra> getDeathCauseCodingData(@PathVariable("period") final String period,
                                                               HttpServletResponse response) throws CannotRetrieveDashboardData {
 
@@ -101,7 +101,7 @@ public class DashboardEndpointMock {
     return ResponseEntity.ok(mockOccupationExtra);
   }
 
-  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/birth/{period}/causecoding", method = RequestMethod.GET)
+  @RequestMapping(value = "/ledr-dashboard-poc/test/topic/births/{period}/causecoding", method = RequestMethod.GET)
   public ResponseEntity<OccupationExtra> getBirthCauseCodingData(@PathVariable("period") final String period,
                                                                  HttpServletResponse response) throws CannotRetrieveDashboardData {
 
