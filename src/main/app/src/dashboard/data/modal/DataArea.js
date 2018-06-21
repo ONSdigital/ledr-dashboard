@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react';
 import {Divider, Header, Label, List, Loader} from "semantic-ui-react";
-import {dialogDataMapper, nullChecker, round, timePeriodMapper} from "../../utils/Utils";
-import {API_ENDPOINT, DATA_PROPERTY_DASHBOARD, ERROR_MESSAGE} from "../../utils/Constants";
+import {modalDataMapper, nullChecker, round, timePeriodMapper} from "../../../utils/Utils";
+import {API_ENDPOINT, DATA_PROPERTY_DASHBOARD, ERROR_MESSAGE} from "../../../utils/Constants";
 
-class DialogDataArea extends Component {
+class DataArea extends Component {
 
   getData = () => {
 
@@ -25,7 +25,7 @@ class DialogDataArea extends Component {
       })
       .then((json) => {
 
-        let statData = dialogDataMapper(modalDataProperty, json);
+        let statData = modalDataMapper(modalDataProperty, json);
 
         this.setState({statData, statDataLoading: false});
       }).catch(() => {
@@ -251,4 +251,4 @@ const OutstandingOccupation = ({statData}) => {
   )
 };
 
-export default DialogDataArea;
+export default DataArea;

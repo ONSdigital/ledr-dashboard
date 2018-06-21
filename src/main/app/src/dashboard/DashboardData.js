@@ -12,7 +12,7 @@ import {Grid, Loader, Message} from "semantic-ui-react";
 import DataColumn from "./data/DataColumn";
 import DataColumnHeader from "./data/DataColumnHeader";
 import {connect} from "react-redux";
-import DataDialog from "./data/DataDialog";
+import DataModal from "./data/modal/DataModal";
 
 const mapStateToProps = state => {
   return {
@@ -216,7 +216,7 @@ class DashboardRedux extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <DataDialog />
+        <DataModal />
       </Fragment>
     );
   }

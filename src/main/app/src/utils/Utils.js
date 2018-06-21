@@ -294,7 +294,7 @@ export const timePeriodMapper = (timePeriod, modalTimePeriodType) => {
 
 };
 
-export const dialogDataMapper = (dataProperty, json) => {
+export const modalDataMapper = (dataProperty, json) => {
 
   let statData = {};
 

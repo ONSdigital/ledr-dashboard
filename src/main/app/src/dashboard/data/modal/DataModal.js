@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Button, Header, Modal} from "semantic-ui-react";
 import {connect} from "react-redux";
-import {formDateText, formHeaderText, formTopicDisplay, toTitleCase} from "../../utils/Utils";
-import {setModalOpen} from "../../redux/actions";
-import DialogDataArea from "./DialogDataArea";
+import {formDateText, formHeaderText, formTopicDisplay, toTitleCase} from "../../../utils/Utils";
+import {setModalOpen} from "../../../redux/actions/index";
+import DataArea from "./DataArea";
 
 const mapStateToProps = state => {
   return {
@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class DataDialogRedux extends Component {
+class DataModalRedux extends Component {
 
   render() {
 
@@ -43,8 +43,8 @@ class DataDialogRedux extends Component {
               </Header.Subheader>
             </Header.Content>
           </Header>
-          <DialogDataArea topic={topic} timePeriod={timePeriod} modalDataProperty={modalDataProperty}
-                          modalTimePeriodType={modalTimePeriodType}/>
+          <DataArea topic={topic} timePeriod={timePeriod} modalDataProperty={modalDataProperty}
+                    modalTimePeriodType={modalTimePeriodType}/>
         </Modal.Content>
         <Modal.Actions>
           <Button negative onClick={() => this.props.setModalOpen(false)}>Close</Button>
@@ -54,6 +54,6 @@ class DataDialogRedux extends Component {
   }
 }
 
-const DataDialog = connect(mapStateToProps, mapDispatchToProps)(DataDialogRedux);
+const DataModal = connect(mapStateToProps, mapDispatchToProps)(DataModalRedux);
 
-export default DataDialog;
+export default DataModal;
