@@ -23,7 +23,7 @@ class DataModalDataAreaRedux extends Component {
     let timePeriodMapped = timePeriodMapper(timePeriod, modalTimePeriodType);
 
     let url = `${API_ENDPOINT.DASHBOARD_MOCK}/${topic}/${timePeriodMapped}`;
-    if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_CAUSE.MAIN) {
+    if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_CAUSE.ID) {
       url = url + '/causecoding';
     }
 
@@ -73,11 +73,11 @@ class DataModalDataAreaRedux extends Component {
     let statData = this.state.statData;
 
     if (statData) {
-      if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_CAUSE.MAIN) {
+      if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_CAUSE.ID) {
         return (<OutstandingOccupation statData={statData}/>)
       }
 
-      if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.MAIN) {
+      if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.ID) {
         return (
           <List link selection>
             {statData &&

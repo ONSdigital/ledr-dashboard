@@ -64,7 +64,7 @@ class DataColumnListRedux extends Component {
           </List.Item>
           <List.Item onClick={() => {
             this.props.setModalTimePeriodType(timePeriodType);
-            this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.MAIN);
+            this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.ID);
             this.props.setModalOpen(true);
           }}>
             <List.Content>
@@ -86,7 +86,7 @@ class DataColumnListRedux extends Component {
           </List.Item>
           <List.Item onClick={() => {
             this.props.setModalTimePeriodType(timePeriodType);
-            this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_CAUSE.MAIN);
+            this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_CAUSE.ID);
             this.props.setModalOpen(true);
           }}>
             <List.Content>

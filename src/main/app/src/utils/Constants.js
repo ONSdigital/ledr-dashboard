@@ -54,19 +54,19 @@ export const API_ENDPOINT = {
 
 export const DATA_PROPERTY = {
   RECORDS_RECEIVED: {
-    MAIN: 'Records Received'
+    ID: 'Records Received'
   },
   FULLY_CODED: {
-    MAIN: 'Fully Coded'
+    ID: 'Fully Coded'
   },
   OUTSTANDING_GEOGRAPHY: {
-    MAIN: 'Outstanding Geography',
+    ID: 'Outstanding Geography',
     USUAL_RESIDENCE: 'Usual Residence',
     PLACE_OF_EVENT: 'Place of Event',
     PLACE_OF_BIRTH: 'Place of Birth'
   },
   OUTSTANDING_CAUSE: {
-    MAIN: 'Outstanding Cause'
+    ID: 'Outstanding Cause'
   }
 };
 

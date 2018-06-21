@@ -293,7 +293,7 @@ export const modalDataMapper = (dataProperty, json) => {
   let statData = {};
 
   switch (dataProperty) {
-    case DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.MAIN:
+    case DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.ID:
       let {
         outstandingGeographyPOB, outstandingGeographyPOE,
         outstandingGeographyUR
@@ -302,7 +302,7 @@ export const modalDataMapper = (dataProperty, json) => {
       statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PLACE_OF_EVENT] = outstandingGeographyPOE;
       statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PLACE_OF_BIRTH] = outstandingGeographyPOB;
       return statData;
-    case DATA_PROPERTY.OUTSTANDING_CAUSE.MAIN:
+    case DATA_PROPERTY.OUTSTANDING_CAUSE.ID:
       return json;
     default:
       return json;
