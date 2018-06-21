@@ -2,8 +2,19 @@ import React, {Component, Fragment} from 'react';
 import {Divider, Header, Label, List, Loader} from "semantic-ui-react";
 import {modalDataMapper, nullChecker, round, timePeriodMapper} from "../../../utils/Utils";
 import {API_ENDPOINT, DATA_PROPERTY_DASHBOARD, ERROR_MESSAGE} from "../../../utils/Constants";
+import {connect} from "react-redux";
 
-class DataArea extends Component {
+const mapStateToProps = state => {
+  return {
+    topic: state.topic,
+    timePeriod: state.timePeriod,
+    modalOpen: state.modalOpen,
+    modalDataProperty: state.modalDataProperty,
+    modalTimePeriodType: state.modalTimePeriodType
+  };
+};
+
+class DataModalDataAreaRedux extends Component {
 
   getData = () => {
 
@@ -251,4 +262,6 @@ const OutstandingOccupation = ({statData}) => {
   )
 };
 
-export default DataArea;
+const DataModalDataArea = connect(mapStateToProps, null)(DataModalDataAreaRedux);
+
+export default DataModalDataArea;

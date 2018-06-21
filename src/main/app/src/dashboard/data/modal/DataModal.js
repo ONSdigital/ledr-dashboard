@@ -1,17 +1,13 @@
 import React, {Component} from 'react';
-import {Button, Header, Modal} from "semantic-ui-react";
+import {Button, Modal} from "semantic-ui-react";
 import {connect} from "react-redux";
-import {formDateText, formHeaderText, formTopicDisplay, toTitleCase} from "../../../utils/Utils";
 import {setModalOpen} from "../../../redux/actions/index";
-import DataArea from "./DataArea";
+import DataModalDataArea from "./DataModalDataArea";
+import DataModalHeader from "./DataModalHeader";
 
 const mapStateToProps = state => {
   return {
-    topic: state.topic,
-    timePeriod: state.timePeriod,
     modalOpen: state.modalOpen,
-    modalDataProperty: state.modalDataProperty,
-    modalTimePeriodType: state.modalTimePeriodType
   };
 };
 
@@ -25,26 +21,13 @@ class DataModalRedux extends Component {
 
   render() {
 
-    let {topic, timePeriod, modalOpen, modalDataProperty, modalTimePeriodType, closeModal} = this.props;
-
-    let topicDisplay = formTopicDisplay(topic);
-    let timePeriodDisplay = toTitleCase(timePeriod);
-    let timePeriodTypeDisplay = formHeaderText(timePeriod, modalTimePeriodType);
-    let dateRangeDisplay = formDateText(timePeriod, modalTimePeriodType);
+    let {modalOpen, closeModal} = this.props;
 
     return (
       <Modal open={modalOpen} onClose={closeModal}>
         <Modal.Content>
-          <Header as='h2'>
-            <Header.Content>
-              {modalDataProperty}
-              <Header.Subheader>
-                {topicDisplay} | {timePeriodDisplay} | {timePeriodTypeDisplay} ({dateRangeDisplay})
-              </Header.Subheader>
-            </Header.Content>
-          </Header>
-          <DataArea topic={topic} timePeriod={timePeriod} modalDataProperty={modalDataProperty}
-                    modalTimePeriodType={modalTimePeriodType}/>
+          <DataModalHeader/>
+          <DataModalDataArea/>
         </Modal.Content>
         <Modal.Actions>
           <Button negative onClick={() => this.props.setModalOpen(false)}>Close</Button>
