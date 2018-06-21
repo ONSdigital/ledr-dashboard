@@ -29,7 +29,6 @@ class DataDashboardDataAreaRedux extends Component {
    */
   getDataForTimePeriod = (timePeriod) => {
 
-    //TODO: Time Period should come from TIME_PERIOD_ENUM
     let url = `${API_ENDPOINT.DASHBOARD_MOCK}/${this.props.topic}/${timePeriod}`;
 
     return fetch(url)
