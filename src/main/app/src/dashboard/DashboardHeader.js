@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Header} from "semantic-ui-react";
-import {formTopicDisplay, toTitleCase} from "../utils/Utils";
+import {toTitleCase} from "../utils/Utils";
 import {connect} from "react-redux";
 
 const mapStateToProps = state => {
@@ -23,7 +23,7 @@ class DashboardHeaderRedux extends Component {
 
     let {topic, timePeriod} = this.props;
 
-    let topicDisplay = formTopicDisplay(topic);
+    let topicDisplay = toTitleCase(topic);
     let timePeriodDisplay = toTitleCase(timePeriod);
 
     return (

@@ -45,13 +45,6 @@ export const API_ENDPOINT = {
   POPUP: 'http://localhost:7051/ledr-dashboard-poc',
 };
 
-/*export const DATA_PROPERTY = {
-  RECORDS_RECEIVED: 'Records Received',
-  FULLY_CODED: 'Fully Coded',
-  OUTSTANDING_GEOGRAPHY: 'Outstanding Geography',
-  OUTSTANDING_CAUSE: 'Outstanding Cause',
-};*/
-
 export const DATA_PROPERTY = {
   RECORDS_RECEIVED: {
     ID: 'Records Received'

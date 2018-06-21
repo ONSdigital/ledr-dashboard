@@ -1,10 +1,4 @@
-import {
-  DATA_PROPERTY,
-  DATE_FORMAT,
-  TIME_PERIOD_ENUM,
-  TIME_PERIOD_SELECT_ENUM,
-  TIME_PERIOD_TYPE
-} from "./Constants";
+import {DATA_PROPERTY, DATE_FORMAT, TIME_PERIOD_ENUM, TIME_PERIOD_SELECT_ENUM, TIME_PERIOD_TYPE} from "./Constants";
 import moment from "moment/moment";
 
 /**
@@ -223,16 +217,6 @@ export const formHeaderText = (timePeriod, timePeriodType) => {
   }
 
   return headerText;
-};
-
-export const formTopicDisplay = (topic) => {
-
-  if (topic) {
-    return topic.charAt(0).toUpperCase() + topic.slice(1);
-  } else {
-    return ''
-  }
-
 };
 
 export const timePeriodMapper = (timePeriod, modalTimePeriodType) => {

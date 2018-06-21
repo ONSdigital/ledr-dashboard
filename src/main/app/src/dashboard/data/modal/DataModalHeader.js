@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Header} from "semantic-ui-react";
 import {connect} from "react-redux";
-import {formDateText, formHeaderText, formTopicDisplay, toTitleCase} from "../../../utils/Utils";
+import {formDateText, formHeaderText, toTitleCase} from "../../../utils/Utils";
 
 const mapStateToProps = state => {
   return {
@@ -18,7 +18,7 @@ class DataModalHeaderRedux extends Component {
 
     let {topic, timePeriod, modalDataProperty, modalTimePeriodType} = this.props;
 
-    let topicDisplay = formTopicDisplay(topic);
+    let topicDisplay = toTitleCase(topic);
     let timePeriodDisplay = toTitleCase(timePeriod);
     let timePeriodTypeDisplay = formHeaderText(timePeriod, modalTimePeriodType);
     let dateRangeDisplay = formDateText(timePeriod, modalTimePeriodType);
