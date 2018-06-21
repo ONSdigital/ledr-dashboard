@@ -46,21 +46,10 @@ export const API_ENDPOINT = {
 };
 
 export const DATA_PROPERTY = {
-  RECORDS_RECEIVED: {
-    ID: 'Records Received'
-  },
-  FULLY_CODED: {
-    ID: 'Fully Coded'
-  },
-  OUTSTANDING_GEOGRAPHY: {
-    ID: 'Outstanding Geography',
-    USUAL_RESIDENCE: 'Usual Residence',
-    PLACE_OF_EVENT: 'Place of Event',
-    PLACE_OF_BIRTH: 'Place of Birth'
-  },
-  OUTSTANDING_CAUSE: {
-    ID: 'Outstanding Cause'
-  }
+  RECORDS_RECEIVED: 'Records Received',
+  FULLY_CODED: 'Fully Coded',
+  OUTSTANDING_GEOGRAPHY: 'Outstanding Geography',
+  OUTSTANDING_CAUSE: 'Outstanding Cause'
 };
 
 export const DATE_FORMAT = {

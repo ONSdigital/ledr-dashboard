@@ -1,4 +1,4 @@
-import {DATA_PROPERTY, DATE_FORMAT, TIME_PERIOD_ENUM, TIME_PERIOD_SELECT_ENUM, TIME_PERIOD_TYPE} from "./Constants";
+import {DATE_FORMAT, TIME_PERIOD_ENUM, TIME_PERIOD_SELECT_ENUM, TIME_PERIOD_TYPE} from "./Constants";
 import moment from "moment/moment";
 
 /**
@@ -270,25 +270,4 @@ export const timePeriodMapper = (timePeriod, modalTimePeriodType) => {
       return '';
   }
 
-};
-
-export const modalDataMapper = (dataProperty, json) => {
-
-  let statData = {};
-
-  switch (dataProperty) {
-    case DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.ID:
-      let {
-        outstandingGeographyPOB, outstandingGeographyPOE,
-        outstandingGeographyUR
-      } = json;
-      statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.USUAL_RESIDENCE] = outstandingGeographyUR;
-      statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PLACE_OF_EVENT] = outstandingGeographyPOE;
-      statData[DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.PLACE_OF_BIRTH] = outstandingGeographyPOB;
-      return statData;
-    case DATA_PROPERTY.OUTSTANDING_CAUSE.ID:
-      return json;
-    default:
-      return json;
-  }
 };

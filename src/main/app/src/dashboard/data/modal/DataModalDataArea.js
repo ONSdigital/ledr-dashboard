@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {Divider, Header, Label, List, Loader} from "semantic-ui-react";
-import {modalDataMapper, nullChecker, round, timePeriodMapper} from "../../../utils/Utils";
+import {nullChecker, round, timePeriodMapper} from "../../../utils/Utils";
 import {API_ENDPOINT, DATA_PROPERTY, ERROR_MESSAGE} from "../../../utils/Constants";
 import {connect} from "react-redux";
 
@@ -23,7 +23,7 @@ class DataModalDataAreaRedux extends Component {
     let timePeriodMapped = timePeriodMapper(timePeriod, modalTimePeriodType);
 
     let url = `${API_ENDPOINT.DASHBOARD_MOCK}/${topic}/${timePeriodMapped}`;
-    if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_CAUSE.ID) {
+    if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_CAUSE) {
       url = url + '/causecoding';
     }
 
@@ -35,10 +35,7 @@ class DataModalDataAreaRedux extends Component {
         return response.json()
       })
       .then((json) => {
-
-        let statData = modalDataMapper(modalDataProperty, json);
-
-        this.setState({statData, statDataLoading: false});
+        this.setState({statData: json, statDataLoading: false});
       }).catch(() => {
         this.setState({
           statDataLoading: false,
@@ -69,42 +66,62 @@ class DataModalDataAreaRedux extends Component {
   render() {
 
     let modalDataProperty = this.props.modalDataProperty;
-
     let statData = this.state.statData;
 
-    if (statData) {
-      if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_CAUSE.ID) {
-        return (<OutstandingOccupation statData={statData}/>)
-      }
-
-      if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.ID) {
-        return (
-          <List link selection>
-            {statData &&
-            Object.keys(statData).map((key) => {
-              return (
-                <List.Item key={key}>
-                  <List.Content>
-                    <List.Header>{key}</List.Header>
-                    <List.Description>{nullChecker(statData[key])}</List.Description>
-                  </List.Content>
-                </List.Item>
-              )
-            })
-            }
-          </List>
-        )
-      }
-    } else {
-      return (
-        <Loader active/>
-      )
+    switch (modalDataProperty) {
+      case DATA_PROPERTY.OUTSTANDING_CAUSE:
+        return <OutstandingOccupationData statData={statData}/>;
+      case DATA_PROPERTY.OUTSTANDING_GEOGRAPHY:
+        return <OutstandingGeographyData statDataa={statData}/>;
+      default:
+        return <Loader active/>
     }
 
   }
 }
 
-const OutstandingOccupation = ({statData}) => {
+const OutstandingGeographyData = ({statDataa}) => {
+
+  let {
+    outstandingGeographyPOB, outstandingGeographyPOE,
+    outstandingGeographyUR
+  } = statDataa;
+
+  let outstandingGeographyURDisplay = nullChecker(outstandingGeographyUR);
+  let outstandingGeographyPOEDisplay = nullChecker(outstandingGeographyPOE);
+  let outstandingGeographyPOBDisplay = nullChecker(outstandingGeographyPOB);
+
+  return (
+    <List link selection>
+      <List.Item>
+        <List.Content>
+          <List.Header>Usual Residence</List.Header>
+          <List.Description>
+            {outstandingGeographyURDisplay}
+          </List.Description>
+        </List.Content>
+      </List.Item>
+      <List.Item>
+        <List.Content>
+          <List.Header>Place of Event</List.Header>
+          <List.Description>
+            {outstandingGeographyPOEDisplay}
+          </List.Description>
+        </List.Content>
+      </List.Item>
+      <List.Item>
+        <List.Content>
+          <List.Header>Place of Birth</List.Header>
+          <List.Description>
+            {outstandingGeographyPOBDisplay}
+          </List.Description>
+        </List.Content>
+      </List.Item>
+    </List>
+  )
+};
+
+const OutstandingOccupationData = ({statData}) => {
 
   let nonInquestReceivedDisplay = nullChecker(statData.nonInquestReceived);
   let nonInquestReceivedOutstandingNonNeonatesDisplay = nullChecker(statData.nonInquestReceivedOutstandingNonNeonates) + ' ';
