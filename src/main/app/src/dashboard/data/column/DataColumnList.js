@@ -104,6 +104,6 @@ class DataColumnRedux extends Component {
   }
 }
 
-const DataColumn = connect(null, mapDispatchToProps)(DataColumnRedux);
+const DataColumnList = connect(null, mapDispatchToProps)(DataColumnRedux);
 
-export default DataColumn;
+export default DataColumnList;
