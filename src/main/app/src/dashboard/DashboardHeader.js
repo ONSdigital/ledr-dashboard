@@ -21,7 +21,6 @@ class DashboardHeaderRedux extends Component {
 
   render() {
 
-    //TODO: Can get this from redux?
     let {topic, timePeriod} = this.props;
 
     let topicDisplay = formTopicDisplay(topic);
