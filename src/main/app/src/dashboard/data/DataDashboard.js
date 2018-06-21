@@ -21,7 +21,7 @@ const mapStateToProps = state => {
   };
 };
 
-class DashboardRedux extends Component {
+class DataDashboardRedux extends Component {
 
   /**
    * Gets data for specified by calling API endpoint
@@ -223,6 +223,6 @@ class DashboardRedux extends Component {
 
 }
 
-const DashboardData = connect(mapStateToProps, null)(DashboardRedux);
+const DataDashboard = connect(mapStateToProps, null)(DataDashboardRedux);
 
-export default DashboardData
+export default DataDashboard

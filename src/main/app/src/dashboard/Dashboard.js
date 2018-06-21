@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {Divider, Message} from "semantic-ui-react";
-import DashboardData from "./data/DashboardData";
+import DataDashboard from "./data/DataDashboard";
 import DashboardMenu from "./DashboardMenu";
 
 class Dashboard extends Component {
@@ -10,7 +10,7 @@ class Dashboard extends Component {
       <Fragment>
         <DashboardMenu/>
         <Divider/>
-        <DashboardData/>
+        <DataDashboard/>
         <Message>
           The information on this page is refreshed every hour.
         </Message>
