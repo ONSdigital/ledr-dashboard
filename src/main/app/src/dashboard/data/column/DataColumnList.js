@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {setModalDataProperty, setModalOpen, setModalTimePeriodType} from "../../../redux/actions/index";
 import {connect} from "react-redux";
 import {Label, List, Segment} from "semantic-ui-react";
-import {DATA_PROPERTY_DASHBOARD} from "../../../utils/Constants";
+import {DATA_PROPERTY} from "../../../utils/Constants";
 import {nullChecker, round} from "../../../utils/Utils";
 
 const mapDispatchToProps = dispatch => {
@@ -64,7 +64,7 @@ class DataColumnListRedux extends Component {
           </List.Item>
           <List.Item onClick={() => {
             this.props.setModalTimePeriodType(timePeriodType);
-            this.props.setModalDataProperty(DATA_PROPERTY_DASHBOARD.OUTSTANDING_GEOGRAPHY);
+            this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.MAIN);
             this.props.setModalOpen(true);
           }}>
             <List.Content>
@@ -86,7 +86,7 @@ class DataColumnListRedux extends Component {
           </List.Item>
           <List.Item onClick={() => {
             this.props.setModalTimePeriodType(timePeriodType);
-            this.props.setModalDataProperty(DATA_PROPERTY_DASHBOARD.OUTSTANDING_CAUSE);
+            this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_CAUSE.MAIN);
             this.props.setModalOpen(true);
           }}>
             <List.Content>

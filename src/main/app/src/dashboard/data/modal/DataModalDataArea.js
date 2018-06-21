@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Divider, Header, Label, List, Loader} from "semantic-ui-react";
 import {modalDataMapper, nullChecker, round, timePeriodMapper} from "../../../utils/Utils";
-import {API_ENDPOINT, DATA_PROPERTY_DASHBOARD, ERROR_MESSAGE} from "../../../utils/Constants";
+import {API_ENDPOINT, DATA_PROPERTY, ERROR_MESSAGE} from "../../../utils/Constants";
 import {connect} from "react-redux";
 
 const mapStateToProps = state => {
@@ -23,7 +23,7 @@ class DataModalDataAreaRedux extends Component {
     let timePeriodMapped = timePeriodMapper(timePeriod, modalTimePeriodType);
 
     let url = `${API_ENDPOINT.DASHBOARD_MOCK}/${topic}/${timePeriodMapped}`;
-    if (modalDataProperty === DATA_PROPERTY_DASHBOARD.OUTSTANDING_CAUSE) {
+    if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_CAUSE.MAIN) {
       url = url + '/causecoding';
     }
 
@@ -73,11 +73,11 @@ class DataModalDataAreaRedux extends Component {
     let statData = this.state.statData;
 
     if (statData) {
-      if (modalDataProperty === DATA_PROPERTY_DASHBOARD.OUTSTANDING_CAUSE) {
+      if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_CAUSE.MAIN) {
         return (<OutstandingOccupation statData={statData}/>)
       }
 
-      if (modalDataProperty === DATA_PROPERTY_DASHBOARD.OUTSTANDING_GEOGRAPHY) {
+      if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_GEOGRAPHY.MAIN) {
         return (
           <List link selection>
             {statData &&
