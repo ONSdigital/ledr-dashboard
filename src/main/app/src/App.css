@@ -11,3 +11,7 @@
 #content-main {
     margin-top: 0 !important;
 }
+/* Adds small margin to left of label  */
+.list-label {
+    margin-left: 4px !important;
+}

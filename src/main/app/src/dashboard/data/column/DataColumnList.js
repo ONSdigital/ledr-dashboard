@@ -50,14 +50,14 @@ class DataColumnListRedux extends Component {
           <List.Item>
             <List.Content>
               <List.Header>Fully coded:</List.Header>
-              <List.Description>{fullyCodedDisplay + ' '}
+              <List.Description>{fullyCodedDisplay}
                 {(() => {
                   if (fullyCodedPercent >= 75)
-                    return <Label color='green' circular>{fullyCodedPercent}%</Label>;
+                    return <Label className='list-label' color='green' circular>{fullyCodedPercent}%</Label>;
                   if (fullyCodedPercent < 75 && fullyCodedPercent >= 50)
-                    return <Label color='orange' circular>{fullyCodedPercent}%</Label>;
+                    return <Label className='list-label' color='orange' circular>{fullyCodedPercent}%</Label>;
                   else
-                    return <Label color='red' circular>{fullyCodedPercent}%</Label>;
+                    return <Label className='list-label' color='red' circular>{fullyCodedPercent}%</Label>;
                 })()}
               </List.Description>
             </List.Content>
@@ -70,8 +70,8 @@ class DataColumnListRedux extends Component {
             <List.Content>
               <List.Header>Outstanding geography:</List.Header>
               <List.Description>
-                {outstandingGeographyFullDisplay + ' '}
-                <Label color='grey' circular>{outstandingGeographyPercent}%</Label>
+                {outstandingGeographyFullDisplay}
+                <Label className='list-label' color='grey' circular>{outstandingGeographyPercent}%</Label>
               </List.Description>
             </List.Content>
           </List.Item>
@@ -79,8 +79,8 @@ class DataColumnListRedux extends Component {
             <List.Content>
               <List.Header>Outstanding occupation: </List.Header>
               <List.Description>
-                {outstandingOccupationDisplay + ' '}
-                <Label color='grey' circular>{outstandingOccupationPercent}%</Label>
+                {outstandingOccupationDisplay}
+                <Label className='list-label' color='grey' circular>{outstandingOccupationPercent}%</Label>
               </List.Description>
             </List.Content>
           </List.Item>
@@ -92,8 +92,8 @@ class DataColumnListRedux extends Component {
             <List.Content>
               <List.Header>Outstanding cause: </List.Header>
               <List.Description>
-                {outstandingCauseDisplay + ' '}
-                <Label color='grey' circular>{outstandingCausePercent}%</Label>
+                {outstandingCauseDisplay}
+                <Label className='list-label' color='grey' circular>{outstandingCausePercent}%</Label>
               </List.Description>
             </List.Content>
           </List.Item>
