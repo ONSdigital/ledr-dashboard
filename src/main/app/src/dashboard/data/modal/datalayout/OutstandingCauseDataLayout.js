@@ -2,6 +2,23 @@ import React, {Fragment} from 'react';
 import {nullChecker, round} from "../../../../utils/Utils";
 import {Divider, Header, Label, List} from "semantic-ui-react";
 
+/**
+ * Comment with @params added to remove 'unresolved variable' warning in WebStorm
+ * @param statData
+ * @param statData.nonInquestReceived
+ * @param statData.nonInquestReceivedOutstandingNonNeonates
+ * @param statData.nonInquestReceivedOutstandingNeonates
+ * @param statData.nonInquestReceivedErrorsAndWarningsNonNeonates
+ * @param statData.nonInquestReceivedErrorsAndWarningsNeonates
+ * @param statData.inquestPartV
+ * @param statData.inquestPartVOutstandingNonNeonates
+ * @param statData.inquestPartVOutstandingNeonates
+ * @param statData.inquestPartVErrorsAndWarningsNonNeonates
+ * @param statData.inquestPartVErrorsAndWarningsNeonates
+ * @param statData.inquestAdjourned
+ * @param statData.inquestAdjournedOutstandingBlue
+ * @param statData.inquestAdjournedOutstandingYellow
+ */
 const OutstandingCauseDataLayout = ({statData}) => {
 
   let nonInquestReceivedDisplay = nullChecker(statData.nonInquestReceived);
