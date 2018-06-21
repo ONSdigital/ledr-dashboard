@@ -4,9 +4,7 @@ import {
   DATE_FORMAT,
   TIME_PERIOD_ENUM,
   TIME_PERIOD_SELECT_ENUM,
-  TIME_PERIOD_TYPE,
-  TOPIC_DISPLAY_ENUM,
-  TOPIC_OPTIONS_ENUM
+  TIME_PERIOD_TYPE
 } from "./Constants";
 import moment from "moment/moment";
 
@@ -230,13 +228,10 @@ export const formHeaderText = (timePeriod, timePeriodType) => {
 
 export const formTopicDisplay = (topic) => {
 
-  switch (topic) {
-    case TOPIC_OPTIONS_ENUM.BIRTH:
-      return TOPIC_DISPLAY_ENUM.BIRTHS;
-    case TOPIC_OPTIONS_ENUM.DEATH:
-      return TOPIC_DISPLAY_ENUM.DEATHS;
-    default:
-      return ''
+  if (topic) {
+    return topic.charAt(0).toUpperCase() + topic.slice(1);
+  } else {
+    return ''
   }
 
 };

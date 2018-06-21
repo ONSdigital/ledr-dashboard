@@ -3,14 +3,9 @@ export const ROUTER_PATH = {
   LOGOUT: '/logout',
 };
 
-export const TOPIC_OPTIONS_ENUM = {
-  BIRTH: 'birth',
-  DEATH: 'death'
-};
-
-export const TOPIC_DISPLAY_ENUM = {
-  BIRTHS: 'Births',
-  DEATHS: 'Deaths'
+export const TOPIC_ENUM = {
+  BIRTH: 'births',
+  DEATH: 'deaths'
 };
 
 export const TIME_PERIOD_SELECT_ENUM = {

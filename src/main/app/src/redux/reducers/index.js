@@ -6,11 +6,11 @@ import {
 } from "../constants/action-types";
 import {
   TIME_PERIOD_SELECT_ENUM,
-  TOPIC_OPTIONS_ENUM
+  TOPIC_ENUM
 } from "../../utils/Constants";
 
 const initialState = {
-  topic: TOPIC_OPTIONS_ENUM.BIRTH,
+  topic: TOPIC_ENUM.BIRTH,
   timePeriod: TIME_PERIOD_SELECT_ENUM.WEEKLY,
   modalOpen: false,
   modalDataProperty: '',

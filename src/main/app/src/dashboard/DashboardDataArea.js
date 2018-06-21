@@ -5,7 +5,7 @@ import {
   TIME_PERIOD_ENUM,
   TIME_PERIOD_SELECT_ENUM,
   TIME_PERIOD_TYPE,
-  TOPIC_OPTIONS_ENUM as TOPIC_OPTIONS,
+  TOPIC_ENUM as TOPIC_OPTIONS,
 } from "../utils/Constants";
 import {Grid, Loader, Message} from "semantic-ui-react";
 import DataColumnList from "./data/column/DataColumnList";
