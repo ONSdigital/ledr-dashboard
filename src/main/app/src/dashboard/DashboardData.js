@@ -9,8 +9,8 @@ import {
 } from "../utils/Constants";
 import DashboardHeader from "./DashboardHeader";
 import {Grid, Loader, Message} from "semantic-ui-react";
-import DataColumn from "./data/DataColumn";
-import DataColumnHeader from "./data/DataColumnHeader";
+import DataColumn from "./data/column/DataColumn";
+import DataColumnHeader from "./data/column/DataColumnHeader";
 import {connect} from "react-redux";
 import DataModal from "./data/modal/DataModal";
 
