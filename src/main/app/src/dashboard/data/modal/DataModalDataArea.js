@@ -48,12 +48,6 @@ class DataModalDataAreaRedux extends Component {
 
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.statData !== this.state.statData) {
-      return true;
-    }
-  }
-
   constructor(props) {
     super(props);
 
@@ -63,6 +57,12 @@ class DataModalDataAreaRedux extends Component {
 
     this.getData();
 
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.statData !== this.state.statData) {
+      return true;
+    }
   }
 
   render() {
