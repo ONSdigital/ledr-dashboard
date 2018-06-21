@@ -6,13 +6,13 @@ import {
   TIME_PERIOD_SELECT_ENUM,
   TIME_PERIOD_TYPE,
   TOPIC_OPTIONS_ENUM as TOPIC_OPTIONS,
-} from "../utils/Constants";
-import DashboardHeader from "./DashboardHeader";
+} from "../../utils/Constants";
+import DashboardHeader from "../DashboardHeader";
 import {Grid, Loader, Message} from "semantic-ui-react";
-import DataColumn from "./data/column/DataColumn";
-import DataColumnHeader from "./data/column/DataColumnHeader";
+import DataColumn from "./column/DataColumn";
+import DataColumnHeader from "./column/DataColumnHeader";
 import {connect} from "react-redux";
-import DataModal from "./data/modal/DataModal";
+import DataModal from "./modal/DataModal";
 
 const mapStateToProps = state => {
   return {
