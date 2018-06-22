@@ -2,7 +2,7 @@ import React from 'react';
 import {nullChecker} from "../../../../utils/Utils";
 import {List} from "semantic-ui-react";
 
-const OutstandingGeographyDataLayout = ({statDataa}) => {
+const OutstandingGeographyDataView = ({statDataa}) => {
 
   let {
     outstandingGeographyPOB, outstandingGeographyPOE,
@@ -43,4 +43,4 @@ const OutstandingGeographyDataLayout = ({statDataa}) => {
   )
 };
 
-export default OutstandingGeographyDataLayout;
+export default OutstandingGeographyDataView;

@@ -19,7 +19,7 @@ import {Divider, Header, Label, List} from "semantic-ui-react";
  * @param statData.inquestAdjournedOutstandingBlue
  * @param statData.inquestAdjournedOutstandingYellow
  */
-const OutstandingCauseDataLayout = ({statData}) => {
+const OutstandingCauseDataView = ({statData}) => {
 
   let nonInquestReceivedDisplay = nullChecker(statData.nonInquestReceived);
   let nonInquestReceivedOutstandingNonNeonatesDisplay = nullChecker(statData.nonInquestReceivedOutstandingNonNeonates);
@@ -177,4 +177,4 @@ const OutstandingCauseDataLayout = ({statData}) => {
   )
 };
 
-export default OutstandingCauseDataLayout;
+export default OutstandingCauseDataView;
