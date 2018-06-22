@@ -20,7 +20,8 @@ const mapStateToProps = state => {
 };
 
 /**
- *
+ * This class contains the DataColumnHeader and DataColumnList components.
+ * It gets data from the LEDR DB via the Spring Boot API.
  */
 class DataDashboardDataAreaRedux extends Component {
 

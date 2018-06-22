@@ -17,6 +17,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+/**
+ * This is the parent class for the data modal
+ */
 class DataModalRedux extends Component {
 
   render() {

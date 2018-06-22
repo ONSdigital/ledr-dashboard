@@ -3,6 +3,9 @@ import {Link, withRouter} from 'react-router-dom';
 import {Menu} from "semantic-ui-react";
 import {ROUTER_PATH} from "../utils/Constants";
 
+/**
+ * This class renders the top navigation bar for the application
+ */
 class NavBar extends Component {
 
   handleItemClick = (e, {id}) => {

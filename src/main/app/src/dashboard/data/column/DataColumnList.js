@@ -13,6 +13,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+/**
+ * This class displays the list of data for each data column within the DashboardDataArea
+ */
 class DataColumnListRedux extends Component {
 
   shouldComponentUpdate(nextProps) {

@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {Header} from "semantic-ui-react";
 import {formDateText, formHeaderText} from "../../../utils/Utils";
 
+/**
+ * This class displays the Header for each data column within the DashboardDataArea
+ * The Header is currently the time period
+ * The Sub-Header is currently the date range of the time period
+ */
 class DataColumnHeader extends Component {
 
   shouldComponentUpdate(nextProps) {

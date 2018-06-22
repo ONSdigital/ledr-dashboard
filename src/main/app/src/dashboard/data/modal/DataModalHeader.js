@@ -12,6 +12,11 @@ const mapStateToProps = state => {
   };
 };
 
+/**
+ * This class displays the Header for the data modal
+ * The Header is currently the property selected in the DataColumnList (e.g. Outstanding Geography)
+ * The Sub-Header is currently the topic | time period | time period data range
+ */
 class DataModalHeaderRedux extends Component {
 
   render() {

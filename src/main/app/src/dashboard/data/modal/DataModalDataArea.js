@@ -16,6 +16,10 @@ const mapStateToProps = state => {
   };
 };
 
+/**
+ * This is the parent class for the data modal area and renders differently dependant on the
+ * specified modalDataProperty passed from the onClick method of a DataColumnList item
+ */
 class DataModalDataAreaRedux extends Component {
 
   getData = () => {

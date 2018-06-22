@@ -15,6 +15,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+/**
+ * This class renders the component for selecting a topic
+ */
 class TopicSelectRedux extends Component {
 
   handleTopicChangeSelect = (e, {value}) => {

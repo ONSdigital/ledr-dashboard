@@ -15,6 +15,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+/**
+ * This class renders the component for selecting a time period
+ */
 class TimePeriodSelectRedux extends Component {
 
   handleTimePeriodChangeSelect = (e, {value}) => {

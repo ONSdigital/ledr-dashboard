@@ -6,7 +6,7 @@ import DashboardMenu from "./DashboardMenu";
 import DashboardDataArea from "./DashboardDataArea";
 
 /**
- *
+ * This is the dashboard parent class
  */
 class Dashboard extends Component {
 
