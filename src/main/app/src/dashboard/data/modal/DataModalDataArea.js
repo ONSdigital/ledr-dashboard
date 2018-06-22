@@ -3,8 +3,8 @@ import {Loader} from "semantic-ui-react";
 import {timePeriodMapper} from "../../../utils/Utils";
 import {API_ENDPOINT, DATA_PROPERTY, ERROR_MESSAGE} from "../../../utils/Constants";
 import {connect} from "react-redux";
-import OutstandingCauseDataLayout from "./datalayout/OutstandingCauseDataLayout";
-import OutstandingGeographyDataLayout from "./datalayout/OutstandingGeographyDataLayout";
+import OutstandingCauseDataView from "./view/OutstandingCauseDataView";
+import OutstandingGeographyDataView from "./view/OutstandingGeographyDataView";
 
 const mapStateToProps = state => {
   return {
@@ -72,9 +72,9 @@ class DataModalDataAreaRedux extends Component {
 
     switch (modalDataProperty) {
       case DATA_PROPERTY.OUTSTANDING_CAUSE:
-        return <OutstandingCauseDataLayout statData={statData}/>;
+        return <OutstandingCauseDataView statData={statData}/>;
       case DATA_PROPERTY.OUTSTANDING_GEOGRAPHY:
-        return <OutstandingGeographyDataLayout statDataa={statData}/>;
+        return <OutstandingGeographyDataView statDataa={statData}/>;
       default:
         return <Loader active/>
     }
