@@ -25,6 +25,14 @@
     <springboot.version>2.0.2.RELEASE</springboot.version>
   </properties>
 
+  <profiles>
+    <profile>
+      <properties>
+        <node.dist>http://art-p-01/artifactory/nodejss</node.dist>
+      </properties>
+    </profile>
+  </profiles>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -162,6 +170,8 @@
         <configuration>
           <nodeVersion>v10.3.0</nodeVersion>
           <npmVersion>6.1.0</npmVersion>
+          <serverId>central</serverId>
+          <downloadRoot>${node.dist}</downloadRoot>
           <installDirectory>.mvn</installDirectory>
           <workingDirectory>src/main/app</workingDirectory>
         </configuration>
