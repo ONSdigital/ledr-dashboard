@@ -169,11 +169,10 @@
           </execution>
         </executions>
         <configuration>
+          <serverId>central</serverId>
+          <downloadRoot>${node.dist}</downloadRoot>
           <nodeVersion>v10.3.0</nodeVersion>
           <npmVersion>6.1.0</npmVersion>
-          <serverId>central</serverId>
-          <nodeDownloadRoot>${node.dist}</nodeDownloadRoot>
-          <npmDownloadRoot>${node.dist}</npmDownloadRoot>
           <installDirectory>.mvn</installDirectory>
           <workingDirectory>src/main/app</workingDirectory>
         </configuration>
