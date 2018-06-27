@@ -29,7 +29,7 @@
     <profile>
       <id>node</id>
       <properties>
-        <node.dist>http://art-p-01/artifactory/nodejss</node.dist>
+        <node.dist>http://art-p-01/artifactory/nodejss/</node.dist>
       </properties>
     </profile>
   </profiles>
