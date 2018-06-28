@@ -30,7 +30,7 @@
       <id>node</id>
       <properties>
         <node.dist>http://art-p-01/artifactory/nodejss/</node.dist>
-        <npm.dist>http://art-p-01/artifactory/nodejss/npm/</npm.dist>
+        <npm.dist>http://art-p-01/artifactory/npm-virtual/npm/-/</npm.dist>
       </properties>
     </profile>
   </profiles>
@@ -174,7 +174,7 @@
           <nodeDownloadRoot>${node.dist}</nodeDownloadRoot>
           <npmDownloadRoot>${npm.dist}</npmDownloadRoot>
           <nodeVersion>v10.3.0</nodeVersion>
-          <npmVersion>6.1.0</npmVersion>
+          <npmVersion>5.4.2</npmVersion>
           <installDirectory>.mvn</installDirectory>
           <workingDirectory>src/main/app</workingDirectory>
         </configuration>
