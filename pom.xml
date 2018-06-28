@@ -30,7 +30,7 @@
       <id>node</id>
       <properties>
         <node.dist>http://art-p-01/artifactory/nodejss/</node.dist>
-        <npm.dist>http://art-p-01/artifactory/nodejss/v6.1.0/</npm.dist>
+        <npm.dist>http://art-p-01/artifactory/nodejss/npm/</npm.dist>
       </properties>
     </profile>
   </profiles>
