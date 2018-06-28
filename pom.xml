@@ -172,6 +172,7 @@
           <serverId>central</serverId>
           <downloadRoot>${node.dist}</downloadRoot>
           <nodeVersion>v10.3.0</nodeVersion>
+          <npmVersion>6.1.0</npmVersion>
           <installDirectory>.mvn</installDirectory>
           <workingDirectory>src/main/app</workingDirectory>
         </configuration>
