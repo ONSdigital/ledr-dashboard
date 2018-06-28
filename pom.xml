@@ -30,6 +30,7 @@
       <id>node</id>
       <properties>
         <node.dist>http://art-p-01/artifactory/nodejss/</node.dist>
+        <npm.dist>http://art-p-01/artifactory/nodejss/v6.1.0/</npm.dist>
       </properties>
     </profile>
   </profiles>
@@ -170,7 +171,8 @@
         </executions>
         <configuration>
           <serverId>central</serverId>
-          <downloadRoot>${node.dist}</downloadRoot>
+          <nodeDownloadRoot>${node.dist}</nodeDownloadRoot>
+          <npmDownloadRoot>${npm.dist}</npmDownloadRoot>
           <nodeVersion>v10.3.0</nodeVersion>
           <npmVersion>6.1.0</npmVersion>
           <installDirectory>.mvn</installDirectory>
