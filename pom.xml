@@ -157,7 +157,7 @@
               <goal>npm</goal>
             </goals>
             <configuration>
-              <arguments>install --registry=${npm.registry} --always-auth=true</arguments>
+              <arguments>install</arguments>
             </configuration>
           </execution>
           <execution>
