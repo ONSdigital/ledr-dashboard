@@ -168,8 +168,8 @@
           <serverId>central</serverId>
           <nodeDownloadRoot>${node.dist}</nodeDownloadRoot>
           <npmDownloadRoot>${npm.dist}</npmDownloadRoot>
-          <nodeVersion>v10.3.0</nodeVersion>
-          <npmVersion>6.1.0</npmVersion>
+          <nodeVersion>v6.12.3</nodeVersion>
+          <npmVersion>3.10.10</npmVersion>
           <installDirectory>.mvn</installDirectory>
           <workingDirectory>src/main/app</workingDirectory>
         </configuration>
