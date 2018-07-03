@@ -146,12 +146,6 @@
         <version>1.6</version>
         <executions>
           <execution>
-            <id>Install Node and NPM</id>
-            <goals>
-              <goal>install-node-and-npm</goal>
-            </goals>
-          </execution>
-          <execution>
             <id>npm install</id>
             <goals>
               <goal>npm</goal>
