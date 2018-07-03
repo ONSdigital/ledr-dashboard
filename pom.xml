@@ -151,7 +151,7 @@
               <goal>install-node-and-npm</goal>
             </goals>
             <configuration>
-               <nodeVersion>v10.3.0</nodeVersion>
+               <nodeVersion>v6.1.0</nodeVersion>
                <npmVersion>5.4.2</npmVersion>
             </configuration>
           </execution>
@@ -178,7 +178,7 @@
           <serverId>central</serverId>
           <nodeDownloadRoot>${node.dist}</nodeDownloadRoot>
           <npmDownloadRoot>${npm.dist}</npmDownloadRoot>
-          <nodeVersion>v10.3.0</nodeVersion>
+          <nodeVersion>v6.1.0</nodeVersion>
           <npmVersion>5.4.2</npmVersion>
           <installDirectory>.mvn</installDirectory>
           <workingDirectory>src/main/app</workingDirectory>
