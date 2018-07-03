@@ -3,7 +3,7 @@ import {Form} from "semantic-ui-react";
 import {TOPIC_OPTIONS} from "../../utils/Arrays";
 import {connect} from "react-redux";
 import {setSelectTopic} from "../../redux/actions/index";
-import {TOPIC_OPTIONS_ENUM} from "../../utils/Constants";
+import {TOPIC_ENUM} from "../../utils/Constants";
 
 const mapStateToProps = state => {
   return {topic: state.topic};
@@ -15,7 +15,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class TopicSubTopicComponentRedux extends Component {
+/**
+ * This class renders the component for selecting a topic
+ */
+class TopicSelectRedux extends Component {
 
   handleTopicChangeSelect = (e, {value}) => {
     let topic = value;
@@ -28,7 +31,7 @@ class TopicSubTopicComponentRedux extends Component {
     super();
 
     this.state = {
-      topic: TOPIC_OPTIONS_ENUM.BIRTH,
+      topic: TOPIC_ENUM.BIRTH,
     };
 
   }
@@ -44,6 +47,6 @@ class TopicSubTopicComponentRedux extends Component {
   }
 }
 
-const TopicSelect = connect(mapStateToProps, mapDispatchToProps)(TopicSubTopicComponentRedux);
+const TopicSelect = connect(mapStateToProps, mapDispatchToProps)(TopicSelectRedux);
 
 export default TopicSelect;

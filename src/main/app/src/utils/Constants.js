@@ -1,16 +1,15 @@
+/**
+ * This class contains all global constants for ease of use/access
+ */
+
 export const ROUTER_PATH = {
   DASHBOARD: '/',
   LOGOUT: '/logout',
 };
 
-export const TOPIC_OPTIONS_ENUM = {
-  BIRTH: 'birth',
-  DEATH: 'death'
-};
-
-export const TOPIC_DISPLAY_ENUM = {
-  BIRTHS: 'Births',
-  DEATHS: 'Deaths'
+export const TOPIC_ENUM = {
+  BIRTH: 'births',
+  DEATH: 'deaths'
 };
 
 export const TIME_PERIOD_SELECT_ENUM = {
@@ -50,20 +49,11 @@ export const API_ENDPOINT = {
   POPUP: 'http://localhost:7051/ledr-dashboard-poc',
 };
 
-export const DATA_PROPERTY_DASHBOARD = {
+export const DATA_PROPERTY = {
   RECORDS_RECEIVED: 'Records Received',
   FULLY_CODED: 'Fully Coded',
   OUTSTANDING_GEOGRAPHY: 'Outstanding Geography',
-  OUTSTANDING_OCCUPATION: 'Outstanding Occupation',
   OUTSTANDING_CAUSE: 'Outstanding Cause'
-};
-
-export const DATA_PROPERTY_POPUP = {
-  OUTSTANDING_GEOGRAPHY: {
-    USUAL_RESIDENCE: 'Usual Residence',
-    PLACE_OF_EVENT: 'Place of Event',
-    PLACE_OF_BIRTH: 'Place of Birth'
-  }
 };
 
 export const DATE_FORMAT = {

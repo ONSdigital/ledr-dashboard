@@ -1,14 +1,9 @@
-import {
-  DATA_PROPERTY_DASHBOARD,
-  DATA_PROPERTY_POPUP,
-  DATE_FORMAT,
-  TIME_PERIOD_ENUM,
-  TIME_PERIOD_SELECT_ENUM,
-  TIME_PERIOD_TYPE,
-  TOPIC_DISPLAY_ENUM,
-  TOPIC_OPTIONS_ENUM
-} from "./Constants";
+import {DATE_FORMAT, TIME_PERIOD_ENUM, TIME_PERIOD_SELECT_ENUM, TIME_PERIOD_TYPE} from "./Constants";
 import moment from "moment/moment";
+
+/**
+ * This class stores all useful utility methods that can be used in multiple places
+ */
 
 /**
  * Used instead of Math.round() as that can have rounding errors due to floating-number arithmetic.
@@ -228,19 +223,6 @@ export const formHeaderText = (timePeriod, timePeriodType) => {
   return headerText;
 };
 
-export const formTopicDisplay = (topic) => {
-
-  switch (topic) {
-    case TOPIC_OPTIONS_ENUM.BIRTH:
-      return TOPIC_DISPLAY_ENUM.BIRTHS;
-    case TOPIC_OPTIONS_ENUM.DEATH:
-      return TOPIC_DISPLAY_ENUM.DEATHS;
-    default:
-      return ''
-  }
-
-};
-
 export const timePeriodMapper = (timePeriod, modalTimePeriodType) => {
 
   switch (timePeriod) {
@@ -292,25 +274,4 @@ export const timePeriodMapper = (timePeriod, modalTimePeriodType) => {
       return '';
   }
 
-};
-
-export const dialogDataMapper = (dataProperty, json) => {
-
-  let statData = {};
-
-  switch (dataProperty) {
-    case DATA_PROPERTY_DASHBOARD.OUTSTANDING_GEOGRAPHY:
-      let {
-        outstandingGeographyPOB, outstandingGeographyPOE,
-        outstandingGeographyUR
-      } = json;
-      statData[DATA_PROPERTY_POPUP.OUTSTANDING_GEOGRAPHY.USUAL_RESIDENCE] = outstandingGeographyUR;
-      statData[DATA_PROPERTY_POPUP.OUTSTANDING_GEOGRAPHY.PLACE_OF_EVENT] = outstandingGeographyPOE;
-      statData[DATA_PROPERTY_POPUP.OUTSTANDING_GEOGRAPHY.PLACE_OF_BIRTH] = outstandingGeographyPOB;
-      return statData;
-    case DATA_PROPERTY_DASHBOARD.OUTSTANDING_OCCUPATION:
-      return json;
-    default:
-      return json;
-  }
 };

@@ -14,7 +14,10 @@ import store from './redux/store/index';
   const {whyDidYouUpdate} = require('why-did-you-update');
   whyDidYouUpdate(React)
 }*/
-
+/**
+ * This is the 'base' of the application
+ * Redux and React Router are initialised here.
+ */
 ReactDOM.render(<Provider store={store}><BrowserRouter>
   <App/>
 </BrowserRouter></Provider>, document.getElementById('root'));

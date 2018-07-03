@@ -6,7 +6,12 @@
     margin-bottom: 0 !important;
     border-radius: 0 !important;
 }
+
 /* Removes margin from main content container to make design more visually consistent*/
 #content-main {
     margin-top: 0 !important;
+}
+/* Adds small margin to left of label  */
+.list-label {
+    margin-left: 4px !important;
 }

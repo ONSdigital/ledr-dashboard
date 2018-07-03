@@ -1,8 +1,19 @@
 import React, {Component} from 'react';
 import {Header} from "semantic-ui-react";
-import {formTopicDisplay, toTitleCase} from "../utils/Utils";
+import {toTitleCase} from "../utils/Utils";
+import {connect} from "react-redux";
 
-class DashboardHeader extends Component {
+const mapStateToProps = state => {
+  return {
+    topic: state.topic,
+    timePeriod: state.timePeriod
+  };
+};
+
+/**
+ * Header for displaying Dashboard title and current topic
+ */
+class DashboardHeaderRedux extends Component {
 
   shouldComponentUpdate(nextProps) {
     return nextProps.topic !== this.props.topic || nextProps.timePeriod !== this.props.timePeriod
@@ -12,7 +23,7 @@ class DashboardHeader extends Component {
 
     let {topic, timePeriod} = this.props;
 
-    let topicDisplay = formTopicDisplay(topic);
+    let topicDisplay = toTitleCase(topic);
     let timePeriodDisplay = toTitleCase(timePeriod);
 
     return (
@@ -27,5 +38,7 @@ class DashboardHeader extends Component {
     );
   }
 }
+
+const DashboardHeader = connect(mapStateToProps, null)(DashboardHeaderRedux);
 
 export default DashboardHeader;

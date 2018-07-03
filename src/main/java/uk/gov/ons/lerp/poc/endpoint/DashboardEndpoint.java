@@ -18,7 +18,7 @@ public class DashboardEndpoint {
   @Autowired
   private DashboardService service;
 
-  @RequestMapping(value = "/ledr-dashboard-poc/topic/birth/{period}", method = RequestMethod.GET)
+  @RequestMapping(value = "/ledr-dashboard-poc/topic/births/{period}", method = RequestMethod.GET)
   public ResponseEntity<RecordSummary> getBirthDashboardData(@PathVariable("period") final String period,
                                                              HttpServletResponse response) throws CannotRetrieveDashboardData {
 
@@ -26,7 +26,7 @@ public class DashboardEndpoint {
     return ResponseEntity.ok(service.retrieveBirthDashboardData(period));
   }
 
-  @RequestMapping(value = "/ledr-dashboard-poc/topic/death/{period}", method = RequestMethod.GET)
+  @RequestMapping(value = "/ledr-dashboard-poc/topic/deaths/{period}", method = RequestMethod.GET)
   public ResponseEntity<RecordSummary> getDeathDashboardData(@PathVariable("period") final String period,
                                                              HttpServletResponse response) throws CannotRetrieveDashboardData {
 
@@ -34,7 +34,7 @@ public class DashboardEndpoint {
     return ResponseEntity.ok(service.retrieveDeathDashboardData(period));
   }
 
-  @RequestMapping(value = "/ledr-dashboard-poc/topic/death/{period}/occupation", method = RequestMethod.GET)
+  @RequestMapping(value = "/ledr-dashboard-poc/topic/deaths/{period}/occupation", method = RequestMethod.GET)
   public ResponseEntity<RecordSummary> getDeathOccupationData(@PathVariable("period") final String period,
                                                               HttpServletResponse response) throws CannotRetrieveDashboardData {
 

@@ -1,23 +1,31 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component, Fragment} from "react";
+import DashboardHeader from "./DashboardHeader";
 import {Divider, Message} from "semantic-ui-react";
-import DashboardData from "./DashboardData";
+import DataModal from "./data/modal/DataModal";
 import DashboardMenu from "./DashboardMenu";
+import DashboardDataArea from "./DashboardDataArea";
 
+/**
+ * This is the dashboard parent class
+ */
 class Dashboard extends Component {
 
   render() {
+
     return (
       <Fragment>
         <DashboardMenu/>
         <Divider/>
-        <DashboardData/>
+        <DashboardHeader/>
+        <DashboardDataArea/>
         <Message>
           The information on this page is refreshed every hour.
         </Message>
+        <DataModal/>
       </Fragment>
     );
   }
 
 }
 
-export default Dashboard;
+export default Dashboard

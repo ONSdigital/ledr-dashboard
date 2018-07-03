@@ -25,6 +25,17 @@
     <springboot.version>2.0.2.RELEASE</springboot.version>
   </properties>
 
+  <profiles>
+    <profile>
+      <id>node</id>
+      <properties>
+        <node.dist>http://art-p-01/artifactory/nodejss/</node.dist>
+        <npm.dist>http://art-p-01/artifactory/npm-virtual/npm/-/</npm.dist>
+        <npm.registry>http://art-p-01/artifactory/api/npm/npm-virtual/</npm.registry>
+      </properties>
+    </profile>
+  </profiles>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -135,12 +146,6 @@
         <version>1.6</version>
         <executions>
           <execution>
-            <id>Install Node and NPM</id>
-            <goals>
-              <goal>install-node-and-npm</goal>
-            </goals>
-          </execution>
-          <execution>
             <id>npm install</id>
             <goals>
               <goal>npm</goal>
@@ -160,8 +165,11 @@
           </execution>
         </executions>
         <configuration>
-          <nodeVersion>v10.3.0</nodeVersion>
-          <npmVersion>6.1.0</npmVersion>
+          <serverId>central</serverId>
+          <nodeDownloadRoot>${node.dist}</nodeDownloadRoot>
+          <npmDownloadRoot>${npm.dist}</npmDownloadRoot>
+          <nodeVersion>v6.12.3</nodeVersion>
+          <npmVersion>3.10.10</npmVersion>
           <installDirectory>.mvn</installDirectory>
           <workingDirectory>src/main/app</workingDirectory>
         </configuration>
