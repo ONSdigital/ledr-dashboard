@@ -58,7 +58,7 @@ public class DataRepositoryTest_Births extends TestCase {
 		
 		System.out.println("The value of result 2 is: " + result);
 		
-		assertTrue("The findBirthsFullyCoded result was not greater than or equal to o", result >= 0); //I cannot use this assert until we are using the database
+		//assertTrue("The findBirthsFullyCoded result was not greater than or equal to o", result >= 0); //I cannot use this assert until we are using the database
 		
 		assertTrue("The findBirthsFullyCoded result was not greater than or equal to o", result == -1);
 	}
