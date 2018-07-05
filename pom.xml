@@ -43,6 +43,7 @@
           <id>snapshots</id>
           <name>ledr-snapshot-local</name>
           <url>http://art-p-01/artifactory/ledr-snapshot-local</url>
+          <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
       </distributionManagement>
     </profile>
