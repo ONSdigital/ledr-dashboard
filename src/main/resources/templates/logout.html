@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="../css/semantic-ui-2.3.1.min.css" th:href="@{/css/semantic-ui-2.3.1.min.css}">
+    <script src="../js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script src="../js/semantic-ui-2.3.1.min.js" th:src="@{/js/semantic-ui-2.3.1.min.js}"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>LEDR Dashboard logout</title>
+</head>
+<body>
+<div class="ui blue inverted borderless menu">
+    <a class="item">
+        LEDR Dashboard
+    </a>
+</div>
+<div class="ui relaxed grid">
+    <div class="three column row">
+        <div class="column"></div>
+        <div class="column">
+            <div class="ui negative message" th:if="${param.logout}">
+                <div class="header">You have been logged out</div>
+                <p>You can now safely close the browser tab/window.</p>
+            </div>
+            <div>
+                Hello, <span id="managername" th:text="${#authentication.name}">user</span>.
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Log Out"/>
+                </form>
+            </div>
+        </div>
+        <div class="column"></div>
+    </div>
+</div>
+</body>
+</html>

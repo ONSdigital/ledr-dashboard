@@ -26,11 +26,11 @@ class NavBar extends Component {
         </Link>
 
         <Menu.Menu position="right">
-          <Link to={ROUTER_PATH.LOGOUT}>
+          <a href={ROUTER_PATH.LOGOUT}>
             <Menu.Item className='nav-bar-desktop-item' id={ROUTER_PATH.LOGOUT} as="span"
                        active={activeItem === ROUTER_PATH.LOGOUT} onClick={this.handleItemClick}
                        link>Log Out</Menu.Item>
-          </Link>
+          </a>
         </Menu.Menu>
       </Menu>
     );
