@@ -23,7 +23,7 @@ const mapStateToProps = state => {
  * This class contains the DataColumnHeader and DataColumnList components.
  * It gets data from the LEDR DB via the Spring Boot API.
  */
-class DataDashboardDataAreaRedux extends Component {
+class DashboardDataAreaRedux extends Component {
 
   /**
    * Gets data for specified time period by calling API endpoint
@@ -221,6 +221,6 @@ class DataDashboardDataAreaRedux extends Component {
 
 }
 
-const DashboardDataArea = connect(mapStateToProps, null)(DataDashboardDataAreaRedux);
+const DashboardDataArea = connect(mapStateToProps, null)(DashboardDataAreaRedux);
 
 export default DashboardDataArea
