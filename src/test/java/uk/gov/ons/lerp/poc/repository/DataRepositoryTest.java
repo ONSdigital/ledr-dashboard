@@ -62,4 +62,30 @@ public class DataRepositoryTest_Births extends TestCase {
 		
 		assertTrue("The findBirthsFullyCoded result was not greater than or equal to o", result == -1);
 	}
+	
+	public void testFindBirthsOutstandingGeographyFull() throws ParseException {
+		
+		DataRepository myBirthsDataRepo = new DataRepository();
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		
+		Date aFriday = formatter.parse("29/06/2018");
+		
+		Date aSaturday = formatter.parse("30/06/2018");
+		
+		int result = -1; //default to a result that we are not expecting
+		
+		try {
+			result = myBirthsDataRepo.findBirthsOutstandingGeographyFull(aSaturday, aFriday); 
+		} catch (CannotFindDataException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("The value of result 2 is: " + result);
+		
+		//assertTrue("The findBirthsOutstandingGeographyFull result was not greater than or equal to o", result >= 0); //I cannot use this assert until we are using the database
+		
+		assertTrue("The findBirthsOutstandingGeographyFull result was not greater than or equal to o", result == -1);
+	}
 }
