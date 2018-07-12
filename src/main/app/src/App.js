@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import './App.css';
 import {Segment} from "semantic-ui-react";
 import Main from "./Main";
@@ -11,12 +11,12 @@ import NavigationBar from "./navigation/NavigationBar";
 class App extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <NavigationBar/>
         <Segment id='content-main' basic>
           <Main/>
         </Segment>
-      </div>
+      </Fragment>
     );
   }
 }
