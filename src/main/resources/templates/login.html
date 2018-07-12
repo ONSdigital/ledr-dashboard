@@ -21,10 +21,6 @@
                 <div class="header">Invalid username and password</div>
                 <p>Please try again or contact the administrator.</p>
             </div>
-            <div class="ui negative message" th:if="${param.logout}">
-                <div class="header">You have been logged out</div>
-                <p>You can now safely close the browser tab/window.</p>
-            </div>
             <form th:action="@{/login}" class="ui form" method="post">
                 <div class="field">
                     <label>User Name</label>
