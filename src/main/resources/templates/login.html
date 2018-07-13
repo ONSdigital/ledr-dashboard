@@ -24,14 +24,14 @@
             <form th:action="@{/login}" class="ui form" method="post">
                 <div class="field">
                     <label>User Name</label>
-                    <input type="text" name="username" placeholder="Username" autocomplete="username"/>
+                    <input type="text" id="username" name="username" placeholder="Username" autocomplete="username"/>
                 </div>
                 <div class="field">
                     <label>Password</label>
-                    <input type="password" name="password" placeholder="Password" autocomplete="current-password"/>
+                    <input type="password" id="password" name="password" placeholder="Password" autocomplete="current-password"/>
                 </div>
                 <div class="field">
-                    <button class="ui button" type="submit">Sign In</button>
+                    <button id="submit" class="ui button" type="submit">Sign In</button>
                 </div>
             </form>
         </div>
