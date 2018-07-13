@@ -1,14 +1,13 @@
-package uk.gov.ons.lerp.poc;
+package uk.gov.ons.lerp.poc.repository;
 
 import junit.framework.TestCase;
 import uk.gov.ons.lerp.poc.exception.CannotFindDataException;
-import uk.gov.ons.lerp.poc.repository.DataRepository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DataRepositoryTest_Births extends TestCase {
+public class DataRepositoryTest extends TestCase {
 
 	public void testFindBirthsRecordsReceived() throws ParseException {
 		
