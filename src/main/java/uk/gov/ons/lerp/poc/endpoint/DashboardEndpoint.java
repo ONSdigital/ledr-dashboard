@@ -34,7 +34,7 @@ public class DashboardEndpoint {
     return ResponseEntity.ok(service.retrieveDeathDashboardData(period));
   }
 
-  @RequestMapping(value = "/ledr-dashboard-poc/topic/deaths/{period}/occupation", method = RequestMethod.GET)
+  @RequestMapping(value = "/ledr-dashboard-poc/topic/deaths/{period}/causecoding", method = RequestMethod.GET)
   public ResponseEntity<RecordSummary> getDeathOccupationData(@PathVariable("period") final String period,
                                                               HttpServletResponse response) throws CannotRetrieveDashboardData {
 
