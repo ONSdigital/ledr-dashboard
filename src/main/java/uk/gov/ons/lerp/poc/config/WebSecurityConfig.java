@@ -1,6 +1,5 @@
 package uk.gov.ons.lerp.poc.config;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider;
+
+import lombok.extern.slf4j.Slf4j;
 import uk.gov.ons.lerp.poc.domain.FileLocation;
 
 @Slf4j
@@ -18,7 +19,7 @@ import uk.gov.ons.lerp.poc.domain.FileLocation;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  private LDAPConfig ldap;
+  private AppConfig appConfig;
 
   @Autowired
   private FileLocation fileLocation;
@@ -53,10 +54,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(AuthenticationManagerBuilder auth) {
     ActiveDirectoryLdapAuthenticationProvider provider = new ActiveDirectoryLdapAuthenticationProvider(
-      ldap.getDomain(),
-      ldap.getUrl(),
-      ldap.getRootdn());
-    provider.setSearchFilter(ldap.getSearchfilter());
+      appConfig.getLdap().getDomain(),
+      appConfig.getLdap().getUrl(),
+      appConfig.getLdap().getRootdn());
+    provider.setSearchFilter(appConfig.getLdap().getSearchfilter());
     provider.setConvertSubErrorCodesToExceptions(true);
     provider.setUseAuthenticationRequestCredentials(true);
     auth.authenticationProvider(provider);

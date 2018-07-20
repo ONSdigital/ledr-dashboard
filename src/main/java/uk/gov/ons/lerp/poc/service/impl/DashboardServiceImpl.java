@@ -1,17 +1,5 @@
 package uk.gov.ons.lerp.poc.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import uk.gov.ons.lerp.poc.domain.FileLocation;
-import uk.gov.ons.lerp.poc.domain.RecordSummary;
-import uk.gov.ons.lerp.poc.domain.TimePeriod;
-import uk.gov.ons.lerp.poc.exception.CannotFindDataException;
-import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
-import uk.gov.ons.lerp.poc.repository.DataRepository;
-import uk.gov.ons.lerp.poc.service.DashboardService;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -20,6 +8,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.extern.slf4j.Slf4j;
+import uk.gov.ons.lerp.poc.domain.FileLocation;
+import uk.gov.ons.lerp.poc.domain.RecordSummary;
+import uk.gov.ons.lerp.poc.domain.TimePeriod;
+import uk.gov.ons.lerp.poc.exception.CannotFindDataException;
+import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
+import uk.gov.ons.lerp.poc.repository.DataRepository;
+import uk.gov.ons.lerp.poc.service.DashboardService;
 
 @Slf4j
 @Service
@@ -60,8 +63,7 @@ public class DashboardServiceImpl implements DashboardService {
   }
 
 
-  //@Scheduled(cron="0 0 6-20 * * *")
-  //@Scheduled(fixedRate=5000)
+  @Scheduled(cron = "#{appConfig.querySchedule.weeklyCron}")
   private void callWeeklySqlStatements() {
     try {
       findBirthsDashboardData(TimePeriod.WEEK_CURRENT);
@@ -75,7 +77,7 @@ public class DashboardServiceImpl implements DashboardService {
     }
   }
 
-  //@Scheduled(fixedRate=5000)
+  @Scheduled(cron = "#{appConfig.querySchedule.monthlyCron}")
   private void callMonthlySqlStatements() {
     try {
       findBirthsDashboardData(TimePeriod.MONTH_CURRENT);
@@ -89,7 +91,7 @@ public class DashboardServiceImpl implements DashboardService {
     }
   }
 
-  //@Scheduled(fixedRate=5000)
+  @Scheduled(cron = "#{appConfig.querySchedule.quarterlyCron}")
   private void callQuartlySqlStatements() {
     try {
       findBirthsDashboardData(TimePeriod.QUARTER_CURRENT);
@@ -103,7 +105,7 @@ public class DashboardServiceImpl implements DashboardService {
     }
   }
 
-  //@Scheduled(fixedRate=5000)
+  @Scheduled(cron = "#{appConfig.querySchedule.yearlyCron}")
   private void callYearlySqlStatements() {
     try {
       findBirthsDashboardData(TimePeriod.YEAR_CURRENT);

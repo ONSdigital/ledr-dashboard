@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@EnableAutoConfiguration
-@Configuration
 @ComponentScan(basePackages ={"uk.gov.ons.lerp.poc"})
 @EnableJpaRepositories(basePackages = {"uk.gov.ons.lerp.poc"})
 @EnableScheduling
