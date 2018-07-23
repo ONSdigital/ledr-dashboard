@@ -14,7 +14,7 @@ public class DataRepository {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  private static final SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
+  private static final SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
   public int findBirthsRecordsReceived(Date sat, Date fri) throws CannotFindDataException {
 
@@ -31,7 +31,7 @@ public class DataRepository {
             + "AND BV.REG_EXCL_OUTPUT is NULL "
             + "AND BV.LATEST= 1 "
             + "AND BR.LATEST= 1 "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (RuntimeException ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -56,7 +56,7 @@ public class DataRepository {
             + "AND BV.LATEST= 1 "
             + "AND BR.LATEST= 1 "
             + "AND BV.QI_FULLY_CODED = 'Y' "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -84,7 +84,7 @@ public class DataRepository {
             + "AND (BV.QI_GEOG_POB = 'N' "
             + "OR BV.QI_GEOG_POE = 'N' "
             + "OR BV.QI_GEOG_UR = 'N') "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -109,7 +109,7 @@ public class DataRepository {
             + "AND BV.LATEST= 1 "
             + "AND BR.LATEST= 1 "
             + "AND BV.QI_GEOG_POB = 'N' "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -134,7 +134,7 @@ public class DataRepository {
             + "AND BV.LATEST= 1 "
             + "AND BR.LATEST= 1 "
             + "AND BV.QI_GEOG_POE = 'N' "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -159,7 +159,7 @@ public class DataRepository {
             + "AND BV.LATEST= 1 "
             + "AND BR.LATEST= 1 "
             + "AND BV.QI_GEOG_UR = 'N' "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -197,7 +197,7 @@ public class DataRepository {
             + "AND VE.SAY_SA = 'BIRTHS' "
             + "AND VE.VCG_CIM_TYPE_ITEM_ID = 656) "
             + "OR  OC.PSU_STATUS_ID != 1) "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -222,7 +222,7 @@ public class DataRepository {
             + "AND BV.LATEST= 1 "
             + "AND BR.LATEST= 1 "
             + "AND BV.QI_CAUSE = 'N' "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -247,7 +247,7 @@ public class DataRepository {
             + "AND DV.REG_EXCL_OUTPUT is NULL "
             + "AND DV.LATEST= 1 "
             + "AND DR.LATEST= 1 "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -272,7 +272,7 @@ public class DataRepository {
             + "AND DV.LATEST= 1 "
             + "AND DR.LATEST= 1 "
             + "AND DV.QI_FULLY_CODED = 'Y' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -299,7 +299,7 @@ public class DataRepository {
             + "AND (DV.QI_GEOG_POB = 'N' "
             + "OR DV.QI_GEOG_POE = 'N' "
             + "OR DV.QI_GEOG_UR = 'N') "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -324,7 +324,7 @@ public class DataRepository {
             + "AND DV.LATEST= 1 "
             + "AND DR.LATEST= 1 "
             + "AND DV.QI_GEOG_POB = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -349,7 +349,7 @@ public class DataRepository {
             + "AND DV.LATEST= 1 "
             + "AND DR.LATEST= 1 "
             + "AND DV.QI_GEOG_POE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -374,7 +374,7 @@ public class DataRepository {
             + "AND DV.LATEST= 1 "
             + "AND DR.LATEST= 1 "
             + "AND DV.QI_GEOG_UR = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -400,7 +400,7 @@ public class DataRepository {
             + "AND DV.LATEST= 1 "
             + "AND DR.LATEST= 1 "
             + "AND DV.QI_OCC = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -425,7 +425,7 @@ public class DataRepository {
             + "AND DV.LATEST= 1 "
             + "AND DR.LATEST= 1 "
             + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -450,7 +450,7 @@ public class DataRepository {
             + "AND DV.LATEST= 1 "
             + "AND DR.LATEST= 1 "
             + "AND DV.COR_INQ_CERTFIFCATE_TYPE = 0 "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -477,7 +477,7 @@ public class DataRepository {
             + "AND DV.COR_INQ_CERTFIFCATE_TYPE = 0 "
             + "AND DV.COD_PV = 0 "
             + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -504,7 +504,7 @@ public class DataRepository {
             + "AND DV.COR_INQ_CERTIFICATE_TYPE = 0 "
             + "AND DV.COD_PV = 1 "
             + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -535,7 +535,7 @@ public class DataRepository {
             + "AND VE.SAY_SA = 'DEATHS' "
             + "AND (VE.VCG_CIM_TYPE_ITEM_ID = 898 OR VE.VCG_CIM_TYPE_ITEM_ID = 2113)"
             //TODO: add OVERRIDE_USER is blank
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -566,7 +566,7 @@ public class DataRepository {
             + "AND VE.SAY_SA = 'DEATHS' "
             + "AND (VE.VCG_CIM_TYPE_ITEM_ID = 898 OR VE.VCG_CIM_TYPE_ITEM_ID = 2113)"
             //TODO: add OVERRIDE_USER is blank
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -591,7 +591,7 @@ public class DataRepository {
             + "AND DV.LATEST= 1 "
             + "AND DR.LATEST= 1 "
             + "AND DV.COR_INQ_CERTIFICATE_TYPE = 2 "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -618,7 +618,7 @@ public class DataRepository {
             + "AND DV.COR_INQ_CERTIFICATE_TYPE = 2 "
             + "AND DV.COD_PV = 0 "
             + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -645,7 +645,7 @@ public class DataRepository {
             + "AND DV.COR_INQ_CERTIFICATE_TYPE = 2 "
             + "AND DV.COD_PV = 1 "
             + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -676,7 +676,7 @@ public class DataRepository {
             + "AND VE.SAY_SA = 'DEATHS' "
             + "AND (VE.VCG_CIM_TYPE_ITEM_ID = 898 OR VE.VCG_CIM_TYPE_ITEM_ID = 2113)"
             //TODO: add OVERRIDE_USER is blank
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -707,7 +707,7 @@ public class DataRepository {
             + "AND VE.SAY_SA = 'DEATHS' "
             + "AND (VE.VCG_CIM_TYPE_ITEM_ID = 898 OR VE.VCG_CIM_TYPE_ITEM_ID = 2113)"
             //TODO: add OVERRIDE_USER is blank
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -734,7 +734,7 @@ public class DataRepository {
             + "AND DR.LATEST= 1 "
             + "AND DV.COR_INQ_CERTIFICATE_TYPE = 1 "
             //TODO: add F_120B_COMPLETE = N
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
@@ -760,7 +760,7 @@ public class DataRepository {
             + "AND DR.LATEST= 1 "
             + "AND DV.COR_INQ_CERTIFICATE_TYPE = 1 "
             //TODO: add F_121_COMPLETE = N
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
