@@ -182,7 +182,7 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV, PL_OCCUPATION_CODING OC,  VALIDATION_ERRORS VE"
+        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV, PL_OCCUPATIONAL_CODING OC,  VALIDATION_ERRORS VE "
             + "WHERE BR.REG_TYPE= 1 "
             + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
             + "AND BR.REG_TYPE= 1 "
@@ -194,7 +194,7 @@ public class DataRepository {
             + "AND BR.BTC_BIRTH_EVENT_ID = OC.TET_EVENT_ID "
             + "AND ((OC.PSU_STATUS_ID = 1 "
             + "AND BR.BTC_BIRTH_EVENT_ID = VE.TET_EVENT_ID "
-            + "AND VE.SAY_SA = 'BIRTHS' "
+            + "AND VE.SAY_SA_NAME = 'BIRTHS' "
             + "AND VE.VCG_CIM_TYPE_ITEM_ID = 656) "
             + "OR  OC.PSU_STATUS_ID != 1) "
             + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
