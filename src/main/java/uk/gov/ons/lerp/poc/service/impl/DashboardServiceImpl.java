@@ -126,6 +126,17 @@ public class DashboardServiceImpl implements DashboardService {
     deleteFile(fileLocation.getFileLocationBirth() + period + ".json");
 
     RecordSummary dd = new RecordSummary();
+    System.out.println("*****************************************************************************************************************************");
+    System.out.println("*****************************************************************************************************************************");
+    System.out.println("*****************************************************************************************************************************");
+    System.out.println("*****************************************************************************************************************************");
+    System.out.println("Testing to see whether it's the dataRepository instance or the dates instance that is null:");
+    System.out.println("The value of dataRepository is: " + dataRepository.toString());
+    System.out.println("The value of dates is: " + dates.toString());
+    System.out.println("*****************************************************************************************************************************");
+    System.out.println("*****************************************************************************************************************************");
+    System.out.println("*****************************************************************************************************************************");
+    System.out.println("*****************************************************************************************************************************");
     dd.setRecordsReceived(dataRepository.findBirthsRecordsReceived(dates.get(0), dates.get(1)));
     dd.setFullyCoded(dataRepository.findBirthsFullyCoded(dates.get(0), dates.get(1)));
     dd.setOutstandingGeographyFull(dataRepository.findBirthsOutstandingGeographyFull(dates.get(0), dates.get(1)));
