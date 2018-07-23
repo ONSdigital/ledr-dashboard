@@ -181,7 +181,7 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV, PL_OCCUPATION_CODING OC,  VAILDATION_ERRORS VE"
+        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV, PL_OCCUPATION_CODING OC,  VALIDATION_ERRORS VE"
             + "WHERE BR.REG_TYPE= 1 "
             + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
             + "AND BR.REG_TYPE= 1 "
@@ -519,7 +519,7 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VAILDATION_ERRORS VE "
+        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
             + "WHERE DR.REG_TYPE= 1 "
             + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
             + "AND DR.REG_TYPE= 1 "
@@ -550,7 +550,7 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VAILDATION_ERRORS VE "
+        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
             + "WHERE DR.REG_TYPE= 1 "
             + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
             + "AND DR.REG_TYPE= 1 "
@@ -581,7 +581,7 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VAILDATION_ERRORS VE "
+        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
             + "WHERE DR.REG_TYPE= 1 "
             + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
             + "AND DR.REG_TYPE= 1 "
