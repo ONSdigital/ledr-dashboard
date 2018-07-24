@@ -2,8 +2,14 @@ import React, {Component} from 'react';
 import {setModalDataProperty, setModalOpen, setModalTimePeriodType} from "../../../redux/actions/index";
 import {connect} from "react-redux";
 import {Label, List, Segment} from "semantic-ui-react";
-import {DATA_PROPERTY} from "../../../utils/Constants";
+import {DATA_PROPERTY, TOPIC_ENUM} from "../../../utils/Constants";
 import {nullChecker, round} from "../../../utils/Utils";
+
+const mapStateToProps = state => {
+  return {
+    topic: state.topic,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -24,7 +30,7 @@ class DataColumnListRedux extends Component {
 
   render() {
 
-    let {statData, timePeriodType} = this.props;
+    let {statData, timePeriodType, topic} = this.props;
 
     let {
       recordsReceived, fullyCoded, outstandingGeographyFull, outstandingOccupation, outstandingCause
@@ -88,9 +94,11 @@ class DataColumnListRedux extends Component {
             </List.Content>
           </List.Item>
           <List.Item onClick={() => {
-            this.props.setModalTimePeriodType(timePeriodType);
-            this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_CAUSE);
-            this.props.setModalOpen(true);
+            if (topic === TOPIC_ENUM.DEATH) {
+              this.props.setModalTimePeriodType(timePeriodType);
+              this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_CAUSE);
+              this.props.setModalOpen(true);
+            }
           }}>
             <List.Content>
               <List.Header>Outstanding cause: </List.Header>
@@ -107,6 +115,6 @@ class DataColumnListRedux extends Component {
   }
 }
 
-const DataColumnList = connect(null, mapDispatchToProps)(DataColumnListRedux);
+const DataColumnList = connect(mapStateToProps, mapDispatchToProps)(DataColumnListRedux);
 
 export default DataColumnList;
