@@ -28,7 +28,7 @@ class DataModalDataAreaRedux extends Component {
 
     let timePeriodMapped = timePeriodMapper(timePeriod, modalTimePeriodType);
 
-    let url = `${API_ENDPOINT.DASHBOARD_MOCK}/${topic}/${timePeriodMapped}`;
+    let url = `${API_ENDPOINT.DASHBOARD}/${topic}/${timePeriodMapped}`;
     if (modalDataProperty === DATA_PROPERTY.OUTSTANDING_CAUSE) {
       url = url + '/causecoding';
     }
