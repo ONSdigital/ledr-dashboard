@@ -148,7 +148,7 @@ public class DashboardServiceImpl implements DashboardService {
 
     List<Date> dates = findPeriodRange(period);
 
-    deleteFile(appConfig.getFileLocation().getBirth() + period + ".json");
+    deleteFile(appConfig.getFileLocation().getDeath() + period + ".json");
 
     RecordSummary dd = new RecordSummary();
     dd.setRecordsReceived(dataRepository.findDeathsRecordsReceived(dates.get(0), dates.get(1)));
@@ -161,7 +161,7 @@ public class DashboardServiceImpl implements DashboardService {
     dd.setOutstandingCause(dataRepository.findDeathsOutstandingCause(dates.get(0), dates.get(1)));
 
     try {
-      mapper.writeValue(new File(appConfig.getFileLocation().getBirth() + period + ".json"), dd);
+      mapper.writeValue(new File(appConfig.getFileLocation().getDeath() + period + ".json"), dd);
     } catch (IOException e) {
       throw new CannotFindDataException("error mappering data", e);
     }
