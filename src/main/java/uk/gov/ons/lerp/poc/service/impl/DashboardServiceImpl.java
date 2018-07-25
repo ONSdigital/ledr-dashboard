@@ -1,5 +1,18 @@
 package uk.gov.ons.lerp.poc.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+import uk.gov.ons.lerp.poc.domain.RecordSummary;
+import uk.gov.ons.lerp.poc.domain.TimePeriod;
+import uk.gov.ons.lerp.poc.exception.CannotFindDataException;
+import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
+import uk.gov.ons.lerp.poc.repository.DataRepository;
+import uk.gov.ons.lerp.poc.service.DashboardService;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -10,21 +23,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import lombok.extern.slf4j.Slf4j;
-import uk.gov.ons.lerp.poc.domain.FileLocation;
-import uk.gov.ons.lerp.poc.domain.RecordSummary;
-import uk.gov.ons.lerp.poc.domain.TimePeriod;
-import uk.gov.ons.lerp.poc.exception.CannotFindDataException;
-import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
-import uk.gov.ons.lerp.poc.repository.DataRepository;
-import uk.gov.ons.lerp.poc.service.DashboardService;
-
 import static java.time.temporal.TemporalAdjusters.previous;
 
 @Slf4j
@@ -34,16 +32,18 @@ public class DashboardServiceImpl implements DashboardService {
   @Autowired
   private DataRepository dataRepository;
 
+  @Value("${file.directory.birth}")
+  private String fileDirectoryBirth;
 
-  @Autowired
-  private FileLocation fileLocation;
+  @Value("${file.directory.birth}")
+  private String fileDirectoryDeath;
 
   private ObjectMapper mapper = new ObjectMapper();
 
   public RecordSummary retrieveBirthDashboardData(final String period) throws CannotRetrieveDashboardData {
 
     try {
-      return mapper.readValue(new File(fileLocation.getFileLocationBirth() + period + ".json"), RecordSummary.class);
+      return mapper.readValue(new File(fileDirectoryBirth + period + ".json"), RecordSummary.class);
     } catch (IOException fileReaderError) {
       throw new CannotRetrieveDashboardData("cannot find file", fileReaderError);
     }
@@ -53,7 +53,7 @@ public class DashboardServiceImpl implements DashboardService {
   public RecordSummary retrieveDeathDashboardData(final String period) throws CannotRetrieveDashboardData {
 
     try {
-      return mapper.readValue(new File(fileLocation.getFileLocationDeath() + period + ".json"), RecordSummary.class);
+      return mapper.readValue(new File(fileDirectoryDeath + period + ".json"), RecordSummary.class);
     } catch (IOException fileReaderError) {
       throw new CannotRetrieveDashboardData("cannot find file", fileReaderError);
     }
@@ -126,7 +126,7 @@ public class DashboardServiceImpl implements DashboardService {
 
     List<Date> dates = findPeriodRange(period);
 
-    deleteFile(fileLocation.getFileLocationBirth() + period + ".json");
+    deleteFile(fileDirectoryBirth + period + ".json");
 
     RecordSummary dd = new RecordSummary();
     System.out.println("*****************************************************************************************************************************");
@@ -142,7 +142,7 @@ public class DashboardServiceImpl implements DashboardService {
     dd.setOutstandingOccupation(dataRepository.findBirthsOutstandingOccupation(dates.get(0), dates.get(1)));
     dd.setOutstandingCause(dataRepository.findBirthsOutstandingCause(dates.get(0), dates.get(1)));
     try {
-      mapper.writeValue(new File(fileLocation.getFileLocationBirth() + period + ".json"), dd);
+      mapper.writeValue(new File(fileDirectoryBirth + period + ".json"), dd);
     } catch (IOException e) {
       throw new CannotFindDataException("error mappering data", e);
     }
@@ -152,7 +152,7 @@ public class DashboardServiceImpl implements DashboardService {
 
     List<Date> dates = findPeriodRange(period);
 
-    deleteFile(fileLocation.getFileLocationDeath() + period + ".json");
+    deleteFile(fileDirectoryDeath + period + ".json");
 
     RecordSummary dd = new RecordSummary();
     dd.setRecordsReceived(dataRepository.findDeathsRecordsReceived(dates.get(0), dates.get(1)));
@@ -165,7 +165,7 @@ public class DashboardServiceImpl implements DashboardService {
     dd.setOutstandingCause(dataRepository.findDeathsOutstandingCause(dates.get(0), dates.get(1)));
 
     try {
-      mapper.writeValue(new File(fileLocation.getFileLocationDeath() + period + ".json"), dd);
+      mapper.writeValue(new File(fileDirectoryDeath + period + ".json"), dd);
     } catch (IOException e) {
       throw new CannotFindDataException("error mappering data", e);
     }
@@ -214,21 +214,21 @@ public class DashboardServiceImpl implements DashboardService {
   private List<Date> findWeekRange(TimePeriod week) {
 
     List<Date> dates = new ArrayList<Date>();
-	LocalDate localDate = LocalDate.now();
-	
-	LocalDate satOfWeek = localDate.with(previous(DayOfWeek.SATURDAY));
-	LocalDate friOfWeek = localDate.with(DayOfWeek.FRIDAY);	
+    LocalDate localDate = LocalDate.now();
+
+    LocalDate satOfWeek = localDate.with(previous(DayOfWeek.SATURDAY));
+    LocalDate friOfWeek = localDate.with(DayOfWeek.FRIDAY);
 
     switch (week) {
       case WEEK_CURRENT:
         break;
       case WEEK_LAST:
-    	  satOfWeek = satOfWeek.minusDays(7);
-    	  friOfWeek = friOfWeek.minusDays(7);
+        satOfWeek = satOfWeek.minusDays(7);
+        friOfWeek = friOfWeek.minusDays(7);
         break;
       case WEEK_BEFORE:
-    	  satOfWeek = satOfWeek.minusDays(14);
-    	  friOfWeek = friOfWeek.minusDays(14);
+        satOfWeek = satOfWeek.minusDays(14);
+        friOfWeek = friOfWeek.minusDays(14);
         break;
       default:
         break;
@@ -240,26 +240,26 @@ public class DashboardServiceImpl implements DashboardService {
   }
 
   private List<Date> findMonthRange(TimePeriod month) {
-	
-	List<Date> dates = new ArrayList<Date>();
-	LocalDate localDate = LocalDate.now();
-	
-	LocalDate firstDayOfMonth = localDate.with(TemporalAdjusters.firstDayOfMonth());
-	LocalDate lastDayOfMonth = localDate.with(TemporalAdjusters.lastDayOfMonth());
+
+    List<Date> dates = new ArrayList<Date>();
+    LocalDate localDate = LocalDate.now();
+
+    LocalDate firstDayOfMonth = localDate.with(TemporalAdjusters.firstDayOfMonth());
+    LocalDate lastDayOfMonth = localDate.with(TemporalAdjusters.lastDayOfMonth());
 
     switch (month) {
-    case MONTH_CURRENT:
-      break;
-    case MONTH_LAST:
-    	firstDayOfMonth = firstDayOfMonth.minusMonths(1);
-    	lastDayOfMonth = lastDayOfMonth.minusMonths(1);
-      break;
-    case MONTH_BEFORE:
-    	firstDayOfMonth = firstDayOfMonth.minusMonths(2);
-    	lastDayOfMonth = lastDayOfMonth.minusMonths(2);
-      break;
-    default:
-      break;
+      case MONTH_CURRENT:
+        break;
+      case MONTH_LAST:
+        firstDayOfMonth = firstDayOfMonth.minusMonths(1);
+        lastDayOfMonth = lastDayOfMonth.minusMonths(1);
+        break;
+      case MONTH_BEFORE:
+        firstDayOfMonth = firstDayOfMonth.minusMonths(2);
+        lastDayOfMonth = lastDayOfMonth.minusMonths(2);
+        break;
+      default:
+        break;
     }
 
     dates.add(java.sql.Date.valueOf(firstDayOfMonth));
@@ -270,57 +270,57 @@ public class DashboardServiceImpl implements DashboardService {
 
   private List<Date> findQuarterRange(TimePeriod quarter) {
 
-		List<Date> dates = new ArrayList<Date>();
-		LocalDate localDate = LocalDate.now();
-		
-		LocalDate firstDayOfQuarter = localDate.with(localDate.getMonth().firstMonthOfQuarter())
-				.with(TemporalAdjusters.firstDayOfMonth());
-		LocalDate lastDayOfQuarter = firstDayOfQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+    List<Date> dates = new ArrayList<Date>();
+    LocalDate localDate = LocalDate.now();
 
-	    switch (quarter) {
-	    case QUARTER_CURRENT:
-	      break;
-	    case QUARTER_LAST:
-	    	firstDayOfQuarter = firstDayOfQuarter.minusMonths(3);
-	    	lastDayOfQuarter = lastDayOfQuarter.minusMonths(3);
-	      break;
-	    case QUARTER_BEFORE:
-	    	firstDayOfQuarter = firstDayOfQuarter.minusMonths(6);
-	    	lastDayOfQuarter = lastDayOfQuarter.minusMonths(6);
-	      break;
-	    default:
-	      break;
-	    }
+    LocalDate firstDayOfQuarter = localDate.with(localDate.getMonth().firstMonthOfQuarter())
+      .with(TemporalAdjusters.firstDayOfMonth());
+    LocalDate lastDayOfQuarter = firstDayOfQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
-	    dates.add(java.sql.Date.valueOf(firstDayOfQuarter));
-	    dates.add(java.sql.Date.valueOf(lastDayOfQuarter));
-	    return dates;
+    switch (quarter) {
+      case QUARTER_CURRENT:
+        break;
+      case QUARTER_LAST:
+        firstDayOfQuarter = firstDayOfQuarter.minusMonths(3);
+        lastDayOfQuarter = lastDayOfQuarter.minusMonths(3);
+        break;
+      case QUARTER_BEFORE:
+        firstDayOfQuarter = firstDayOfQuarter.minusMonths(6);
+        lastDayOfQuarter = lastDayOfQuarter.minusMonths(6);
+        break;
+      default:
+        break;
+    }
+
+    dates.add(java.sql.Date.valueOf(firstDayOfQuarter));
+    dates.add(java.sql.Date.valueOf(lastDayOfQuarter));
+    return dates;
   }
 
   private List<Date> findYearRange(TimePeriod year) {
-		List<Date> dates = new ArrayList<Date>();
-		LocalDate localDate = LocalDate.now();
-		
-		LocalDate firstDayOfYear = localDate.with(TemporalAdjusters.firstDayOfYear());
-		LocalDate lastDayOfYear = localDate.with(TemporalAdjusters.lastDayOfYear());
+    List<Date> dates = new ArrayList<Date>();
+    LocalDate localDate = LocalDate.now();
 
-	    switch (year) {
-	    case YEAR_CURRENT:
-	      break;
-	    case YEAR_LAST:
-	    	firstDayOfYear = firstDayOfYear.minusYears(1);
-	    	lastDayOfYear = lastDayOfYear.minusYears(1);
-	      break;
-	    case YEAR_BEFORE:
-	    	firstDayOfYear = firstDayOfYear.minusYears(2);
-	    	lastDayOfYear = lastDayOfYear.minusYears(2);
-	      break;
-	    default:
-	      break;
-	    }
+    LocalDate firstDayOfYear = localDate.with(TemporalAdjusters.firstDayOfYear());
+    LocalDate lastDayOfYear = localDate.with(TemporalAdjusters.lastDayOfYear());
 
-	    dates.add(java.sql.Date.valueOf(firstDayOfYear));
-	    dates.add(java.sql.Date.valueOf(lastDayOfYear));
-	    return dates;
+    switch (year) {
+      case YEAR_CURRENT:
+        break;
+      case YEAR_LAST:
+        firstDayOfYear = firstDayOfYear.minusYears(1);
+        lastDayOfYear = lastDayOfYear.minusYears(1);
+        break;
+      case YEAR_BEFORE:
+        firstDayOfYear = firstDayOfYear.minusYears(2);
+        lastDayOfYear = lastDayOfYear.minusYears(2);
+        break;
+      default:
+        break;
+    }
+
+    dates.add(java.sql.Date.valueOf(firstDayOfYear));
+    dates.add(java.sql.Date.valueOf(lastDayOfYear));
+    return dates;
   }
 }
