@@ -25,6 +25,8 @@ import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
 import uk.gov.ons.lerp.poc.repository.DataRepository;
 import uk.gov.ons.lerp.poc.service.DashboardService;
 
+import static java.time.temporal.TemporalAdjusters.previous;
+
 @Slf4j
 @Service
 public class DashboardServiceImpl implements DashboardService {
@@ -128,15 +130,8 @@ public class DashboardServiceImpl implements DashboardService {
 
     RecordSummary dd = new RecordSummary();
     System.out.println("*****************************************************************************************************************************");
-    System.out.println("*****************************************************************************************************************************");
-    System.out.println("*****************************************************************************************************************************");
-    System.out.println("*****************************************************************************************************************************");
-    System.out.println("Testing to see whether it's the dataRepository instance or the dates instance that is null:");
-    System.out.println("The value of dataRepository is: " + dataRepository.toString());
+    System.out.println(period);
     System.out.println("The value of dates is: " + dates.toString());
-    System.out.println("*****************************************************************************************************************************");
-    System.out.println("*****************************************************************************************************************************");
-    System.out.println("*****************************************************************************************************************************");
     System.out.println("*****************************************************************************************************************************");
     dd.setRecordsReceived(dataRepository.findBirthsRecordsReceived(dates.get(0), dates.get(1)));
     dd.setFullyCoded(dataRepository.findBirthsFullyCoded(dates.get(0), dates.get(1)));
@@ -221,7 +216,7 @@ public class DashboardServiceImpl implements DashboardService {
     List<Date> dates = new ArrayList<Date>();
 	LocalDate localDate = LocalDate.now();
 	
-	LocalDate satOfWeek = localDate.with(DayOfWeek.SATURDAY);
+	LocalDate satOfWeek = localDate.with(previous(DayOfWeek.SATURDAY));
 	LocalDate friOfWeek = localDate.with(DayOfWeek.FRIDAY);	
 
     switch (week) {
