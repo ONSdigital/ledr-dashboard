@@ -52,7 +52,7 @@ public class DashboardServiceImpl implements DashboardService {
   public RecordSummary retrieveDeathDashboardData(final String period) throws CannotRetrieveDashboardData {
 
     try {
-      return mapper.readValue(new File(appConfig.getFileLocation().getBirth() + period + ".json"), RecordSummary.class);
+      return mapper.readValue(new File(appConfig.getFileLocation().getDeath() + period + ".json"), RecordSummary.class);
     } catch (IOException fileReaderError) {
       throw new CannotRetrieveDashboardData("cannot find file", fileReaderError);
     }
