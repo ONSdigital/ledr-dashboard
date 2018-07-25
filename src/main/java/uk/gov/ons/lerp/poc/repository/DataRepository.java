@@ -31,7 +31,7 @@ public class DataRepository {
             + "AND BV.REG_EXCL_OUTPUT is NULL "
             + "AND BV.LATEST= 1 "
             + "AND BR.LATEST= 1 " 
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')" // + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD/MM/YY') AND TO_DATE(?, 'DD/MM/YY')"
+            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
           , new Object[]{satSql, friSql}, Integer.class);
     } catch (RuntimeException ex) {
       throw new CannotFindDataException("Error retrieving data", ex);

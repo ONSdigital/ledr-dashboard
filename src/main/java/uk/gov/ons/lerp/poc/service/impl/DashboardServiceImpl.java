@@ -2,9 +2,10 @@ package uk.gov.ons.lerp.poc.service.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -218,54 +219,113 @@ public class DashboardServiceImpl implements DashboardService {
   private List<Date> findWeekRange(TimePeriod week) {
 
     List<Date> dates = new ArrayList<Date>();
+	LocalDate localDate = LocalDate.now();
+	
+	LocalDate satOfWeek = localDate.with(DayOfWeek.SATURDAY);
+	LocalDate friOfWeek = localDate.with(DayOfWeek.FRIDAY);	
 
-    int dayDiff = 0;
     switch (week) {
       case WEEK_CURRENT:
-        dayDiff = 0;
         break;
       case WEEK_LAST:
-        dayDiff = 7;
+    	  satOfWeek = satOfWeek.minusDays(7);
+    	  friOfWeek = friOfWeek.minusDays(7);
         break;
       case WEEK_BEFORE:
-        dayDiff = 14;
+    	  satOfWeek = satOfWeek.minusDays(14);
+    	  friOfWeek = friOfWeek.minusDays(14);
         break;
       default:
         break;
     }
 
-    Calendar dateCurrentSat = Calendar.getInstance();
-    dateCurrentSat.add(Calendar.DAY_OF_WEEK, -(dateCurrentSat.get(Calendar.DAY_OF_WEEK) + dayDiff));
-
-    Calendar dateCurrentFri = Calendar.getInstance();
-    dateCurrentFri.add(Calendar.DAY_OF_WEEK, -(dateCurrentFri.get(Calendar.DAY_OF_WEEK) - 6 + dayDiff));
-
-    SimpleDateFormat dateFormat = new SimpleDateFormat("DD-MM-YY");
-    Date dateSat = dateCurrentSat.getTime();
-    dateFormat.format(dateSat);
-
-    Date dateFri = dateCurrentFri.getTime();
-    dateFormat.format(dateFri);
-
-    dates.add(dateSat);
-    dates.add(dateFri);
+    dates.add(java.sql.Date.valueOf(satOfWeek));
+    dates.add(java.sql.Date.valueOf(friOfWeek));
     return dates;
   }
 
-
   private List<Date> findMonthRange(TimePeriod month) {
-    Calendar calendar = Calendar.getInstance();
-    System.out.println("Month: " + calendar.get(Calendar.MONTH));
-    return null;
+	
+	List<Date> dates = new ArrayList<Date>();
+	LocalDate localDate = LocalDate.now();
+	
+	LocalDate firstDayOfMonth = localDate.with(TemporalAdjusters.firstDayOfMonth());
+	LocalDate lastDayOfMonth = localDate.with(TemporalAdjusters.lastDayOfMonth());
+
+    switch (month) {
+    case MONTH_CURRENT:
+      break;
+    case MONTH_LAST:
+    	firstDayOfMonth = firstDayOfMonth.minusMonths(1);
+    	lastDayOfMonth = lastDayOfMonth.minusMonths(1);
+      break;
+    case MONTH_BEFORE:
+    	firstDayOfMonth = firstDayOfMonth.minusMonths(2);
+    	lastDayOfMonth = lastDayOfMonth.minusMonths(2);
+      break;
+    default:
+      break;
+    }
+
+    dates.add(java.sql.Date.valueOf(firstDayOfMonth));
+    dates.add(java.sql.Date.valueOf(lastDayOfMonth));
+    return dates;
+
   }
 
   private List<Date> findQuarterRange(TimePeriod quarter) {
-    // TODO Auto-generated method stub
-    return null;
+
+		List<Date> dates = new ArrayList<Date>();
+		LocalDate localDate = LocalDate.now();
+		
+		LocalDate firstDayOfQuarter = localDate.with(localDate.getMonth().firstMonthOfQuarter())
+				.with(TemporalAdjusters.firstDayOfMonth());
+		LocalDate lastDayOfQuarter = firstDayOfQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+
+	    switch (quarter) {
+	    case QUARTER_CURRENT:
+	      break;
+	    case QUARTER_LAST:
+	    	firstDayOfQuarter = firstDayOfQuarter.minusMonths(3);
+	    	lastDayOfQuarter = lastDayOfQuarter.minusMonths(3);
+	      break;
+	    case QUARTER_BEFORE:
+	    	firstDayOfQuarter = firstDayOfQuarter.minusMonths(6);
+	    	lastDayOfQuarter = lastDayOfQuarter.minusMonths(6);
+	      break;
+	    default:
+	      break;
+	    }
+
+	    dates.add(java.sql.Date.valueOf(firstDayOfQuarter));
+	    dates.add(java.sql.Date.valueOf(lastDayOfQuarter));
+	    return dates;
   }
 
   private List<Date> findYearRange(TimePeriod year) {
-    // TODO Auto-generated method stub
-    return null;
+		List<Date> dates = new ArrayList<Date>();
+		LocalDate localDate = LocalDate.now();
+		
+		LocalDate firstDayOfYear = localDate.with(TemporalAdjusters.firstDayOfYear());
+		LocalDate lastDayOfYear = localDate.with(TemporalAdjusters.lastDayOfYear());
+
+	    switch (year) {
+	    case YEAR_CURRENT:
+	      break;
+	    case YEAR_LAST:
+	    	firstDayOfYear = firstDayOfYear.minusYears(1);
+	    	lastDayOfYear = lastDayOfYear.minusYears(1);
+	      break;
+	    case YEAR_BEFORE:
+	    	firstDayOfYear = firstDayOfYear.minusYears(2);
+	    	lastDayOfYear = lastDayOfYear.minusYears(2);
+	      break;
+	    default:
+	      break;
+	    }
+
+	    dates.add(java.sql.Date.valueOf(firstDayOfYear));
+	    dates.add(java.sql.Date.valueOf(lastDayOfYear));
+	    return dates;
   }
 }
