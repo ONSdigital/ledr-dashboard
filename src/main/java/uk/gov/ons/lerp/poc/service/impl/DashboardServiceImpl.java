@@ -1,5 +1,7 @@
 package uk.gov.ons.lerp.poc.service.impl;
 
+import static java.time.temporal.TemporalAdjusters.previous;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -17,15 +19,13 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
-import uk.gov.ons.lerp.poc.domain.FileLocation;
+import uk.gov.ons.lerp.poc.config.AppConfig;
 import uk.gov.ons.lerp.poc.domain.RecordSummary;
 import uk.gov.ons.lerp.poc.domain.TimePeriod;
 import uk.gov.ons.lerp.poc.exception.CannotFindDataException;
 import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
 import uk.gov.ons.lerp.poc.repository.DataRepository;
 import uk.gov.ons.lerp.poc.service.DashboardService;
-
-import static java.time.temporal.TemporalAdjusters.previous;
 
 @Slf4j
 @Service
@@ -34,16 +34,15 @@ public class DashboardServiceImpl implements DashboardService {
   @Autowired
   private DataRepository dataRepository;
 
-
   @Autowired
-  private FileLocation fileLocation;
+  private AppConfig appConfig;
 
   private ObjectMapper mapper = new ObjectMapper();
 
   public RecordSummary retrieveBirthDashboardData(final String period) throws CannotRetrieveDashboardData {
 
     try {
-      return mapper.readValue(new File(fileLocation.getFileLocationBirth() + period + ".json"), RecordSummary.class);
+      return mapper.readValue(new File(appConfig.getFileLocation().getBirth() + period + ".json"), RecordSummary.class);
     } catch (IOException fileReaderError) {
       throw new CannotRetrieveDashboardData("cannot find file", fileReaderError);
     }
@@ -53,7 +52,7 @@ public class DashboardServiceImpl implements DashboardService {
   public RecordSummary retrieveDeathDashboardData(final String period) throws CannotRetrieveDashboardData {
 
     try {
-      return mapper.readValue(new File(fileLocation.getFileLocationDeath() + period + ".json"), RecordSummary.class);
+      return mapper.readValue(new File(appConfig.getFileLocation().getBirth() + period + ".json"), RecordSummary.class);
     } catch (IOException fileReaderError) {
       throw new CannotRetrieveDashboardData("cannot find file", fileReaderError);
     }
@@ -126,13 +125,10 @@ public class DashboardServiceImpl implements DashboardService {
 
     List<Date> dates = findPeriodRange(period);
 
-    deleteFile(fileLocation.getFileLocationBirth() + period + ".json");
+    deleteFile(appConfig.getFileLocation().getBirth() + period + ".json");
 
     RecordSummary dd = new RecordSummary();
-    System.out.println("*****************************************************************************************************************************");
-    System.out.println(period);
-    System.out.println("The value of dates is: " + dates.toString());
-    System.out.println("*****************************************************************************************************************************");
+
     dd.setRecordsReceived(dataRepository.findBirthsRecordsReceived(dates.get(0), dates.get(1)));
     dd.setFullyCoded(dataRepository.findBirthsFullyCoded(dates.get(0), dates.get(1)));
     dd.setOutstandingGeographyFull(dataRepository.findBirthsOutstandingGeographyFull(dates.get(0), dates.get(1)));
@@ -142,7 +138,7 @@ public class DashboardServiceImpl implements DashboardService {
     dd.setOutstandingOccupation(dataRepository.findBirthsOutstandingOccupation(dates.get(0), dates.get(1)));
     dd.setOutstandingCause(dataRepository.findBirthsOutstandingCause(dates.get(0), dates.get(1)));
     try {
-      mapper.writeValue(new File(fileLocation.getFileLocationBirth() + period + ".json"), dd);
+      mapper.writeValue(new File(appConfig.getFileLocation().getBirth() + period + ".json"), dd);
     } catch (IOException e) {
       throw new CannotFindDataException("error mappering data", e);
     }
@@ -152,7 +148,7 @@ public class DashboardServiceImpl implements DashboardService {
 
     List<Date> dates = findPeriodRange(period);
 
-    deleteFile(fileLocation.getFileLocationDeath() + period + ".json");
+    deleteFile(appConfig.getFileLocation().getBirth() + period + ".json");
 
     RecordSummary dd = new RecordSummary();
     dd.setRecordsReceived(dataRepository.findDeathsRecordsReceived(dates.get(0), dates.get(1)));
@@ -165,7 +161,7 @@ public class DashboardServiceImpl implements DashboardService {
     dd.setOutstandingCause(dataRepository.findDeathsOutstandingCause(dates.get(0), dates.get(1)));
 
     try {
-      mapper.writeValue(new File(fileLocation.getFileLocationDeath() + period + ".json"), dd);
+      mapper.writeValue(new File(appConfig.getFileLocation().getBirth() + period + ".json"), dd);
     } catch (IOException e) {
       throw new CannotFindDataException("error mappering data", e);
     }
@@ -214,10 +210,10 @@ public class DashboardServiceImpl implements DashboardService {
   private List<Date> findWeekRange(TimePeriod week) {
 
     List<Date> dates = new ArrayList<Date>();
-	LocalDate localDate = LocalDate.now();
-	
-	LocalDate satOfWeek = localDate.with(previous(DayOfWeek.SATURDAY));
-	LocalDate friOfWeek = localDate.with(DayOfWeek.FRIDAY);	
+    LocalDate localDate = LocalDate.now();
+
+    LocalDate satOfWeek = localDate.with(previous(DayOfWeek.SATURDAY));
+    LocalDate friOfWeek = localDate.with(DayOfWeek.FRIDAY);
 
     switch (week) {
       case WEEK_CURRENT:
@@ -237,12 +233,12 @@ public class DashboardServiceImpl implements DashboardService {
   }
 
   private List<Date> findMonthRange(TimePeriod month) {
-	
-	List<Date> dates = new ArrayList<Date>();
-	LocalDate localDate = LocalDate.now();
-	
-	LocalDate firstDayOfMonth = localDate.with(TemporalAdjusters.firstDayOfMonth());
-	LocalDate lastDayOfMonth = localDate.with(TemporalAdjusters.lastDayOfMonth());
+
+    List<Date> dates = new ArrayList<Date>();
+    LocalDate localDate = LocalDate.now();
+
+    LocalDate firstDayOfMonth = localDate.with(TemporalAdjusters.firstDayOfMonth());
+    LocalDate lastDayOfMonth = localDate.with(TemporalAdjusters.lastDayOfMonth());
 
     switch (month) {
       case MONTH_CURRENT:

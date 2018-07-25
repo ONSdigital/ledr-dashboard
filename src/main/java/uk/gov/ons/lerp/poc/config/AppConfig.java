@@ -12,6 +12,7 @@ public class AppConfig {
   
   private Ldap ldap;
   private QuerySchedule querySchedule;
+  private FileLocation fileLocation;
   
   @Data
   public static class Ldap {
@@ -30,5 +31,12 @@ public class AppConfig {
     private String quarterlyCron;
     private String yearlyCron;
   }
+
+  @Data
+  public static class FileLocation {
+
+    private String birth;
+    private String death;
+  } 
   
 }

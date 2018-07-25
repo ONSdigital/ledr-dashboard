@@ -1,5 +1,6 @@
 package uk.gov.ons.lerp.poc.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,9 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider;
 
-import lombok.extern.slf4j.Slf4j;
-import uk.gov.ons.lerp.poc.domain.FileLocation;
-
 @Slf4j
 @Configuration
 @EnableWebSecurity
@@ -20,9 +18,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private AppConfig appConfig;
-
-  @Autowired
-  private FileLocation fileLocation;
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
