@@ -223,16 +223,13 @@ public class DashboardServiceImpl implements DashboardService {
       case WEEK_CURRENT:
         break;
       case WEEK_LAST:
-    	  satOfWeek = satOfWeek.minusDays(7);
-    	  friOfWeek = friOfWeek.minusDays(7);
+    	satOfWeek = satOfWeek.minusDays(7);
+    	friOfWeek = friOfWeek.minusDays(7);
         break;
       case WEEK_BEFORE:
-    	  satOfWeek = satOfWeek.minusDays(14);
-    	  friOfWeek = friOfWeek.minusDays(14);
-        break;
-      default:
-        break;
-    }
+    	satOfWeek = satOfWeek.minusDays(14);
+    	friOfWeek = friOfWeek.minusDays(14);
+      }
 
     dates.add(java.sql.Date.valueOf(satOfWeek));
     dates.add(java.sql.Date.valueOf(friOfWeek));
@@ -248,19 +245,16 @@ public class DashboardServiceImpl implements DashboardService {
 	LocalDate lastDayOfMonth = localDate.with(TemporalAdjusters.lastDayOfMonth());
 
     switch (month) {
-    case MONTH_CURRENT:
-      break;
-    case MONTH_LAST:
+      case MONTH_CURRENT:
+        break;
+      case MONTH_LAST:
     	firstDayOfMonth = firstDayOfMonth.minusMonths(1);
     	lastDayOfMonth = lastDayOfMonth.minusMonths(1);
-      break;
-    case MONTH_BEFORE:
+        break;
+      case MONTH_BEFORE:
     	firstDayOfMonth = firstDayOfMonth.minusMonths(2);
     	lastDayOfMonth = lastDayOfMonth.minusMonths(2);
-      break;
-    default:
-      break;
-    }
+     }
 
     dates.add(java.sql.Date.valueOf(firstDayOfMonth));
     dates.add(java.sql.Date.valueOf(lastDayOfMonth));
@@ -278,18 +272,15 @@ public class DashboardServiceImpl implements DashboardService {
 		LocalDate lastDayOfQuarter = firstDayOfQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
 	    switch (quarter) {
-	    case QUARTER_CURRENT:
-	      break;
-	    case QUARTER_LAST:
+	      case QUARTER_CURRENT:
+	        break;
+	      case QUARTER_LAST:
 	    	firstDayOfQuarter = firstDayOfQuarter.minusMonths(3);
 	    	lastDayOfQuarter = lastDayOfQuarter.minusMonths(3);
-	      break;
-	    case QUARTER_BEFORE:
+	        break;
+	      case QUARTER_BEFORE:
 	    	firstDayOfQuarter = firstDayOfQuarter.minusMonths(6);
 	    	lastDayOfQuarter = lastDayOfQuarter.minusMonths(6);
-	      break;
-	    default:
-	      break;
 	    }
 
 	    dates.add(java.sql.Date.valueOf(firstDayOfQuarter));
@@ -305,18 +296,15 @@ public class DashboardServiceImpl implements DashboardService {
 		LocalDate lastDayOfYear = localDate.with(TemporalAdjusters.lastDayOfYear());
 
 	    switch (year) {
-	    case YEAR_CURRENT:
-	      break;
-	    case YEAR_LAST:
+	      case YEAR_CURRENT:
+	        break;
+	      case YEAR_LAST:
 	    	firstDayOfYear = firstDayOfYear.minusYears(1);
 	    	lastDayOfYear = lastDayOfYear.minusYears(1);
-	      break;
-	    case YEAR_BEFORE:
+	        break;
+	      case YEAR_BEFORE:
 	    	firstDayOfYear = firstDayOfYear.minusYears(2);
 	    	lastDayOfYear = lastDayOfYear.minusYears(2);
-	      break;
-	    default:
-	      break;
 	    }
 
 	    dates.add(java.sql.Date.valueOf(firstDayOfYear));
