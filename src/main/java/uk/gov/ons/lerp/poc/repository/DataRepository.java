@@ -16,6 +16,25 @@ public class DataRepository {
 
   private static final SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
+  private static final String BIRTHBASEQUERY = "SELECT COUNT(*) FROM VW_LOAD_L_BIRTH "
+    + "WHERE REG_TYPE = 1 "
+    + "AND REG_CANCELLED_IND = 'N' "
+    + "AND REG_EXCL_OUTPUT IS NULL "
+    + "AND REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')";
+
+  private static final String DEATHBASEQUERY = "SELECT COUNT(*) FROM VW_LOAD_L_DEATH "
+    + "WHERE REG_TYPE = 1 "
+    + "AND REG_CANCELLED_IND = 'N' "
+    + "AND REG_EXCL_OUTPUT IS NULL "
+    + "AND REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')";
+
+  private static final String DEATHVALIDATIONBASEQUERY = "SELECT COUNT(*) FROM VW_LOAD_L_DEATH VW, VALIDATION_ERRORS VE "
+	+ "WHERE VW.DEATH_EVENT_ID = VE.TET_EVENT_ID "
+	+ "AND VW.REG_TYPE = 1 "
+	+ "AND VW.REG_CANCELLED_IND = 'N' "
+    + "AND VW.REG_EXCL_OUTPUT IS NULL "
+    + "AND VW.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')";
+
   public int findBirthsRecordsReceived(Date sat, Date fri) throws CannotFindDataException {
 
     String satSql = df.format(sat);
@@ -23,16 +42,8 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
-            + "WHERE BR.REG_TYPE= 1 "
-            + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
-            + "AND BR.REG_TYPE= 1 "
-            + "AND BR.REG_CANCELLED_IND = 'N' "
-            + "AND BV.REG_EXCL_OUTPUT is NULL "
-            + "AND BV.LATEST= 1 "
-            + "AND BR.LATEST= 1 " 
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(BIRTHBASEQUERY.toString(),
+        		new Object[]{satSql, friSql}, Integer.class);
     } catch (RuntimeException ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -47,17 +58,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
-            + "WHERE BR.REG_TYPE= 1 "
-            + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
-            + "AND BR.REG_TYPE= 1 "
-            + "AND BR.REG_CANCELLED_IND = 'N' "
-            + "AND BV.REG_EXCL_OUTPUT is NULL "
-            + "AND BV.LATEST= 1 "
-            + "AND BR.LATEST= 1 "
-            + "AND BV.QI_FULLY_CODED = 'Y' "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(BIRTHBASEQUERY.toString()
+          + " AND QI_FULLY_CODED = 'Y'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -73,19 +76,11 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
-            + "WHERE BR.REG_TYPE= 1 "
-            + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
-            + "AND BR.REG_TYPE= 1 "
-            + "AND BR.REG_CANCELLED_IND = 'N' "
-            + "AND BV.REG_EXCL_OUTPUT is NULL "
-            + "AND BV.LATEST= 1 "
-            + "AND BR.LATEST= 1 "
-            + "AND (BV.QI_GEOG_POB = 'N' "
-            + "OR BV.QI_GEOG_POE = 'N' "
-            + "OR BV.QI_GEOG_UR = 'N') "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(BIRTHBASEQUERY.toString()
+          + " AND (QI_GEOG_POB = 'N' "
+          + "OR QI_GEOG_POE = 'N' "
+          + "OR QI_GEOG_UR = 'N')",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -100,17 +95,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
-            + "WHERE BR.REG_TYPE= 1 "
-            + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
-            + "AND BR.REG_TYPE= 1 "
-            + "AND BR.REG_CANCELLED_IND = 'N' "
-            + "AND BV.REG_EXCL_OUTPUT is NULL "
-            + "AND BV.LATEST= 1 "
-            + "AND BR.LATEST= 1 "
-            + "AND BV.QI_GEOG_POB = 'N' "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(BIRTHBASEQUERY.toString()
+          + " AND QI_GEOG_POB = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -125,17 +112,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
-            + "WHERE BR.REG_TYPE= 1 "
-            + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
-            + "AND BR.REG_TYPE= 1 "
-            + "AND BR.REG_CANCELLED_IND = 'N' "
-            + "AND BV.REG_EXCL_OUTPUT is NULL "
-            + "AND BV.LATEST= 1 "
-            + "AND BR.LATEST= 1 "
-            + "AND BV.QI_GEOG_POE = 'N' "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(BIRTHBASEQUERY.toString()
+          + " AND QI_GEOG_POE = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -150,17 +129,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
-            + "WHERE BR.REG_TYPE= 1 "
-            + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
-            + "AND BR.REG_TYPE= 1 "
-            + "AND BR.REG_CANCELLED_IND = 'N' "
-            + "AND BV.REG_EXCL_OUTPUT is NULL "
-            + "AND BV.LATEST= 1 "
-            + "AND BR.LATEST= 1 "
-            + "AND BV.QI_GEOG_UR = 'N' "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(BIRTHBASEQUERY.toString()
+          + " AND QI_GEOG_UR = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -169,36 +140,30 @@ public class DataRepository {
 
 
   public int findBirthsOutstandingOccupation(Date sat, Date fri) throws CannotFindDataException {
-    //TODO: This statement below needs looking into all the required fields are in it,
-    //      the count for this statement is for only the number of birth records not the number of errors for occupation
-    //      since there can be two error in occupation for a single record e.g. the mother and farther both have occupation errors
-    //      this count only cares if one or both of them have errors and if so then the count is increased by one.
-    //      Narinder has been a great help in doing helping to solve this, if you ever get stuck go to her for further help.
-
 
     String satSql = df.format(sat);
     String friSql = df.format(fri);
 
     int count = 0;
     try {
+      // Count query cannot use QI_OCC as only a sample of birth registrations are coded.
+      // Looks into PL_OCCUPATIONAL_CODING and for any related validation errors. Didn't seem
+      // to be any relevant classification item or group so used RESOLVE_OCC indicator.
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV, PL_OCCUPATIONAL_CODING OC,  VALIDATION_ERRORS VE "
-            + "WHERE BR.REG_TYPE= 1 "
-            + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
-            + "AND BR.REG_TYPE= 1 "
-            + "AND BR.REG_CANCELLED_IND = 'N' "
-            + "AND BV.REG_EXCL_OUTPUT is NULL "
-            + "AND BV.LATEST= 1 "
-            + "AND BR.LATEST= 1 "
-            + "AND BV.QI_OCC = 'N' "
-            + "AND BR.BTC_BIRTH_EVENT_ID = OC.TET_EVENT_ID "
-            + "AND ((OC.PSU_STATUS_ID = 1 "
-            + "AND BR.BTC_BIRTH_EVENT_ID = VE.TET_EVENT_ID "
-            + "AND VE.SAY_SA_NAME = 'BIRTHS' "
-            + "AND VE.VCG_CIM_TYPE_ITEM_ID = 656) "
-            + "OR  OC.PSU_STATUS_ID != 1) "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM VW_LOAD_L_BIRTH VW "
+          + "WHERE VW.REG_TYPE = 1 "
+          + "AND VW.REG_CANCELLED_IND = 'N' "
+          + "AND VW.REG_EXCL_OUTPUT IS NULL "
+          + "AND VW.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY') " 
+          + "AND EXISTS ( "
+          + "SELECT 1 FROM PL_OCCUPATIONAL_CODING PL WHERE "
+          + "VW.BIRTH_EVENT_ID = PL.TET_EVENT_ID "
+          + "AND EXISTS ( "
+          + "SELECT 1 FROM VALIDATION_ERRORS VE, VALIDATION_CONFIG VC "
+          + "WHERE VE.VCG_ETE_ERROR_ID = VC.ETE_ERROR_ID "
+          + "AND PL.TET_EVENT_ID = VE.TET_EVENT_ID "
+          + "AND VC.RESOLVE_OCC = 'Y'))",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -213,17 +178,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM BIRTH_REG BR, BIRTH_VAR BV "
-            + "WHERE BR.REG_TYPE= 1 "
-            + "AND BR.BTC_BIRTH_EVENT_ID = BV.BTC_BIRTH_EVENT_ID "
-            + "AND BR.REG_TYPE= 1 "
-            + "AND BR.REG_CANCELLED_IND = 'N' "
-            + "AND BV.REG_EXCL_OUTPUT is NULL "
-            + "AND BV.LATEST= 1 "
-            + "AND BR.LATEST= 1 "
-            + "AND BV.QI_CAUSE = 'N' "
-            + "AND BR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(BIRTHBASEQUERY.toString()
+            + " AND QI_CAUSE = 'N'",
+            new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -239,16 +196,8 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString(),
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -263,17 +212,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.QI_FULLY_CODED = 'Y' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND QI_FULLY_CODED = 'Y'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -288,19 +229,11 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND (DV.QI_GEOG_POB = 'N' "
-            + "OR DV.QI_GEOG_POE = 'N' "
-            + "OR DV.QI_GEOG_UR = 'N') "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND (QI_GEOG_POB = 'N' "
+          + "OR QI_GEOG_POE = 'N' "
+          + "OR QI_GEOG_UR = 'N')",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -315,17 +248,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.QI_GEOG_POB = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND QI_GEOG_POB = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -340,17 +265,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.QI_GEOG_POE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND QI_GEOG_POE = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -365,17 +282,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.QI_GEOG_UR = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND QI_GEOG_UR = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -391,17 +300,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.QI_OCC = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND QI_OCC = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -416,17 +317,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND QI_CAUSE = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -441,17 +334,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTFIFCATE_TYPE = 0 "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND COR_INQ_CERTIFICATE_TYPE = 0",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -466,19 +351,11 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTFIFCATE_TYPE = 0 "
-            + "AND DV.COD_PV = 0 "
-            + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND COR_INQ_CERTIFICATE_TYPE = 0 "
+          + "AND COD_PV = 0 "
+          + "AND QI_CAUSE = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -493,19 +370,11 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTIFICATE_TYPE = 0 "
-            + "AND DV.COD_PV = 1 "
-            + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND COR_INQ_CERTIFICATE_TYPE = 0 "
+          + "AND COD_PV = 1 "
+          + "AND QI_CAUSE = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -520,23 +389,12 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTIFICATE_TYPE = 0 "
-            + "AND DV.COD_PV = 0 "
-            + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.DTC_DEATH_EVENT_ID = VE.TET_EVENT_ID "
-            + "AND VE.SAY_SA = 'DEATHS' "
-            + "AND (VE.VCG_CIM_TYPE_ITEM_ID = 898 OR VE.VCG_CIM_TYPE_ITEM_ID = 2113)"
-            //TODO: add OVERRIDE_USER is blank
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHVALIDATIONBASEQUERY.toString()
+          + " AND VW.COR_INQ_CERTIFICATE_TYPE = 0 "
+          + "AND VW.COD_PV = 0 "
+          + "AND VE.VCG_CIM_TYPE_ITEM_ID IN (989, 2133) "
+          + "AND VE.OVERRIDE_USER IS NULL",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -551,23 +409,12 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTIFICATE_TYPE = 0 "
-            + "AND DV.COD_PV = 1 "
-            + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.DTC_DEATH_EVENT_ID = VE.TET_EVENT_ID "
-            + "AND VE.SAY_SA = 'DEATHS' "
-            + "AND (VE.VCG_CIM_TYPE_ITEM_ID = 898 OR VE.VCG_CIM_TYPE_ITEM_ID = 2113)"
-            //TODO: add OVERRIDE_USER is blank
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHVALIDATIONBASEQUERY.toString()
+           + " AND VW.COR_INQ_CERTIFICATE_TYPE = 0 "
+           + "AND VW.COD_PV = 1 "
+           + "AND VE.VCG_CIM_TYPE_ITEM_ID IN (989, 2133) "
+           + "AND VE.OVERRIDE_USER IS NULL",        		
+           new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -582,17 +429,9 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTIFICATE_TYPE = 2 "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND COR_INQ_CERTIFICATE_TYPE = 2",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -607,19 +446,11 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTIFICATE_TYPE = 2 "
-            + "AND DV.COD_PV = 0 "
-            + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND COR_INQ_CERTIFICATE_TYPE = 2 "
+          + "AND COD_PV = 0 "
+          + "AND QI_CAUSE = 'N'",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -634,19 +465,11 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTIFICATE_TYPE = 2 "
-            + "AND DV.COD_PV = 1 "
-            + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND COR_INQ_CERTIFICATE_TYPE = 2 "
+          + "AND COD_PV = 1 "
+          + "AND QI_CAUSE = 'N'",        		
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -661,23 +484,12 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTIFICATE_TYPE = 2 "
-            + "AND DV.COD_PV = 0 "
-            + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.DTC_DEATH_EVENT_ID = VE.TET_EVENT_ID "
-            + "AND VE.SAY_SA = 'DEATHS' "
-            + "AND (VE.VCG_CIM_TYPE_ITEM_ID = 898 OR VE.VCG_CIM_TYPE_ITEM_ID = 2113)"
-            //TODO: add OVERRIDE_USER is blank
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHVALIDATIONBASEQUERY.toString()
+          + " AND VW.COR_INQ_CERTIFICATE_TYPE = 2 "
+          + "AND VW.COD_PV = 0 "
+          + "AND VE.VCG_CIM_TYPE_ITEM_ID IN (989, 2133) "
+          + "AND VE.OVERRIDE_USER IS NULL",
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -692,23 +504,12 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTIFICATE_TYPE = 2 "
-            + "AND DV.COD_PV = 1 "
-            + "AND DV.QI_CAUSE = 'N' "
-            + "AND DR.DTC_DEATH_EVENT_ID = VE.TET_EVENT_ID "
-            + "AND VE.SAY_SA = 'DEATHS' "
-            + "AND (VE.VCG_CIM_TYPE_ITEM_ID = 898 OR VE.VCG_CIM_TYPE_ITEM_ID = 2113)"
-            //TODO: add OVERRIDE_USER is blank
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHVALIDATIONBASEQUERY.toString()
+          + " AND VW.COR_INQ_CERTIFICATE_TYPE = 2 "
+          + "AND VW.COD_PV = 1 "
+          + "AND VE.VCG_CIM_TYPE_ITEM_ID IN (989, 2133) "
+          + "AND VE.OVERRIDE_USER IS NULL",       		
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -724,18 +525,10 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTIFICATE_TYPE = 1 "
-            //TODO: add F_120B_COMPLETE = N
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND COR_INQ_CERTIFICATE_TYPE = 1 "
+          + "AND F_120B_COMPLETE IS NULL",        		
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
@@ -750,18 +543,10 @@ public class DataRepository {
     int count = 0;
     try {
       count =
-        jdbcTemplate.queryForObject("SELECT COUNT(*) FROM DEATH_REG DR, DEATH_VAR DV, VALIDATION_ERRORS VE "
-            + "WHERE DR.REG_TYPE= 1 "
-            + "AND DR.DTC_DEATH_EVENT_ID = DV.DTC_DEATH_EVENT_ID "
-            + "AND DR.REG_TYPE= 1 "
-            + "AND DR.REG_CANCELLED_IND = 'N' "
-            + "AND DV.REG_EXCL_OUTPUT is NULL "
-            + "AND DV.LATEST= 1 "
-            + "AND DR.LATEST= 1 "
-            + "AND DV.COR_INQ_CERTIFICATE_TYPE = 1 "
-            //TODO: add F_121_COMPLETE = N
-            + "AND DR.REG_DATE BETWEEN TO_DATE(?, 'DD-MM-YYYY') AND TO_DATE(?, 'DD-MM-YYYY')"
-          , new Object[]{satSql, friSql}, Integer.class);
+        jdbcTemplate.queryForObject(DEATHBASEQUERY.toString()
+          + " AND COR_INQ_CERTIFICATE_TYPE = 1 "
+          + "AND F_121_COMPLETE IS NULL",         		
+          new Object[]{satSql, friSql}, Integer.class);
     } catch (Exception ex) {
       throw new CannotFindDataException("Error retrieving data", ex);
     }
