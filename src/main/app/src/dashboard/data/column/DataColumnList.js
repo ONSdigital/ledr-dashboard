@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {Label, List, Segment} from "semantic-ui-react";
 import {DATA_PROPERTY, TOPIC_ENUM} from "../../../utils/Constants";
 import {nullChecker, round} from "../../../utils/Utils";
+import DataColumnItemGeneric from "./DataColumnItemGeneric";
 
 const mapStateToProps = state => {
   return {
@@ -49,14 +50,11 @@ class DataColumnListRedux extends Component {
 
     return (
       <Segment attached>
-        <List link selection>
-          <List.Item>
-            <List.Content>
-              <List.Header>Records received:</List.Header>
-              <List.Description>{recordsReceivedDisplay}</List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
+        <List>
+          <DataColumnItemGeneric
+            header='Records received:'
+            description={recordsReceivedDisplay}/>
+          <List.Item className='data-column-item-generic'>
             <List.Content>
               <List.Header>Fully coded:</List.Header>
               <List.Description>{fullyCodedDisplay}
@@ -71,43 +69,34 @@ class DataColumnListRedux extends Component {
               </List.Description>
             </List.Content>
           </List.Item>
-          <List.Item onClick={() => {
-            this.props.setModalTimePeriodType(timePeriodType);
-            this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_GEOGRAPHY);
-            this.props.setModalOpen(true);
-          }}>
-            <List.Content>
-              <List.Header>Outstanding geography:</List.Header>
-              <List.Description>
-                {outstandingGeographyFullDisplay}
-                <Label className='list-label' color='grey' circular>{outstandingGeographyPercent}%</Label>
-              </List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item>
-            <List.Content>
-              <List.Header>Outstanding occupation: </List.Header>
-              <List.Description>
-                {outstandingOccupationDisplay}
-                <Label className='list-label' color='grey' circular>{outstandingOccupationPercent}%</Label>
-              </List.Description>
-            </List.Content>
-          </List.Item>
-          <List.Item onClick={() => {
-            if (topic === TOPIC_ENUM.DEATH) {
+          <DataColumnItemGeneric
+            header='Outstanding geography:'
+            description={outstandingGeographyFullDisplay}
+            label={outstandingGeographyPercent}
+            onclick={() => {
               this.props.setModalTimePeriodType(timePeriodType);
-              this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_CAUSE);
+              this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_GEOGRAPHY);
               this.props.setModalOpen(true);
             }
-          }}>
-            <List.Content>
-              <List.Header>Outstanding cause: </List.Header>
-              <List.Description>
-                {outstandingCauseDisplay}
-                <Label className='list-label' color='grey' circular>{outstandingCausePercent}%</Label>
-              </List.Description>
-            </List.Content>
-          </List.Item>
+            }/>
+          <DataColumnItemGeneric header='Outstanding occupation:' description={outstandingOccupationDisplay}
+                                 label={outstandingOccupationPercent}/>
+          {topic === TOPIC_ENUM.DEATH ?
+            <DataColumnItemGeneric
+              header='Outstanding cause:'
+              description={outstandingCauseDisplay}
+              label={outstandingCausePercent}
+              onclick={() => {
+                this.props.setModalTimePeriodType(timePeriodType);
+                this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_CAUSE);
+                this.props.setModalOpen(true);
+              }}/>
+            :
+            <DataColumnItemGeneric
+              header='Outstanding cause:'
+              description={outstandingCauseDisplay}
+              label={outstandingCausePercent}/>
+          }
         </List>
       </Segment>
     );
