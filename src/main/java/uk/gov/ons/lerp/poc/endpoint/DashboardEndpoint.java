@@ -19,26 +19,26 @@ public class DashboardEndpoint {
   private DashboardService service;
 
   @RequestMapping(value = "/ledr-dashboard-poc/topic/births/{period}", method = RequestMethod.GET)
-  public ResponseEntity<RecordSummary> getBirthDashboardData(@PathVariable("period") final String period,
+  public ResponseEntity<RecordSummary> getBirthSummaryData(@PathVariable("period") final String period,
                                                              HttpServletResponse response) throws CannotRetrieveDashboardData {
 
     response.setHeader("Access-Control-Allow-Origin", "*");
-    return ResponseEntity.ok(service.retrieveBirthDashboardData(period));
+    return ResponseEntity.ok(service.retrieveBirthSummaryData(period));
   }
 
   @RequestMapping(value = "/ledr-dashboard-poc/topic/deaths/{period}", method = RequestMethod.GET)
-  public ResponseEntity<RecordSummary> getDeathDashboardData(@PathVariable("period") final String period,
+  public ResponseEntity<RecordSummary> getDeathSummaryData(@PathVariable("period") final String period,
                                                              HttpServletResponse response) throws CannotRetrieveDashboardData {
 
     response.setHeader("Access-Control-Allow-Origin", "*");
-    return ResponseEntity.ok(service.retrieveDeathDashboardData(period));
+    return ResponseEntity.ok(service.retrieveDeathSummaryData(period));
   }
 
   @RequestMapping(value = "/ledr-dashboard-poc/topic/deaths/{period}/causecoding", method = RequestMethod.GET)
-  public ResponseEntity<RecordSummary> getDeathOccupationData(@PathVariable("period") final String period,
+  public ResponseEntity<RecordSummary> getDeathCauseDetailData(@PathVariable("period") final String period,
                                                               HttpServletResponse response) throws CannotRetrieveDashboardData {
 
     response.setHeader("Access-Control-Allow-Origin", "*");
-    return ResponseEntity.ok(service.retrieveDeathOccupationData(period));
+    return ResponseEntity.ok(service.retrieveDeathCauseDetailData(period));
   }
 }

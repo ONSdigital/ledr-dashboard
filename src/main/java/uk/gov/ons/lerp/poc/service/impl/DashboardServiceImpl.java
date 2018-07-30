@@ -39,7 +39,7 @@ public class DashboardServiceImpl implements DashboardService {
 
   private ObjectMapper mapper = new ObjectMapper();
 
-  public RecordSummary retrieveBirthDashboardData(final String period) throws CannotRetrieveDashboardData {
+  public RecordSummary retrieveBirthSummaryData(final String period) throws CannotRetrieveDashboardData {
 
     try {
       return mapper.readValue(new File(appConfig.getFileLocation().getBirth() + period + ".json"), RecordSummary.class);
@@ -49,7 +49,7 @@ public class DashboardServiceImpl implements DashboardService {
 
   }
 
-  public RecordSummary retrieveDeathDashboardData(final String period) throws CannotRetrieveDashboardData {
+  public RecordSummary retrieveDeathSummaryData(final String period) throws CannotRetrieveDashboardData {
 
     try {
       return mapper.readValue(new File(appConfig.getFileLocation().getDeath() + period + ".json"), RecordSummary.class);
@@ -59,7 +59,7 @@ public class DashboardServiceImpl implements DashboardService {
 
   }
 
-  public RecordSummary retrieveDeathOccupationData(final String period) throws CannotRetrieveDashboardData {
+  public RecordSummary retrieveDeathCauseDetailData(final String period) throws CannotRetrieveDashboardData {
     return null;
     //TODO: all logic for this endpoint.
   }
