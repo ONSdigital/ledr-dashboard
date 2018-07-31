@@ -1,5 +1,6 @@
 package uk.gov.ons.lerp.poc.service;
 
+import uk.gov.ons.lerp.poc.domain.CauseDetail;
 import uk.gov.ons.lerp.poc.domain.RecordSummary;
 import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
 
@@ -31,6 +32,6 @@ public interface DashboardService {
    * @return CauseDetail for Death data
    * @throws CannotRetrieveDashboardData
    */
-  RecordSummary retrieveDeathCauseDetailData(final String period) throws CannotRetrieveDashboardData;
+  CauseDetail retrieveDeathCauseDetailData(final String period) throws CannotRetrieveDashboardData;
 	 
 }

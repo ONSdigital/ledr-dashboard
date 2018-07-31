@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 import uk.gov.ons.lerp.poc.config.AppConfig;
+import uk.gov.ons.lerp.poc.domain.CauseDetail;
 import uk.gov.ons.lerp.poc.domain.RecordSummary;
 import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
 import uk.gov.ons.lerp.poc.repository.DataRepository;
@@ -46,8 +47,11 @@ public class DashboardServiceImpl implements DashboardService {
     }
   }
 
-  public RecordSummary retrieveDeathCauseDetailData(final String period) throws CannotRetrieveDashboardData {
-    return null;
-    //TODO: all logic for this endpoint.
+  public CauseDetail retrieveDeathCauseDetailData(final String period) throws CannotRetrieveDashboardData {
+    try {
+      return jsonMapper.readValue(new File(appConfig.getFileLocation().getDeath() + "causedetail" + period + ".json"), CauseDetail.class);
+	} catch (IOException fileReaderError) {
+	  throw new CannotRetrieveDashboardData("cannot find file", fileReaderError);
+	}
   }
 }

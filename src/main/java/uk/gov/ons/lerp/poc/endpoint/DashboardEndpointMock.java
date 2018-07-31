@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import uk.gov.ons.lerp.poc.domain.OccupationExtra;
+import uk.gov.ons.lerp.poc.domain.CauseDetail;
 import uk.gov.ons.lerp.poc.domain.RecordSummary;
 import uk.gov.ons.lerp.poc.domain.TimePeriod;
 import uk.gov.ons.lerp.poc.exception.CannotRetrieveDashboardData;
@@ -76,24 +76,23 @@ public class DashboardEndpointMock {
   }
 
   @RequestMapping(value = "/ledr-dashboard-poc/test/topic/deaths/{period}/causecoding", method = RequestMethod.GET)
-  public ResponseEntity<OccupationExtra> getDeathCauseCodingData(@PathVariable("period") final String period,
+  public ResponseEntity<CauseDetail> getDeathCauseCodingData(@PathVariable("period") final String period,
                                                               HttpServletResponse response) throws CannotRetrieveDashboardData {
 
-    OccupationExtra mockOccupationExtra = new OccupationExtra();
+    CauseDetail mockOccupationExtra = new CauseDetail();
 
     mockOccupationExtra.setNonInquestReceived(20);
-    mockOccupationExtra.setNonInquestReceivedOutstandingNonNeonates(7);
-    mockOccupationExtra.setNonInquestReceivedOutstandingNeonates(3);
-    mockOccupationExtra.setNonInquestReceivedErrorsAndWarningsNonNeonates(11);
-    mockOccupationExtra.setNonInquestReceivedErrorsAndWarningsNeonates(8);
+    mockOccupationExtra.setNonInquestOutstandingNonNeonates(7);
+    mockOccupationExtra.setNonInquestOutstandingNeonates(3);
+    mockOccupationExtra.setNonInquestErrorsAndWarningsNonNeonates(11);
+    mockOccupationExtra.setNonInquestErrorsAndWarningsNeonates(8);
 
-    mockOccupationExtra.setInquestPartV(30);
-    mockOccupationExtra.setInquestPartVOutstandingNonNeonates(7);
-    mockOccupationExtra.setInquestPartVOutstandingNeonates(9);
-    mockOccupationExtra.setInquestPartVErrorsAndWarningsNonNeonates(14);
-    mockOccupationExtra.setInquestPartVErrorsAndWarningsNeonates(16);
+    mockOccupationExtra.setInquestReceived(30);
+    mockOccupationExtra.setInquestOutstandingNonNeonates(7);
+    mockOccupationExtra.setInquestOutstandingNeonates(9);
+    mockOccupationExtra.setInquestErrorsAndWarningsNonNeonates(14);
+    mockOccupationExtra.setInquestErrorsAndWarningsNeonates(16);
 
-    mockOccupationExtra.setInquestAdjourned(10);
     mockOccupationExtra.setInquestAdjournedOutstandingYellow(2);
     mockOccupationExtra.setInquestAdjournedOutstandingBlue(4);
 
@@ -102,24 +101,23 @@ public class DashboardEndpointMock {
   }
 
   @RequestMapping(value = "/ledr-dashboard-poc/test/topic/births/{period}/causecoding", method = RequestMethod.GET)
-  public ResponseEntity<OccupationExtra> getBirthCauseCodingData(@PathVariable("period") final String period,
+  public ResponseEntity<CauseDetail> getBirthCauseCodingData(@PathVariable("period") final String period,
                                                                  HttpServletResponse response) throws CannotRetrieveDashboardData {
 
-    OccupationExtra mockOccupationExtra = new OccupationExtra();
+    CauseDetail mockOccupationExtra = new CauseDetail();
 
     mockOccupationExtra.setNonInquestReceived(20);
-    mockOccupationExtra.setNonInquestReceivedOutstandingNonNeonates(7);
-    mockOccupationExtra.setNonInquestReceivedOutstandingNeonates(3);
-    mockOccupationExtra.setNonInquestReceivedErrorsAndWarningsNonNeonates(11);
-    mockOccupationExtra.setNonInquestReceivedErrorsAndWarningsNeonates(8);
+    mockOccupationExtra.setNonInquestOutstandingNonNeonates(7);
+    mockOccupationExtra.setNonInquestOutstandingNeonates(3);
+    mockOccupationExtra.setNonInquestErrorsAndWarningsNonNeonates(11);
+    mockOccupationExtra.setNonInquestErrorsAndWarningsNeonates(8);
 
-    mockOccupationExtra.setInquestPartV(30);
-    mockOccupationExtra.setInquestPartVOutstandingNonNeonates(7);
-    mockOccupationExtra.setInquestPartVOutstandingNeonates(9);
-    mockOccupationExtra.setInquestPartVErrorsAndWarningsNonNeonates(14);
-    mockOccupationExtra.setInquestPartVErrorsAndWarningsNeonates(16);
+    mockOccupationExtra.setInquestReceived(30);
+    mockOccupationExtra.setInquestOutstandingNonNeonates(7);
+    mockOccupationExtra.setInquestOutstandingNeonates(9);
+    mockOccupationExtra.setInquestErrorsAndWarningsNonNeonates(14);
+    mockOccupationExtra.setInquestErrorsAndWarningsNeonates(16);
 
-    mockOccupationExtra.setInquestAdjourned(10);
     mockOccupationExtra.setInquestAdjournedOutstandingYellow(2);
     mockOccupationExtra.setInquestAdjournedOutstandingBlue(4);
 

@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 import uk.gov.ons.lerp.poc.config.AppConfig;
+import uk.gov.ons.lerp.poc.domain.CauseDetail;
 import uk.gov.ons.lerp.poc.domain.RecordSummary;
 import uk.gov.ons.lerp.poc.domain.TimePeriod;
 import uk.gov.ons.lerp.poc.exception.CannotFindDataException;
@@ -106,18 +107,19 @@ public class DataSummaryServiceImpl implements DataSummaryService {
 
     deleteFile(appConfig.getFileLocation().getBirth() + period + ".json");
 
-    RecordSummary dd = new RecordSummary();
+    RecordSummary rs = RecordSummary.builder()
+      .recordsReceived(dataRepository.findBirthsRecordsReceived(dates.get(0), dates.get(1)))
+      .fullyCoded(dataRepository.findBirthsFullyCoded(dates.get(0), dates.get(1)))
+      .outstandingGeographyFull(dataRepository.findBirthsOutstandingGeographyFull(dates.get(0), dates.get(1)))
+      .outstandingGeographyPOB(dataRepository.findBirthsOutstandingGeographyPOB(dates.get(0), dates.get(1)))
+      .outstandingGeographyPOE(dataRepository.findBirthsOutstandingGeographyPOE(dates.get(0), dates.get(1)))
+      .outstandingGeographyUR(dataRepository.findBirthsOutstandingGeographyUR(dates.get(0), dates.get(1)))
+      .outstandingOccupation(dataRepository.findBirthsOutstandingOccupation(dates.get(0), dates.get(1)))
+      .outstandingCause(dataRepository.findBirthsOutstandingCause(dates.get(0), dates.get(1)))
+      .build();
 
-    dd.setRecordsReceived(dataRepository.findBirthsRecordsReceived(dates.get(0), dates.get(1)));
-    dd.setFullyCoded(dataRepository.findBirthsFullyCoded(dates.get(0), dates.get(1)));
-    dd.setOutstandingGeographyFull(dataRepository.findBirthsOutstandingGeographyFull(dates.get(0), dates.get(1)));
-    dd.setOutstandingGeographyPOB(dataRepository.findBirthsOutstandingGeographyPOB(dates.get(0), dates.get(1)));
-    dd.setOutstandingGeographyPOE(dataRepository.findBirthsOutstandingGeographyPOE(dates.get(0), dates.get(1)));
-    dd.setOutstandingGeographyUR(dataRepository.findBirthsOutstandingGeographyUR(dates.get(0), dates.get(1)));
-    dd.setOutstandingOccupation(dataRepository.findBirthsOutstandingOccupation(dates.get(0), dates.get(1)));
-    dd.setOutstandingCause(dataRepository.findBirthsOutstandingCause(dates.get(0), dates.get(1)));
     try {
-    	jsonMapper.writeValue(new File(appConfig.getFileLocation().getBirth() + period + ".json"), dd);
+    	jsonMapper.writeValue(new File(appConfig.getFileLocation().getBirth() + period + ".json"), rs);
     } catch (IOException e) {
       throw new CannotFindDataException("error mappering data", e);
     }
@@ -128,19 +130,37 @@ public class DataSummaryServiceImpl implements DataSummaryService {
     List<Date> dates = findPeriodRange(period);
 
     deleteFile(appConfig.getFileLocation().getDeath() + period + ".json");
+    deleteFile(appConfig.getFileLocation().getDeath() + "causedetail"+ period + ".json");
+     
+    RecordSummary rs = RecordSummary.builder()
+      .recordsReceived(dataRepository.findDeathsRecordsReceived(dates.get(0), dates.get(1)))
+      .fullyCoded(dataRepository.findDeathsFullyCoded(dates.get(0), dates.get(1)))
+      .outstandingGeographyFull(dataRepository.findDeathsOutstandingGeographyFull(dates.get(0), dates.get(1)))
+      .outstandingGeographyPOB(dataRepository.findDeathsOutstandingGeographyPOB(dates.get(0), dates.get(1)))
+      .outstandingGeographyPOE(dataRepository.findDeathsOutstandingGeographyPOE(dates.get(0), dates.get(1)))
+      .outstandingGeographyUR(dataRepository.findDeathsOutstandingGeographyUR(dates.get(0), dates.get(1)))
+      .outstandingOccupation(dataRepository.findDeathsOutstandingOccupation(dates.get(0), dates.get(1)))
+      .outstandingCause(dataRepository.findDeathsOutstandingCause(dates.get(0), dates.get(1)))
+      .build();
 
-    RecordSummary dd = new RecordSummary();
-    dd.setRecordsReceived(dataRepository.findDeathsRecordsReceived(dates.get(0), dates.get(1)));
-    dd.setFullyCoded(dataRepository.findDeathsFullyCoded(dates.get(0), dates.get(1)));
-    dd.setOutstandingGeographyFull(dataRepository.findDeathsOutstandingGeographyFull(dates.get(0), dates.get(1)));
-    dd.setOutstandingGeographyPOB(dataRepository.findDeathsOutstandingGeographyPOB(dates.get(0), dates.get(1)));
-    dd.setOutstandingGeographyPOE(dataRepository.findDeathsOutstandingGeographyPOE(dates.get(0), dates.get(1)));
-    dd.setOutstandingGeographyUR(dataRepository.findDeathsOutstandingGeographyUR(dates.get(0), dates.get(1)));
-    dd.setOutstandingOccupation(dataRepository.findDeathsOutstandingOccupation(dates.get(0), dates.get(1)));
-    dd.setOutstandingCause(dataRepository.findDeathsOutstandingCause(dates.get(0), dates.get(1)));
+    CauseDetail cd = CauseDetail.builder()
+      .nonInquestReceived(dataRepository.findDeathsNonInquestRecieved(dates.get(0), dates.get(1)))
+      .nonInquestOutstandingNonNeonates(dataRepository.findDeathsNonInquestOutstandingNonNeonates(dates.get(0), dates.get(1)))
+      .nonInquestOutstandingNeonates(dataRepository.findDeathsNonInquestOutstandingNeonates(dates.get(0), dates.get(1)))
+      .nonInquestErrorsAndWarningsNonNeonates(dataRepository.findDeathsNonInquestErrorsAndWarningsNonNeonates(dates.get(0), dates.get(1)))
+      .nonInquestErrorsAndWarningsNeonates(dataRepository.findDeathsNonInquestErrorsAndWarningsNeonates(dates.get(0), dates.get(1)))
+      .inquestReceived(dataRepository.findDeathsInquestReceived(dates.get(0), dates.get(1)))
+      .inquestOutstandingNonNeonates(dataRepository.findDeathsInquestOutstandingNonNeonates(dates.get(0), dates.get(1)))
+      .inquestOutstandingNeonates(dataRepository.findDeathsInquestOutstandingNeonates(dates.get(0), dates.get(1)))
+      .inquestErrorsAndWarningsNonNeonates(dataRepository.findDeathsInquestErrorsAndWarningsNonNeonates(dates.get(0), dates.get(1)))
+      .inquestErrorsAndWarningsNeonates(dataRepository.findDeathsInquestErrorsAndWarningsNeonates(dates.get(0), dates.get(1)))
+      .inquestAdjournedOutstandingYellow(dataRepository.findDeathsInquestAdjournedYellow(dates.get(0), dates.get(1)))
+      .inquestAdjournedOutstandingBlue(dataRepository.findDeathsInquestAdjounedBlue(dates.get(0), dates.get(1)))
+      .build();
 
     try {
-    	jsonMapper.writeValue(new File(appConfig.getFileLocation().getDeath() + period + ".json"), dd);
+    	jsonMapper.writeValue(new File(appConfig.getFileLocation().getDeath() + period + ".json"), rs);
+    	jsonMapper.writeValue(new File(appConfig.getFileLocation().getDeath() + "causedetail" + period + ".json"), cd);
     } catch (IOException e) {
       throw new CannotFindDataException("error mappering data", e);
     }

@@ -343,7 +343,7 @@ public class DataRepository {
     return count;
   }
 
-  public int findDeathsOutstandingNonNeonates(Date sat, Date fri) throws CannotFindDataException {
+  public int findDeathsNonInquestOutstandingNonNeonates(Date sat, Date fri) throws CannotFindDataException {
 
     String satSql = df.format(sat);
     String friSql = df.format(fri);
@@ -362,7 +362,7 @@ public class DataRepository {
     return count;
   }
 
-  public int findDeathsOutstandingNeonates(Date sat, Date fri) throws CannotFindDataException {
+  public int findDeathsNonInquestOutstandingNeonates(Date sat, Date fri) throws CannotFindDataException {
 
     String satSql = df.format(sat);
     String friSql = df.format(fri);
@@ -381,7 +381,7 @@ public class DataRepository {
     return count;
   }
 
-  public int findDeathsErrorsAndWarningsNonNeonates(Date sat, Date fri) throws CannotFindDataException {
+  public int findDeathsNonInquestErrorsAndWarningsNonNeonates(Date sat, Date fri) throws CannotFindDataException {
 
     String satSql = df.format(sat);
     String friSql = df.format(fri);
@@ -401,7 +401,7 @@ public class DataRepository {
     return count;
   }
 
-  public int findDeathsErrorsAndWarningsNeonates(Date sat, Date fri) throws CannotFindDataException {
+  public int findDeathsNonInquestErrorsAndWarningsNeonates(Date sat, Date fri) throws CannotFindDataException {
 
     String satSql = df.format(sat);
     String friSql = df.format(fri);
@@ -421,7 +421,7 @@ public class DataRepository {
     return count;
   }
 
-  public int findDeathsInquest(Date sat, Date fri) throws CannotFindDataException {
+  public int findDeathsInquestReceived(Date sat, Date fri) throws CannotFindDataException {
 
     String satSql = df.format(sat);
     String friSql = df.format(fri);
@@ -517,7 +517,7 @@ public class DataRepository {
   }
 
   //inquest Adjourned Number
-  public int findDeathsOutstandingYellow(Date sat, Date fri) throws CannotFindDataException {
+  public int findDeathsInquestAdjournedYellow(Date sat, Date fri) throws CannotFindDataException {
 
     String satSql = df.format(sat);
     String friSql = df.format(fri);
@@ -535,7 +535,7 @@ public class DataRepository {
     return count;
   }
 
-  public int findDeathsOutstandingBlue(Date sat, Date fri) throws CannotFindDataException {
+  public int findDeathsInquestAdjounedBlue(Date sat, Date fri) throws CannotFindDataException {
 
     String satSql = df.format(sat);
     String friSql = df.format(fri);
