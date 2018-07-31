@@ -1,34 +1,36 @@
 package uk.gov.ons.lerp.poc.domain;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class OccupationExtra {
+public class CauseDetail {
 
   private Integer nonInquestReceived;
   
-  private Integer nonInquestReceivedOutstandingNonNeonates;
+  private Integer nonInquestOutstandingNonNeonates;
   
-  private Integer nonInquestReceivedOutstandingNeonates;
+  private Integer nonInquestOutstandingNeonates;
   
-  private Integer nonInquestReceivedErrorsAndWarningsNonNeonates;
+  private Integer nonInquestErrorsAndWarningsNonNeonates;
   
-  private Integer nonInquestReceivedErrorsAndWarningsNeonates;
+  private Integer nonInquestErrorsAndWarningsNeonates;
   
-  private Integer inquestPartV;
+  private Integer inquestReceived;
   
-  private Integer inquestPartVOutstandingNonNeonates;
+  private Integer inquestOutstandingNonNeonates;
   
-  private Integer inquestPartVOutstandingNeonates;
+  private Integer inquestOutstandingNeonates;
   
-  private Integer inquestPartVErrorsAndWarningsNonNeonates;
+  private Integer inquestErrorsAndWarningsNonNeonates;
   
-  private Integer inquestPartVErrorsAndWarningsNeonates;
-
-  private Integer inquestAdjourned;
+  private Integer inquestErrorsAndWarningsNeonates;
 
   private Integer inquestAdjournedOutstandingYellow;
   
