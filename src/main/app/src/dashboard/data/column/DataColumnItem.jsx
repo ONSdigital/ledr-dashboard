@@ -33,7 +33,7 @@ const DataColumnItem = ({labelText, count, percent, onClick}) => {
                 </Grid.Column>
                 {onClick &&
                 <Grid.Column textAlign='right'>
-                  view more
+                  <a onClick={onClick}>view more</a>
                 </Grid.Column>
                 }
               </Grid.Row>
