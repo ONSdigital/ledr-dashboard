@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Form} from "semantic-ui-react";
-import {TOPIC_OPTIONS} from "../../utils/Arrays";
+import {Form, Radio} from "semantic-ui-react";
 import {connect} from "react-redux";
 import {setSelectTopic} from "../../redux/actions/index";
 import {TOPIC_ENUM} from "../../utils/Constants";
@@ -41,9 +40,30 @@ class TopicSelectRedux extends Component {
     let {topic} = this.state;
 
     return (
-      <Form.Select label='Topic' value={topic} options={TOPIC_OPTIONS} placeholder='Topic'
-                   onChange={this.handleTopicChangeSelect}/>
-    );
+      <Form>
+        <Form.Group inline>
+          <Form.Field>
+            <label>Topic:</label>
+          </Form.Field>
+          <Form.Field>
+            <Radio
+              label='Deaths'
+              name='topicRadioGroup'
+              value={TOPIC_ENUM.DEATH}
+              checked={topic === TOPIC_ENUM.DEATH}
+              onChange={this.handleTopicChangeSelect}/>
+          </Form.Field>
+          <Form.Field>
+            <Radio
+              label='Births'
+              name='topicRadioGroup'
+              value={TOPIC_ENUM.BIRTH}
+              checked={topic === TOPIC_ENUM.BIRTH}
+              onChange={this.handleTopicChangeSelect}/>
+          </Form.Field>
+        </Form.Group>
+      </Form>
+    )
   }
 }
 
