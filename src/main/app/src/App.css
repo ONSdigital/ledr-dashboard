@@ -20,3 +20,11 @@
 .list-label {
     margin-left: 4px !important;
 }
+
+.progress-label {
+    margin-bottom: 0px !important;
+}
+
+.ui.progress:last-child {
+    margin: 0 0 1em !important;
+}

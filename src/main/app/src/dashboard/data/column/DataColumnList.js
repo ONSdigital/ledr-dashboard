@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {setModalDataProperty, setModalOpen, setModalTimePeriodType} from "../../../redux/actions/index";
 import {connect} from "react-redux";
-import {Label, List, Segment} from "semantic-ui-react";
-import {DATA_PROPERTY, TOPIC_ENUM} from "../../../utils/Constants";
+import {Header, Segment} from "semantic-ui-react";
+import {DATA_PROPERTY} from "../../../utils/Constants";
 import {nullChecker, round} from "../../../utils/Utils";
-import DataColumnItemGeneric from "./DataColumnItemGeneric";
+import DataColumnItem from "./DataColumnItem";
 
 const mapStateToProps = state => {
   return {
@@ -50,54 +50,25 @@ class DataColumnListRedux extends Component {
 
     return (
       <Segment attached>
-        <List>
-          <DataColumnItemGeneric
-            header='Records received:'
-            description={recordsReceivedDisplay}/>
-          <List.Item className='data-column-item-generic'>
-            <List.Content>
-              <List.Header>Fully coded:</List.Header>
-              <List.Description>{fullyCodedDisplay}
-                {(() => {
-                  if (fullyCodedPercent >= 75)
-                    return <Label className='list-label' color='green' circular>{fullyCodedPercent}%</Label>;
-                  if (fullyCodedPercent < 75 && fullyCodedPercent >= 50)
-                    return <Label className='list-label' color='orange' circular>{fullyCodedPercent}%</Label>;
-                  else
-                    return <Label className='list-label' color='red' circular>{fullyCodedPercent}%</Label>;
-                })()}
-              </List.Description>
-            </List.Content>
-          </List.Item>
-          <DataColumnItemGeneric
-            header='Outstanding geography:'
-            description={outstandingGeographyFullDisplay}
-            label={outstandingGeographyPercent}
-            onclick={() => {
-              this.props.setModalTimePeriodType(timePeriodType);
-              this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_GEOGRAPHY);
-              this.props.setModalOpen(true);
-            }
-            }/>
-          <DataColumnItemGeneric header='Outstanding occupation:' description={outstandingOccupationDisplay}
-                                 label={outstandingOccupationPercent}/>
-          {topic === TOPIC_ENUM.DEATH ?
-            <DataColumnItemGeneric
-              header='Outstanding cause:'
-              description={outstandingCauseDisplay}
-              label={outstandingCausePercent}
-              onclick={() => {
-                this.props.setModalTimePeriodType(timePeriodType);
-                this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_CAUSE);
-                this.props.setModalOpen(true);
-              }}/>
-            :
-            <DataColumnItemGeneric
-              header='Outstanding cause:'
-              description={outstandingCauseDisplay}
-              label={outstandingCausePercent}/>
-          }
-        </List>
+        <Header as='h4'>Records received: {recordsReceivedDisplay}</Header>
+        <DataColumnItem labelText='Fully Coded:' count={fullyCodedDisplay} percent={fullyCodedPercent}/>
+        <DataColumnItem labelText='Outstanding Geography:' count={outstandingGeographyFullDisplay}
+                        percent={outstandingGeographyPercent}
+                        onClick={() => {
+                          this.props.setModalTimePeriodType(timePeriodType);
+                          this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_GEOGRAPHY);
+                          this.props.setModalOpen(true);
+                        }}/>
+        <DataColumnItem labelText='Outstanding occupation:' count={outstandingOccupationDisplay}
+                        percent={outstandingOccupationPercent}/>
+
+        <DataColumnItem labelText='Outstanding cause:' count={outstandingCauseDisplay}
+                        percent={outstandingCausePercent}
+                        onClick={() => {
+                          this.props.setModalTimePeriodType(timePeriodType);
+                          this.props.setModalDataProperty(DATA_PROPERTY.OUTSTANDING_CAUSE);
+                          this.props.setModalOpen(true);
+                        }}/>
       </Segment>
     );
 
