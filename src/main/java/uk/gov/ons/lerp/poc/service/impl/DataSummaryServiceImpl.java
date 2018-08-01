@@ -27,6 +27,8 @@ import uk.gov.ons.lerp.poc.exception.CannotFindDataException;
 import uk.gov.ons.lerp.poc.repository.DataRepository;
 import uk.gov.ons.lerp.poc.service.DataSummaryService;
 
+import javax.annotation.PostConstruct;
+
 @Slf4j
 @Service
 public class DataSummaryServiceImpl implements DataSummaryService {
@@ -39,7 +41,15 @@ public class DataSummaryServiceImpl implements DataSummaryService {
 
   @Autowired
   private ObjectMapper jsonMapper;
-	  
+
+  @PostConstruct
+  public void initialRun() {
+    createWeeklySummary();
+    createMonthlySummary();
+    createQuarterlySummary();
+    createAnnualSummary();
+  }
+
   @Scheduled(cron = "#{appConfig.querySchedule.weeklyCron}")
   @Override
   public void createWeeklySummary() {
