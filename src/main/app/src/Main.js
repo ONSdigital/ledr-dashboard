@@ -12,7 +12,7 @@ class Main extends Component {
 
     return (
       <Switch>
-        <Route exact path={ROUTER_PATH.DASHBOARD} render={(props) => {
+        <Route exact path={ROUTER_PATH.CODING} render={(props) => {
           return <Dashboard {...props}/>
         }}/>
       </Switch>

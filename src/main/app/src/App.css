@@ -7,6 +7,11 @@
     border-radius: 0 !important;
 }
 
+#sub-menu {
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
 /* Removes margin from main content container to make design more visually consistent*/
 #content-main {
     margin-top: 0 !important;

@@ -3,6 +3,7 @@ import './App.css';
 import {Segment} from "semantic-ui-react";
 import Main from "./Main";
 import NavigationBar from "./navigation/NavigationBar";
+import SubNavigationBar from "./navigation/SubNavigationBar";
 
 /**
  * This is the base class of the Application
@@ -13,6 +14,7 @@ class App extends Component {
     return (
       <Fragment>
         <NavigationBar/>
+        <SubNavigationBar/>
         <Segment id='content-main' basic>
           <Main/>
         </Segment>

@@ -3,8 +3,18 @@
  */
 
 export const ROUTER_PATH = {
-  DASHBOARD: '/',
+  DASHBOARD: '/dashboard',
+  HOME: '/home',
+  DATA_QUALITY: '/data_quality',
+  CODING: '/coding',
   LOGOUT: '/logout',
+};
+
+export const SUB_MENU_ENUM = {
+  HOME: 'HOME',
+  DATA_QUALITY: 'DATA QUALITY',
+  CODING: 'CODING',
+  DASHBOARD: 'DASHBOARD'
 };
 
 export const TOPIC_ENUM = {
