@@ -27,14 +27,7 @@ class DashboardHeaderRedux extends Component {
     let timePeriodDisplay = toTitleCase(timePeriod);
 
     return (
-      <Header as='h1'>
-        <Header.Content>
-          {timePeriodDisplay} Stats: {topicDisplay}
-          <Header.Subheader>
-            Initial Regs
-          </Header.Subheader>
-        </Header.Content>
-      </Header>
+      <Header as='h1'>{timePeriodDisplay} Stats: {topicDisplay}</Header>
     );
   }
 }
