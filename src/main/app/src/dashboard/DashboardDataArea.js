@@ -30,7 +30,7 @@ class DashboardDataAreaRedux extends Component {
    */
   getDataForTimePeriod = (timePeriod) => {
 
-    let url = `${API_ENDPOINT.DASHBOARD}/${this.props.topic}/${timePeriod}`;
+    let url = `${API_ENDPOINT.DASHBOARD_MOCK}/${this.props.topic}/${timePeriod}`;
 
     return fetch(url)
       .then((response) => {
