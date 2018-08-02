@@ -11,7 +11,8 @@
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
     "semantic-ui-css": "^2.3.2",
-    "semantic-ui-react": "^0.82.0"
+    "semantic-ui-react": "^0.82.0",
+    "victory": "^30.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
