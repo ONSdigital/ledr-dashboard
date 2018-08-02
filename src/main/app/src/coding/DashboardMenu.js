@@ -3,7 +3,7 @@ import TimePeriodSelect from "./menu/TimePeriodSelect";
 import TopicSelect from "./menu/TopicSelect";
 
 /**
- * Menu for selecting active Dashboard topic and time period
+ * Menu for selecting active Coding topic and time period
  */
 class DashboardMenu extends Component {
 

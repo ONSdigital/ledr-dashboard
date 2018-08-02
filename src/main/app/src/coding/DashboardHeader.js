@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 };
 
 /**
- * Header for displaying Dashboard title and current topic
+ * Header for displaying Coding title and current topic
  */
 class DashboardHeaderRedux extends Component {
 
