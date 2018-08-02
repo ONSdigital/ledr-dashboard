@@ -52,6 +52,7 @@ class DataColumnListRedux extends Component {
       <Segment attached>
         <Header as='h4'>Records received: {recordsReceivedDisplay}</Header>
         <DataColumnItem labelText='Fully Coded:' count={fullyCodedDisplay} percent={fullyCodedPercent}/>
+        <div style={{height: '12px'}}/>
         <DataColumnItem labelText='Outstanding Geography:' count={outstandingGeographyFullDisplay}
                         percent={outstandingGeographyPercent}
                         onClick={() => {
