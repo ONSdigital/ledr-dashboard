@@ -55,7 +55,7 @@ export const TIME_PERIOD_ENUM = {
 
 export const API_ENDPOINT = {
   DASHBOARD: '/ledr-dashboard-poc/topic',
-  DASHBOARD_MOCK: 'http://localhost:7051/ledr-dashboard-poc/test/topic',
+  DASHBOARD_MOCK: '/ledr-dashboard-poc/test/topic',
   POPUP: '/ledr-dashboard-poc',
 };
 
